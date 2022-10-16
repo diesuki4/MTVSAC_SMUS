@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +23,7 @@ public class UISystem : MonoBehaviour
         Avatar  = 2 << 3,
         ETC1    = 2 << 4,
         ETC2    = 2 << 5,
-        ETC3    = 2 << 6,
+        ETC3    = 2 << 6
     }
     public Tab selectedTab;
 
@@ -92,20 +91,5 @@ public class UISystem : MonoBehaviour
 
         FocusTab(tab);
         FocusPanel(panel);
-    }
-
-    public void OnElementPointerDown()
-    {
-        print(MethodBase.GetCurrentMethod().Name);
-    }
-
-    public void OnElementDrag()
-    {
-        print(MethodBase.GetCurrentMethod().Name);
-    }
-
-    public void OnElementPointerUp()
-    {
-        print(MethodBase.GetCurrentMethod().Name);
     }
 }
