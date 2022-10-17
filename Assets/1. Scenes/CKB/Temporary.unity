@@ -2002,6 +2002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9a879e03e85ba4c837e88b1f4a43b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cnvsPalette: {fileID: 1151463398}
   goModel: {fileID: 2708391795659861102, guid: 0dd9f07240772ad4d9444fd0a5893137, type: 3}
   goThumbnail: {fileID: 6422089202766550545, guid: 6ea2e69f4f107104884c2a6d5c0e33f4,
     type: 3}
@@ -3072,6 +3073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1383722163}
+  - component: {fileID: 1383722164}
   - component: {fileID: 1383722162}
   - component: {fileID: 1383722161}
   m_Layer: 0
@@ -3146,6 +3148,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1383722164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383722160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f7dc10c03c2ba44a6b46182b8d180c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accel: 1
+  maxSpeed: 20
+  boostFactor: 2
+  rotSpeed: 200
+  maxRotX: 45
 --- !u!1 &1452612208
 GameObject:
   m_ObjectHideFlags: 0

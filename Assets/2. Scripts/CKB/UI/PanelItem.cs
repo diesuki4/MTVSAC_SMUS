@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class PanelItem : MonoBehaviour
@@ -11,6 +12,7 @@ public class PanelItem : MonoBehaviour
         Thumbnail   = 2 << 1
     }
 
+    public Canvas cnvsPalette;
     public GameObject goModel;
     public GameObject goThumbnail;
     public Transform trThumbnailArea;
@@ -18,9 +20,31 @@ public class PanelItem : MonoBehaviour
     GameObject model;
     GameObject thumbnail;
 
-    void Start() { }
+    GraphicRaycaster grpRaycaster;
+    EventSystem evtSystem;
+
+    void Start()
+    {
+        grpRaycaster = cnvsPalette.GetComponent<GraphicRaycaster>();
+        evtSystem = cnvsPalette.GetComponent<EventSystem>();
+    }
 
     void Update() { }
+
+    bool GraphicRaycast(Vector2 position)
+    {
+        PointerEventData evtData = new PointerEventData(evtSystem);
+        evtData.position = position;
+
+        List<RaycastResult> rayResults = new List<RaycastResult>();
+
+        grpRaycaster.Raycast(evtData, rayResults);
+
+        if (0 < rayResults.Count)
+            return true;
+        else
+            return false;
+    }
 
     bool ScreenPointRaycast(Vector3 screenPoint, out RaycastHit hit, int layerMask = ~0)
     {
@@ -60,12 +84,13 @@ public class PanelItem : MonoBehaviour
     public void OnElementDrag()
     {
         RaycastHit hit;
-        bool result = ScreenPointRaycast(Input.mousePosition, out hit);
+        bool result = ScreenPointRaycast(Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor"));
+        bool isPointerOverUI = GraphicRaycast(Input.mousePosition);
 
-        if (result && model != hit.transform.gameObject && EventSystem.current.IsPointerOverGameObject())
-            RevalidateItem(Mode.Model, hit.point);
-        else
+        if (result == false || isPointerOverUI)
             RevalidateItem(Mode.Thumbnail, Input.mousePosition);
+        else
+            RevalidateItem(Mode.Model, hit.point);
     }
 
     public void OnElementPointerUp()
