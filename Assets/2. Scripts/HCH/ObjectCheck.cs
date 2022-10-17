@@ -6,6 +6,18 @@ using UnityEngine;
 
 public class ObjectCheck : MonoBehaviour
 {
+    public static ObjectCheck instance;
+
+    public GameObject objectInfoFactory;
+    GameObject objectInfo;
+    bool instantiateOk = true;
+    public Transform canvas;
+    public RaycastHit hitInfo;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -15,23 +27,45 @@ public class ObjectCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 오브젝트 판별
+        DistinctObject();
+        ObjectInfoMove();
+    }
+
+    public void DistinctObject()
+    {
         // 마우스 좌클릭하면
         if (Input.GetButton("Fire1"))
         {
-           
+            // 레이를 쏜다
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hitInfo;
+            // 오브젝트 판별한다
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                print(hitInfo.transform.name);
+                // 말풍선을 마우스 커서 위에 띄우고 싶다
+                if(instantiateOk == true)
+                {
+                    objectInfo = Instantiate(objectInfoFactory, canvas);
+                    objectInfo.transform.position = Input.mousePosition;
+                    instantiateOk = false;
+                }
+
+            }
         }
-        // 레이를 쏜다
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo))
+    }
+
+    public void ObjectInfoMove()
+    {
+        if(objectInfo != null)
         {
-            print(hitInfo.transform.name);
+            objectInfo.transform.position = Input.mousePosition;
+            if (Input.GetButtonUp("Fire1"))
+            {
+                Destroy(objectInfo);
+                instantiateOk = true;
+            }
         }
-        else
-        {
-           
-        }
-        print("X");
-        // 오브젝트 판별한다
     }
 }
