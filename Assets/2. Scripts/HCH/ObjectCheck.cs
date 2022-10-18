@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 // 마우스 좌클릭 상태일 때 레이를 쏴서 무슨 오브젝트인지 판별하고 싶다
-// 말풍선을 마우스 커서 위에 띄우고 싶다
+// 텍스트를 마우스 커서 위에 띄우고 싶다
+// 텍스트를 TimelineObjectListBase에 끌어다 놓을 때 
+// 좌클릭 해제시 objectInfo를 파괴하기전에 BoxCollider를 키고 싶다
+
+
 
 public class ObjectCheck : MonoBehaviour
 {
@@ -10,10 +15,16 @@ public class ObjectCheck : MonoBehaviour
 
     public GameObject objectInfoFactory;
     GameObject objectInfo;
+    // 생성할 수 있는 상태인지
     bool instantiateOk = true;
     public Transform canvas;
     public RaycastHit hitInfo;
 
+    //public Text objectInfoText;
+    public string saveName;
+
+    // 저장할 수 있는 상태인지
+    bool isSave = true;
     private void Awake()
     {
         instance = this;
@@ -44,8 +55,13 @@ public class ObjectCheck : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
             {
                 print(hitInfo.transform.name);
+                if(isSave == true)
+                {
+                    saveName = hitInfo.transform.name;
+                    isSave = false;
+                }
                 // 말풍선을 마우스 커서 위에 띄우고 싶다
-                if(instantiateOk == true)
+                if (instantiateOk == true)
                 {
                     objectInfo = Instantiate(objectInfoFactory, canvas);
                     objectInfo.transform.position = Input.mousePosition;
@@ -63,8 +79,10 @@ public class ObjectCheck : MonoBehaviour
             objectInfo.transform.position = Input.mousePosition;
             if (Input.GetButtonUp("Fire1"))
             {
-                Destroy(objectInfo);
+                GameObject.Find("ObjectInfo(Clone)").GetComponent<ObjectInfoName>().BoxColliderOnOff();
+                Destroy(objectInfo, 0.1f);
                 instantiateOk = true;
+                isSave = true;
             }
         }
     }
