@@ -73,7 +73,18 @@ public class AutoSavePreferences
 	};
 	static int saveIntervalIndex = 0;
 
+#if UNITY_2018_3_OR_NEWER
+    [SettingsProvider]
+    static SettingsProvider _OnGUI()
+    {
+        return new SettingsProvider("Preferences/Autosave", SettingsScope.User)
+        {
+            guiHandler = (searchContext) => OnGUI(),
+        };
+    }
+#else
 	[PreferenceItem("Autosave")]
+#endif
 	public static void OnGUI ()
 	{
 		if (!loaded) {

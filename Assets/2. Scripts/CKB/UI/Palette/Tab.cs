@@ -69,7 +69,7 @@ public class Tab : MonoBehaviour
         panel.SetActive(show);
     }
 
-    // 해당 패널만을 보여준다
+    // 해당 패널만을 표시
     void FocusPanel(GameObject panel)
     {
         foreach (Transform childPanel in rctPanels)
@@ -87,7 +87,7 @@ public class Tab : MonoBehaviour
         GameObject tab = rctTabs.GetChild(index).gameObject;
         GameObject panel = rctPanels.GetChild(index).gameObject;
 
-        // index 에 해당하는 탭을 선택하고 패널을 보여줌
+        // index 에 해당하는 탭을 선택하고 패널을 표시
         FocusTab(tab);
         FocusPanel(panel);
     }
