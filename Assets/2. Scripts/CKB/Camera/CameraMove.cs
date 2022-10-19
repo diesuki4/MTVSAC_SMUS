@@ -29,6 +29,11 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
+        // 우클릭을 누르고 있을 때만 움직일 수 있다
+        if (Input.GetMouseButton(1) == false)
+            return;
+
+        // 왼쪽 Shift 를 누르고 있는 동안 속도가 빨라진다
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed *= boostFactor;
