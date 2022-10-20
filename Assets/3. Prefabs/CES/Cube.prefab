@@ -43,9 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3091206723466968613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600492803fb66324fb90dfc5b945bf1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ebf63500cdca174dbdabcd4f3a9e4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaced: 0
+  size: {x: 0, y: 0, z: 0}
 --- !u!33 &6222007261981733723
 MeshFilter:
   m_ObjectHideFlags: 0
