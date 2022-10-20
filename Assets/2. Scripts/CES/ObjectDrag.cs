@@ -13,6 +13,13 @@ public class ObjectDrag : MonoBehaviour
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit))
             offset = transform.position - hit.point;
+
+        BuildingSystem.Instance.objectToPlace = GetComponent<PlaceableObject>();
+    }
+
+    void OnMouseUp()
+    {
+        
     }
 
     void OnMouseDrag()
@@ -24,5 +31,7 @@ public class ObjectDrag : MonoBehaviour
             pos += hit.point;
 
         transform.position = BuildingSystem.Instance.SnapCoordinateToGrid(pos);
+
+        BuildingSystem.Instance.RevalidateGrid();
     }
 }

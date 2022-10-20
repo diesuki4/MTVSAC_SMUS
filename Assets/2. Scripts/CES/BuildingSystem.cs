@@ -18,12 +18,15 @@ public class BuildingSystem : MonoBehaviour
     public GridLayout gridLayout;
     public Tilemap mainTilemap;
     public TileBase whiteTile;
+    public TileBase transparentTile;
+    public TileBase greenTile;
+    public TileBase redTile;
 
     public GameObject prefab1;
     public GameObject prefab2;
 
+    public PlaceableObject objectToPlace;
     Grid grid;
-    PlaceableObject objectToPlace;
 
     void Start()
     {
@@ -52,7 +55,7 @@ public class BuildingSystem : MonoBehaviour
 
                 Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
 
-                TakeArea(start, objectToPlace.size);
+                TakeArea(start, objectToPlace.size, whiteTile);
             }
             else
             {
@@ -106,16 +109,27 @@ public class BuildingSystem : MonoBehaviour
         TileBase[] tileBases = GetTilesBlock(area, mainTilemap);
 
         foreach (TileBase tb in tileBases)
-            if (tb == whiteTile)
+            if (tb == transparentTile)
                 return false;
 
         return true;
     }
 
-    public void TakeArea(Vector3Int start, Vector3Int size)
+    public void TakeArea(Vector3Int start, Vector3Int size, TileBase tile)
     {
-        mainTilemap.BoxFill(start, whiteTile,
-                            start.x, start.y,
-                            start.x + size.x, start.y + size.y);
+        mainTilemap.BoxFill(start, tile,
+                                                start.x, start.y,
+                                                start.x + size.x, start.y + size.y);
+    }
+
+    public void RevalidateGrid()
+    {
+        Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
+
+        Vector3Int tilemapSize = mainTilemap.size;
+        mainTilemap.ClearAllTiles();
+        mainTilemap.size = tilemapSize;
+
+        TakeArea(start, objectToPlace.size, greenTile);
     }
 }
