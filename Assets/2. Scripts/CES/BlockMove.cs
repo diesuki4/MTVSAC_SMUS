@@ -5,17 +5,21 @@ using UnityEngine;
 public class BlockMove : MonoBehaviour
 {
     public bool selected = false;
+    public GameObject redPlane;
     public GameObject canvas;
+    //public GameObject parent;
     //public bool checkSelected = false;
 
-    GameObject selectOutline;
+    //GameObject selectOutline;
 
     // Start is called before the first frame update
     void Start()
     {
-        selectOutline = transform.Find("Outline").gameObject;
-        selectOutline.SetActive(false);
+        //    parent = transform.parent.gameObject;
+        //selectOutline = transform.Find("Outline").gameObject;
+        //selectOutline.SetActive(false);
         canvas.SetActive(false);
+        redPlane.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,15 +28,15 @@ public class BlockMove : MonoBehaviour
 
         if (selected == false)
         {
-            selectOutline.SetActive(false);
+            //selectOutline.SetActive(false);
             canvas.SetActive(false);
         }
 
         else if (selected == true)
         {
-            selectOutline.SetActive(true);
+            //selectOutline.SetActive(true);
             canvas.SetActive(true);
-            GeunyangMove();
+            //GeunyangMove();
         }
     }
 
@@ -44,4 +48,18 @@ public class BlockMove : MonoBehaviour
         dir.Normalize();
         transform.position += dir * 10 * Time.deltaTime;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("닿았어");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Object"))
+        {
+            redPlane.SetActive(true);
+        }
+        else
+        {
+            redPlane.SetActive(false);
+        }
+    }
 }
+
+
