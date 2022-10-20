@@ -56,7 +56,7 @@ public class BuildingSystem : MonoBehaviour
             }
             else
             {
-                Destroy(objectToPlace.gameObject);
+                //Destroy(objectToPlace.gameObject);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Escape))

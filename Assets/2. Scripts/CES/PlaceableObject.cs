@@ -15,7 +15,7 @@ public class PlaceableObject : MonoBehaviour
         CalculateSizeInCells();
     }
 
-    public virtual void Place()
+    public void Place()
     {
         Destroy(GetComponent<ObjectDrag>());
 
