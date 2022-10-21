@@ -997,6 +997,7 @@ MonoBehaviour:
   timerListParent: {fileID: 1730100145}
   objectList: []
   timerList: []
+  timerBaseContent: {fileID: 0}
 --- !u!54 &825499835
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1728,7 +1729,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114577932}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
