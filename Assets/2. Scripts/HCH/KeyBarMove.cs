@@ -19,9 +19,6 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         isDrag = true;
         // keybar를 드래그해서 x축만 이동시키고 싶다
-        //float XPos = Input.mousePosition.x;
-        //Mathf.Clamp(XPos, 0, Input.mousePosition.x);
-        print(rt.anchoredPosition.x);
         this.transform.position = new Vector2(Input.mousePosition.x, transform.position.y);
         savePosition = this.transform.position;
     }
@@ -41,6 +38,6 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     void Update()
     {
         Vector2 rtPos = rt.anchoredPosition;
-        rt.anchoredPosition = new Vector2(Mathf.Clamp(rtPos.x, -536.5f, Input.mousePosition.x), rtPos.y);        
+        rt.anchoredPosition = new Vector2(Mathf.Clamp(rtPos.x, -536.5f, 950f), rtPos.y);        
     }
 }

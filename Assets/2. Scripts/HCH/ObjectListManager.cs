@@ -61,7 +61,6 @@ public class ObjectListManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        print(txt);
     }
 
     // 좌클릭시 선택 상태로 만들고 싶다
