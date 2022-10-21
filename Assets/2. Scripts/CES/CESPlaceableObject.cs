@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceableObject : MonoBehaviour
+public class CESPlaceableObject : MonoBehaviour
 {
     public bool isPlaced;
     public Vector3Int size;
@@ -17,7 +17,7 @@ public class PlaceableObject : MonoBehaviour
 
     public void Place()
     {
-        Destroy(GetComponent<ObjectDrag>());
+        Destroy(GetComponent<CESObjectDrag>());
 
         isPlaced = true;
     }
@@ -59,7 +59,7 @@ public class PlaceableObject : MonoBehaviour
         for (int i = 0; i < t_vertices.Length; ++i)
         {
             Vector3 worldPos = transform.TransformPoint(vertices[i]);
-            t_vertices[i] = BuildingSystem.Instance.gridLayout.WorldToCell(worldPos);
+            t_vertices[i] = CESBuildingSystem.Instance.gridLayout.WorldToCell(worldPos);
         }
 
         size = new Vector3Int(Mathf.Abs((t_vertices[0] - t_vertices[1]).x), Mathf.Abs((t_vertices[0] - t_vertices[3]).y), 1);

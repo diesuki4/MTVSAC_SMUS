@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class BuildingSystem : MonoBehaviour
+public class CESBuildingSystem : MonoBehaviour
 {
-    public static BuildingSystem Instance;
+    public static CESBuildingSystem Instance;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class BuildingSystem : MonoBehaviour
     public GameObject prefab1;
     public GameObject prefab2;
 
-    public PlaceableObject objectToPlace;
+    public CESPlaceableObject objectToPlace;
     Grid grid;
 
     void Start()
@@ -83,8 +83,8 @@ public class BuildingSystem : MonoBehaviour
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
 
-        objectToPlace = obj.GetComponent<PlaceableObject>();
-        obj.AddComponent<ObjectDrag>();
+        objectToPlace = obj.GetComponent<CESPlaceableObject>();
+        obj.AddComponent<CESObjectDrag>();
     }
 
     TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
@@ -100,7 +100,7 @@ public class BuildingSystem : MonoBehaviour
         return tiles.ToArray();
     }
 
-    bool isPlaceAvailable(PlaceableObject placeableObject)
+    bool isPlaceAvailable(CESPlaceableObject placeableObject)
     {
         BoundsInt area = new BoundsInt();
         area.position = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
