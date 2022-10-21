@@ -7,7 +7,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using LOG = UnityEngine.Debug;
-#if UNITY_5_3
+#if UNITY_5_3_OR_NEWER
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 #endif
@@ -53,10 +53,17 @@ public class AutoSave : EditorWindow
 				timer = null;
 			}
 		}
+#if UNITY_5_3_OR_NEWER
+		EditorApplication.hierarchyChanged -= HierarchyChanged;
+		EditorApplication.playModeStateChanged -= playModeChanged;
+		EditorApplication.hierarchyChanged += HierarchyChanged;
+		EditorApplication.playModeStateChanged += playModeChanged;
+#else
 		EditorApplication.hierarchyWindowChanged -= HierarchyChanged;
 		EditorApplication.playmodeStateChanged -= playModeChanged;
 		EditorApplication.hierarchyWindowChanged += HierarchyChanged;
 		EditorApplication.playmodeStateChanged += playModeChanged;
+#endif
 
 		if (instance != null) {
 			instance.Repaint ();
@@ -65,7 +72,7 @@ public class AutoSave : EditorWindow
 	}
 
 
-	public static void playModeChanged ()
+	public static void playModeChanged (PlayModeStateChange playmodeStateChange)
 	{
 		if (AutoSavePreferences.saveBeforeRun && EditorApplication.isPlayingOrWillChangePlaymode && !savedBeforePlay) {
 			savedBeforePlay = true;
@@ -113,7 +120,7 @@ public class AutoSave : EditorWindow
 		saveAfterPlay = false;
 
 		// save untitled scene?
-#if UNITY_5_3
+#if UNITY_5_3_OR_NEWER
 		string sceneName = SceneManager.GetActiveScene ().name;
 #else
 			string sceneName = EditorApplication.currentScene;
@@ -127,7 +134,7 @@ public class AutoSave : EditorWindow
 		if (AutoSavePreferences.logSaveEvent) {
 			LOG.Log ("Autosave");
 		}
-#if UNITY_5_3
+#if UNITY_5_3_OR_NEWER
 		EditorSceneManager.SaveOpenScenes ();
 #else
 		EditorApplication.SaveScene ();
