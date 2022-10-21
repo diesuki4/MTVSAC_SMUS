@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
 // 리스트에 넣고 싶다
@@ -13,6 +12,8 @@ using System.Collections.Generic;
 
 public class AddList : MonoBehaviour
 {
+    public static AddList instance;
+
     public GameObject objectListFactory;
     public Transform objectListParent;
 
@@ -24,6 +25,11 @@ public class AddList : MonoBehaviour
 
     public GameObject timerBaseContent;
     RectTransform timerHeight;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
