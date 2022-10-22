@@ -14,10 +14,13 @@ public class BuildingSystem : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        objectList = new List<PlaceableObject>();
+
+        gridLayout = grid = GetComponent<Grid>();
     }
 
     public Tilemap mainTilemap;
-    public GridLayout gridLayout;
     public enum Tile
     {
         Red,
@@ -29,14 +32,10 @@ public class BuildingSystem : MonoBehaviour
     [HideInInspector] public PlaceableObject objectToPlace;
     [HideInInspector] public List<PlaceableObject> objectList;
     
+    GridLayout gridLayout;
     Grid grid;
 
-    void Start()
-    {
-        objectList = new List<PlaceableObject>();
-
-        grid = GetComponent<Grid>();
-    }
+    void Start() { }
 
     void Update() { }
 

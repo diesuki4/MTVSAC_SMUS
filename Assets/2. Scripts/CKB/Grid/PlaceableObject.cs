@@ -15,7 +15,7 @@ public class PlaceableObject : MonoBehaviour
     [HideInInspector]
     public Vector3Int size;
 
-    Vector3[] vertices;
+    Vector3[] l_vertices;
 
     void Start()
     {
@@ -27,30 +27,44 @@ public class PlaceableObject : MonoBehaviour
     {
         BoxCollider bCol = GetComponent<BoxCollider>();
 
-        vertices = new Vector3[4];
+        l_vertices = new Vector3[4];
 
-        vertices[0] = bCol.center + new Vector3(-bCol.size.x, -bCol.size.y, -bCol.size.z) * 0.5f;
-        vertices[1] = bCol.center + new Vector3(bCol.size.x, -bCol.size.y, -bCol.size.z) * 0.5f;
-        vertices[2] = bCol.center + new Vector3(bCol.size.x, -bCol.size.y, bCol.size.z) * 0.5f;
-        vertices[3] = bCol.center + new Vector3(-bCol.size.x, -bCol.size.y, bCol.size.z) * 0.5f;
+        l_vertices[0] = bCol.center + new Vector3(-bCol.size.x, -bCol.size.y, -bCol.size.z) * 0.5f;
+        l_vertices[1] = bCol.center + new Vector3(bCol.size.x, -bCol.size.y, -bCol.size.z) * 0.5f;
+        l_vertices[2] = bCol.center + new Vector3(bCol.size.x, -bCol.size.y, bCol.size.z) * 0.5f;
+        l_vertices[3] = bCol.center + new Vector3(-bCol.size.x, -bCol.size.y, bCol.size.z) * 0.5f;
     }
 
     void CalculateSizeInCells()
     {
-        Vector3Int[] t_vertices = new Vector3Int[vertices.Length];
+        Vector3Int[] vertices = new Vector3Int[l_vertices.Length];
 
-        for (int i = 0; i < t_vertices.Length; ++i)
+        for (int i = 0; i < vertices.Length; ++i)
         {
-            Vector3 worldPos = transform.TransformPoint(vertices[i]);
-            t_vertices[i] = BuildingSystem.Instance.GetCellPosition(worldPos);
+            Vector3 worldPos = transform.TransformPoint(l_vertices[i]);
+            Vector3Int cellPos = BuildingSystem.Instance.GetCellPosition(worldPos);
+
+            // float cellPosX = transform.InverseTransformPoint(cellPos).x;
+            // float vertexX = l_vertices[i].x;
+
+            // float cellPosY = transform.InverseTransformPoint(cellPos).y;
+            // float vertexY = l_vertices[i].y;
+
+            // if (0 < cellPosX && cellPosX < vertexX)
+            //     cellPos += Vector3Int.right;
+
+            // if (cellPosY < 0 && vertexY < cellPosY)
+            //     cellPos += Vector3Int.down;
+
+            vertices[i] = cellPos;
         }
 
-        size = new Vector3Int(Mathf.Abs((t_vertices[0] - t_vertices[1]).x), Mathf.Abs((t_vertices[0] - t_vertices[3]).y), 1);
+        size = new Vector3Int(Mathf.Abs((vertices[0] - vertices[1]).x), Mathf.Abs((vertices[0] - vertices[3]).y), 0);
     }
 
     public Vector3 GetStartPosition()
     {
-        return transform.TransformPoint(vertices[0]);
+        return transform.TransformPoint(l_vertices[0]);
     }
 
     public void Move(MoveDirection moveDirection)
@@ -81,11 +95,11 @@ public class PlaceableObject : MonoBehaviour
         transform.Rotate(0, degree, 0);
         size = new Vector3Int(size.y, size.x, 1);
 
-        Vector3[] t_vertices = new Vector3[vertices.Length];
+        Vector3[] vertices = new Vector3[l_vertices.Length];
 
-        for (int i = 0; i < t_vertices.Length; ++i)
-            t_vertices[i] = vertices[(i + 1) % vertices.Length];
+        for (int i = 0; i < vertices.Length; ++i)
+            vertices[i] = l_vertices[(i + 1) % l_vertices.Length];
 
-        vertices = t_vertices;
+        l_vertices = vertices;
     }
 }
