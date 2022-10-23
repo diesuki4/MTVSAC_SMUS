@@ -55,14 +55,20 @@ public class BuildingSystem : MonoBehaviour
             objectList.Add(placeableObject);
     }
 
-    public void Instantiate(GameObject prefab)
+    public void RemovePlaceableObject(PlaceableObject placeableObject)
+    {
+        objectList.Remove(placeableObject);
+    }
+
+    public GameObject Instantiate(GameObject prefab)
     {
         Vector3 position = GetCellCenterPosition(Vector3.zero);
         Quaternion rotation = Quaternion.identity;
 
         GameObject obj = Instantiate(prefab, position, rotation);
-
         objectToPlace = obj.GetComponent<PlaceableObject>();
+
+        return obj;
     }
 
     TileBase[] GetTiles(PlaceableObject placeableObject)
@@ -85,7 +91,7 @@ public class BuildingSystem : MonoBehaviour
         BoundsInt area = new BoundsInt();
 
         area.position = GetCellPosition(placeableObject.GetStartPosition());
-        area.size = placeableObject.size;
+        area.size = placeableObject.size + Vector3Int.right + Vector3Int.up;
 
         return area;
     }
@@ -93,7 +99,7 @@ public class BuildingSystem : MonoBehaviour
     public bool isPlaceable(PlaceableObject placeableObject)
     {
         foreach (TileBase tile in GetTiles(placeableObject))
-            if (tile == tiles[TileToIndex(Tile.Transparent)])
+            if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
                 return false;
 
         return true;
@@ -114,7 +120,7 @@ public class BuildingSystem : MonoBehaviour
                             start.x + size.x, start.y + size.y);
     }
 
-    public void ClearGrid()
+    public void ClearGrid(PlaceableObject except)
     {
         Vector3Int mapSize = mainTilemap.size;
 
@@ -123,6 +129,7 @@ public class BuildingSystem : MonoBehaviour
         mainTilemap.size = mapSize;
 
         foreach (PlaceableObject placeableObject in objectList)
-            Fill(placeableObject, Tile.Transparent);
+            if (placeableObject != except)
+                Fill(placeableObject, Tile.Transparent);
     }
 }

@@ -9,16 +9,29 @@ public class ObjectDrag : MonoBehaviour
 
     PlaceableObject placeableObject;
 
-    void Start()
+    void Awake()
     {
         placeableObject = GetComponent<PlaceableObject>();
+    }
+
+    void OnEnable()
+    {
+        RaycastHit hit;
+
+        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
+        {
+            transform.position = hit.point;
+            offset = Vector3.zero;
+        }
+        
+        BuildingSystem.Instance.objectToPlace = placeableObject;
     }
 
     void OnMouseDown()
     {
         RaycastHit hit;
 
-        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit))
+        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
             offset = transform.position - hit.point;
 
         BuildingSystem.Instance.objectToPlace = placeableObject;
@@ -29,12 +42,12 @@ public class ObjectDrag : MonoBehaviour
         Vector3 position = offset;
         RaycastHit hit;
 
-        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit))
+        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
             position += hit.point;
 
         transform.position = BuildingSystem.Instance.GetCellCenterPosition(position);
 
-        BuildingSystem.Instance.ClearGrid();
+        BuildingSystem.Instance.ClearGrid(placeableObject);
 
         if (BuildingSystem.Instance.isPlaceable(placeableObject))
             BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Green);
@@ -42,9 +55,29 @@ public class ObjectDrag : MonoBehaviour
             BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Red);
     }
 
+    public void MouseDrag()
+    {
+        OnMouseDrag();
+    }
+
     void OnMouseUp()
     {
-        BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Transparent);
-        BuildingSystem.Instance.AddPlaceableObject(placeableObject);
+        if (BuildingSystem.Instance.isPlaceable(placeableObject))
+        {
+            BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Transparent);
+            BuildingSystem.Instance.AddPlaceableObject(placeableObject);
+        }
+        else
+        {
+            BuildingSystem.Instance.objectToPlace = null;
+            BuildingSystem.Instance.RemovePlaceableObject(placeableObject);
+            BuildingSystem.Instance.ClearGrid(placeableObject);
+            Destroy(gameObject);
+        }
+    }
+
+    public void MouseUp()
+    {
+        OnMouseUp();
     }
 }

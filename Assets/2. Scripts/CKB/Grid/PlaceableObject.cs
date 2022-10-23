@@ -17,7 +17,7 @@ public class PlaceableObject : MonoBehaviour
 
     Vector3[] l_vertices;
 
-    void Start()
+    void Awake()
     {
         InitializeColliderVertexLocalPositions();
         CalculateSizeInCells();
@@ -42,24 +42,10 @@ public class PlaceableObject : MonoBehaviour
         for (int i = 0; i < vertices.Length; ++i)
         {
             Vector3 worldPos = transform.TransformPoint(l_vertices[i]);
-            Vector3Int cellPos = BuildingSystem.Instance.GetCellPosition(worldPos);
-
-            // float cellPosX = transform.InverseTransformPoint(cellPos).x;
-            // float vertexX = l_vertices[i].x;
-
-            // float cellPosY = transform.InverseTransformPoint(cellPos).y;
-            // float vertexY = l_vertices[i].y;
-
-            // if (0 < cellPosX && cellPosX < vertexX)
-            //     cellPos += Vector3Int.right;
-
-            // if (cellPosY < 0 && vertexY < cellPosY)
-            //     cellPos += Vector3Int.down;
-
-            vertices[i] = cellPos;
+            vertices[i] = BuildingSystem.Instance.GetCellPosition(worldPos);
         }
 
-        size = new Vector3Int(Mathf.Abs((vertices[0] - vertices[1]).x), Mathf.Abs((vertices[0] - vertices[3]).y), 0);
+        size = new Vector3Int(Mathf.Abs((vertices[0] - vertices[1]).x), Mathf.Abs((vertices[0] - vertices[3]).y), 1);
     }
 
     public Vector3 GetStartPosition()

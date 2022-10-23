@@ -40,7 +40,7 @@ public class PanelItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
                 // 모델을 보이게 하고
                 model.SetActive(true);
                 // 위치를 이동시키고
-                model.transform.position = position;
+                model.GetComponent<ObjectDrag>().MouseDrag();
                 // 썸네일을 끈다.
                 thumbnail.SetActive(false);
                 break;
@@ -62,7 +62,7 @@ public class PanelItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     {
         // 해당 모델을 생성
         if (model == null)
-            model = Instantiate(goModel);
+            model = BuildingSystem.Instance.Instantiate(goModel);
 
         // 해당 썸네일을 생성
         if (thumbnail == null)
@@ -97,15 +97,9 @@ public class PanelItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     // 마우스 버튼을 뗐을 때
     public void OnPointerUp(PointerEventData data)
     {
-        // 모델 배치가 가능하면
-        if (model.activeSelf)
-            // 배치
-            model = null;
-        // 배치가 불가능하면
-        else
-            // 제거
-            Destroy(model);
-        
+        model.GetComponent<ObjectDrag>().MouseUp();
+        model = null;
+
         // 썸네일은 무조건 제거
         Destroy(thumbnail);
     }
