@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UI.Utility;
 
-public class ObjectDrag : MonoBehaviour
+public class CESObjectDrag : MonoBehaviour
 {
     Vector3 offset;
 
@@ -14,7 +14,7 @@ public class ObjectDrag : MonoBehaviour
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit))
             offset = transform.position - hit.point;
 
-        BuildingSystem.Instance.objectToPlace = GetComponent<PlaceableObject>();
+        CESBuildingSystem.Instance.objectToPlace = GetComponent<CESPlaceableObject>();
     }
 
     void OnMouseUp()
@@ -30,8 +30,8 @@ public class ObjectDrag : MonoBehaviour
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit))
             pos += hit.point;
 
-        transform.position = BuildingSystem.Instance.SnapCoordinateToGrid(pos);
+        transform.position = CESBuildingSystem.Instance.SnapCoordinateToGrid(pos);
 
-        BuildingSystem.Instance.RevalidateGrid();
+        CESBuildingSystem.Instance.RevalidateGrid();
     }
 }
