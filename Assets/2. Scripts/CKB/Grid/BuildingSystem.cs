@@ -38,14 +38,27 @@ public class BuildingSystem : MonoBehaviour
     }
 
     [HideInInspector] public PlaceableObject objectToPlace;
-    [HideInInspector] public List<PlaceableObject> objectList;
-    
+    List<PlaceableObject> objectList;
+
     GridLayout gridLayout;
     Grid grid;
 
+
     void Start() { }
 
-    void Update() { }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            objectToPlace.Rotate();
+        else if (Input.GetKeyDown(KeyCode.W))
+            objectToPlace.Move(PlaceableObject.MoveDirection.Up);
+        else if (Input.GetKeyDown(KeyCode.A))
+            objectToPlace.Move(PlaceableObject.MoveDirection.Left);
+        else if (Input.GetKeyDown(KeyCode.S))
+            objectToPlace.Move(PlaceableObject.MoveDirection.Down);
+        else if (Input.GetKeyDown(KeyCode.D))
+            objectToPlace.Move(PlaceableObject.MoveDirection.Right);
+    }
 
     public Vector3Int GetCellPosition(Vector3 position)
     {
@@ -79,7 +92,7 @@ public class BuildingSystem : MonoBehaviour
         return obj;
     }
 
-    TileBase[] GetTiles(PlaceableObject placeableObject)
+    public TileBase[] GetTiles(PlaceableObject placeableObject)
     {
         BoundsInt area = Area(placeableObject);
         List<TileBase> tiles = new List<TileBase>();

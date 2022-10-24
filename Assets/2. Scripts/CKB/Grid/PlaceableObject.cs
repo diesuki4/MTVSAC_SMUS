@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,7 +57,9 @@ public class PlaceableObject : MonoBehaviour
 
     public void Move(MoveDirection moveDirection)
     {
+        Vector3 originPos = transform.position;
         Vector3 dir = Vector3.zero;
+        float cellWidth = BuildingSystem.Instance.mainTilemap.cellSize.x;
 
         switch (moveDirection)
         {
@@ -74,11 +77,22 @@ public class PlaceableObject : MonoBehaviour
                 break;
         }
 
-        transform.position += dir;
+        transform.position += dir * cellWidth;
+
+        if (isTransformable() == false)
+            transform.position = originPos;
+        
+        BuildingSystem.Instance.ClearGrid();
     }
 
-    public void Rotate(float degree)
+    public void Rotate(float degree = 90)
     {
+        Quaternion originRot = transform.rotation;
+        Vector3Int originSize = size;
+
+        Vector3[] oringinLocalVertices = new Vector3[4];
+        Array.Copy(l_vertices, oringinLocalVertices, l_vertices.Length);
+
         transform.Rotate(0, degree, 0);
         size = new Vector3Int(size.y, size.x, 1);
 
@@ -88,5 +102,29 @@ public class PlaceableObject : MonoBehaviour
             vertices[i] = l_vertices[(i + 1) % l_vertices.Length];
 
         l_vertices = vertices;
+
+        if (isTransformable() == false)
+        {
+            transform.rotation = originRot;
+            size = originSize;
+            Array.Copy(oringinLocalVertices, l_vertices, l_vertices.Length);
+        }
+
+        BuildingSystem.Instance.ClearGrid();
+    }
+
+    public bool isTransformable()
+    {
+        float rayDistance = 100;
+
+        foreach (Vector3 l_vertex in l_vertices)
+        {
+            Ray ray = new Ray(transform.TransformPoint(l_vertex), Vector3.down);
+
+            if (Physics.Raycast(ray, rayDistance, 1 << LayerMask.NameToLayer("Floor")) == false)
+                return false;
+        }
+
+        return true;
     }
 }
