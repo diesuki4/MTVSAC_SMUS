@@ -210,7 +210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &181545261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2230,6 +2230,7 @@ GameObject:
   - component: {fileID: 1263111590}
   - component: {fileID: 1263111589}
   - component: {fileID: 1263111592}
+  - component: {fileID: 1263111591}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -2267,6 +2268,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1263111591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263111588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2408913408d76fe45aa7fe04c07f2091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  longMarkFactory: {fileID: 6310248974829887806, guid: 6b642becc83b2a4469b9deac7c5aba6c,
+    type: 3}
+  shortMarkFactory: {fileID: 2822451746833274451, guid: cdaf014a41d73bc45a654dee663822a7,
+    type: 3}
+  timeAreaContent: {fileID: 1350782487}
+  longGap: 50
+  shortGap: 10
+  totalWidth: 2000
+  frameGap: 300
 --- !u!114 &1263111592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,9 +2416,9 @@ RectTransform:
   m_Father: {fileID: 1523870537}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -739, y: 25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 2000, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1440742888
@@ -3605,7 +3627,7 @@ GameObject:
   - component: {fileID: 1756322152}
   - component: {fileID: 1756322151}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputFrameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4208,7 +4230,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: 
 --- !u!222 &1943476182
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4252,7 +4274,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -190}
-  m_SizeDelta: {x: 5, y: 380}
+  m_SizeDelta: {x: 1, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1950407919
 MonoBehaviour:
