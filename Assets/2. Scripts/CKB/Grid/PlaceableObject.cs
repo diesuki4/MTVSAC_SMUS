@@ -12,6 +12,7 @@ public class PlaceableObject : MonoBehaviour
         Right
     }
 
+    public bool isPlaced;
     [HideInInspector]
     public Vector3Int size;
 

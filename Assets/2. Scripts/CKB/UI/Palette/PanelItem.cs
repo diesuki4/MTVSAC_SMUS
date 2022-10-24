@@ -48,6 +48,8 @@ public class PanelItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
             case Mode.Thumbnail :
                 // 모델을 안 보이게 하고
                 model.SetActive(false);
+                // 그리드를 다시 그리고
+                BuildingSystem.Instance.ClearGrid(model.GetComponent<PlaceableObject>());
                 // 썸네일을 이동시키고
                 thumbnail.GetComponent<RectTransform>().anchoredPosition = position;
                 // 썸네일을 보이게 한다.
@@ -98,6 +100,10 @@ public class PanelItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     public void OnPointerUp(PointerEventData data)
     {
         model.GetComponent<ObjectDrag>().MouseUp();
+
+        if (model.GetComponent<PlaceableObject>().isPlaced == false)
+            Destroy(model);
+
         model = null;
 
         // 썸네일은 무조건 제거

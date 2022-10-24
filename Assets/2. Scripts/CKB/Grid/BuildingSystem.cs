@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UI.Utility;
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -28,6 +29,13 @@ public class BuildingSystem : MonoBehaviour
         Transparent
     }
     public TileBase[] tiles;
+
+    public enum Placeable
+    {
+        Possible    = 1 << 0,
+        Overlap     = 1 << 1,
+        OOB         = 1 << 2
+    }
 
     [HideInInspector] public PlaceableObject objectToPlace;
     [HideInInspector] public List<PlaceableObject> objectList;
@@ -96,13 +104,18 @@ public class BuildingSystem : MonoBehaviour
         return area;
     }
 
-    public bool isPlaceable(PlaceableObject placeableObject)
+    public Placeable isPlaceable(PlaceableObject placeableObject)
     {
+        RaycastHit hit;
+
+        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")) == false)
+            return Placeable.OOB;
+
         foreach (TileBase tile in GetTiles(placeableObject))
             if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
-                return false;
+                return Placeable.Overlap;
 
-        return true;
+        return Placeable.Possible;
     }
 
     int TileToIndex(Tile tile)
@@ -120,7 +133,7 @@ public class BuildingSystem : MonoBehaviour
                             start.x + size.x, start.y + size.y);
     }
 
-    public void ClearGrid(PlaceableObject except)
+    public void ClearGrid(PlaceableObject except = null)
     {
         Vector3Int mapSize = mainTilemap.size;
 

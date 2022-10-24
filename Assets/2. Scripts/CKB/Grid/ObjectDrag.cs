@@ -6,6 +6,7 @@ using UI.Utility;
 public class ObjectDrag : MonoBehaviour
 {
     Vector3 offset;
+    Vector3 originPos;
 
     PlaceableObject placeableObject;
 
@@ -35,6 +36,7 @@ public class ObjectDrag : MonoBehaviour
             offset = transform.position - hit.point;
 
         BuildingSystem.Instance.objectToPlace = placeableObject;
+        originPos = transform.position;
     }
 
     void OnMouseDrag()
@@ -49,10 +51,19 @@ public class ObjectDrag : MonoBehaviour
 
         BuildingSystem.Instance.ClearGrid(placeableObject);
 
-        if (BuildingSystem.Instance.isPlaceable(placeableObject))
-            BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Green);
-        else
-            BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Red);
+        switch (BuildingSystem.Instance.isPlaceable(placeableObject))
+        {
+            case BuildingSystem.Placeable.Possible :
+                BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Green);
+                break;
+            case BuildingSystem.Placeable.Overlap :
+                BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Red);
+                break;
+            case BuildingSystem.Placeable.OOB :
+                transform.position = originPos;
+                BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Green);
+                break;
+        }
     }
 
     public void MouseDrag()
@@ -62,17 +73,23 @@ public class ObjectDrag : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (BuildingSystem.Instance.isPlaceable(placeableObject))
+        switch (BuildingSystem.Instance.isPlaceable(placeableObject))
         {
-            BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Transparent);
-            BuildingSystem.Instance.AddPlaceableObject(placeableObject);
-        }
-        else
-        {
-            BuildingSystem.Instance.objectToPlace = null;
-            BuildingSystem.Instance.RemovePlaceableObject(placeableObject);
-            BuildingSystem.Instance.ClearGrid(placeableObject);
-            Destroy(gameObject);
+            case BuildingSystem.Placeable.Possible :
+                BuildingSystem.Instance.Fill(placeableObject, BuildingSystem.Tile.Transparent);
+                BuildingSystem.Instance.AddPlaceableObject(placeableObject);
+                placeableObject.isPlaced = true;
+                break;
+            case BuildingSystem.Placeable.Overlap :
+                transform.position = originPos;
+                BuildingSystem.Instance.objectToPlace = null;
+                BuildingSystem.Instance.ClearGrid();
+                break;
+            case BuildingSystem.Placeable.OOB :
+                transform.position = originPos;
+                BuildingSystem.Instance.objectToPlace = null;
+                BuildingSystem.Instance.ClearGrid();
+                break;
         }
     }
 
