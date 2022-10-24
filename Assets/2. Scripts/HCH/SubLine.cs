@@ -81,7 +81,6 @@ public class SubLine : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             isSelected = true;
-            print("Select");
             img.color = focusColor;
         }
     }
@@ -93,7 +92,6 @@ public class SubLine : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             isSelected = false;
-            print("Deselect");
             img.color = originColor;
         }
     }
@@ -126,7 +124,6 @@ public class SubLine : MonoBehaviour
     {
         if (sublineRect.anchoredPosition.x < -536.5f)
         {
-            print("들어옴");
             hideColor = img.color;
             hideColor.a = 0;
             img.color = hideColor;
@@ -134,12 +131,10 @@ public class SubLine : MonoBehaviour
         }
         else
         {
-            print("나감");
             hideColor = img.color;
             hideColor.a = 1;
             img.color = hideColor;
             //hideColor = originColor;
         }
-        print(hideColor);
     }
 }

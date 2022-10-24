@@ -70,7 +70,6 @@ public class ObjectListManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             isSelected = true;
-            print("Select");
             img.color = focusColor;
         }
     }
@@ -82,7 +81,6 @@ public class ObjectListManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             isSelected = false;
-            print("Deselect");
             img.color = originColor;
         }
     }
