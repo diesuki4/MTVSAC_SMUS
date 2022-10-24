@@ -79,7 +79,9 @@ public class PlaceableObject : MonoBehaviour
 
         transform.position += dir * cellWidth;
 
-        if (isTransformable() == false)
+        BuildingSystem.Instance.ClearGrid(this);
+
+        if (isTransformable() == false || BuildingSystem.Instance.isOverlapped(this))
             transform.position = originPos;
         
         BuildingSystem.Instance.ClearGrid();
@@ -103,7 +105,9 @@ public class PlaceableObject : MonoBehaviour
 
         l_vertices = vertices;
 
-        if (isTransformable() == false)
+        BuildingSystem.Instance.ClearGrid(this);
+
+        if (isTransformable() == false || BuildingSystem.Instance.isOverlapped(this))
         {
             transform.rotation = originRot;
             size = originSize;

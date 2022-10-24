@@ -117,6 +117,15 @@ public class BuildingSystem : MonoBehaviour
         return area;
     }
 
+    public bool isOverlapped(PlaceableObject placeableObject)
+    {
+        foreach (TileBase tile in GetTiles(placeableObject))
+            if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
+                return true;
+            
+        return false;
+    }
+
     public Placeable isPlaceable(PlaceableObject placeableObject)
     {
         RaycastHit hit;
@@ -124,9 +133,8 @@ public class BuildingSystem : MonoBehaviour
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")) == false)
             return Placeable.OOB;
 
-        foreach (TileBase tile in GetTiles(placeableObject))
-            if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
-                return Placeable.Overlap;
+        if (isOverlapped(placeableObject))
+            return Placeable.Overlap;
 
         return Placeable.Possible;
     }
