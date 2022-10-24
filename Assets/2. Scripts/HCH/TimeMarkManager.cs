@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class TimeMarkManager : MonoBehaviour
 {
+    public static TimeMarkManager instance;
+
     public GameObject longMarkFactory;
     public GameObject shortMarkFactory;
     public Transform timeAreaContent;
@@ -30,6 +32,11 @@ public class TimeMarkManager : MonoBehaviour
     float longPosX;
     // rtShort의 PosX
     float shortPosX;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
