@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Timeline.Types;
+using Timeline.Utility;
 
 namespace Timeline
 {
@@ -13,7 +14,15 @@ namespace Timeline
             TL_ENUM_Types tlType;
             int itemIdx;
 
-            List<TL_Types.Key> keys = new List<TL_Types.Key>();
+            List<TL_Types.Key> keys;
+
+            public TL_Timeline(TL_ENUM_Types tlType, int itemIdx)
+            {
+                this.tlType = tlType;
+                this.itemIdx = itemIdx;
+
+                keys = new List<TL_Types.Key>();
+            }
 
             public bool AddKey(TL_Types.Key key)
             {
