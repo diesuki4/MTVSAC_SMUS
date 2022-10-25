@@ -20,10 +20,13 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     Image showFrameBaseImg;
 
     public InputField frameInputField;
-    public GameObject frameInputFieldtxt;
-    Text frameInputFieldText;
+    public GameObject frameInputFieldPlaceHolder;
+    Text frameInputFieldPlaceHolderTxt;
+    public GameObject frameInputFieldText;
+    Text frameInputFieldTxt;
 
-    int frame;
+    public int frame;
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -38,10 +41,11 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         savePosition = this.transform.position;
 
         // 현재 몇 프레임인지 텍스트로 표시
-        ShowFrame();
+        showFrameBaseImg.enabled = true;
+        showFrameText.enabled = true;
 
-        // FrameInputField는 드래그 할 때 frame값을 따라가고
-        frameInputFieldText.text = frame.ToString();
+        frameInputFieldTxt.enabled = false;
+        frameInputFieldPlaceHolderTxt.enabled = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -61,9 +65,12 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         showFrameBaseImg.enabled = false;
         showFrameText.enabled = false;
 
-        frameInputFieldText = frameInputFieldtxt.GetComponent<Text>();
+        frameInputFieldPlaceHolderTxt = frameInputFieldPlaceHolder.GetComponent<Text>();
+        frameInputFieldTxt = frameInputFieldText.GetComponent<Text>();
         //frameInputField에서 Enter키 누르면 호출되는 함수 등록
-        frameInputField.onEndEdit.AddListener(onEndEdit);
+        frameInputField.onEndEdit.AddListener(OnEndEdit);
+        //frameInputField에서 값이 바뀌면 호출되는 함수 등록
+        frameInputField.onValueChanged.AddListener(OnValueChanged);
     }
 
     // Update is called once per frame
@@ -71,35 +78,41 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         // KeyBar 움직임 제한
         Vector2 rtPos = rt.anchoredPosition;
-        rt.anchoredPosition = new Vector2(Mathf.Clamp(rtPos.x, -538f, 950f), rtPos.y);
+        rt.anchoredPosition = new Vector2(Mathf.Clamp(rtPos.x, -540f, 950f), rtPos.y);
 
         // 현재 몇 프레임인지 계산
         KeyBarFrame();
+
+        // FrameInputField는 드래그 할 때 frame값을 따라가고
+        frameInputFieldPlaceHolderTxt.text = frame.ToString();
+        ShowFrame();
     }
 
     // 현재 몇 프레임인지 계산
     public void KeyBarFrame()
     {
-        frame = ((int)(- rtContent.anchoredPosition.x + rt.anchoredPosition.x + 538));
+        frame = ((int)(- rtContent.anchoredPosition.x + rt.anchoredPosition.x + 540));
     }
 
     // 현재 몇 프레임인지 텍스트로 표시
     public void ShowFrame()
     {
-        showFrameBaseImg.enabled = true;
-        showFrameText.enabled = true;
         showFrameText.text = frame.ToString();
     }
 
     // FrameInputField는 드래그 할 때 frame값을 따라가고
     // FrameInputField 숫자를 넣고 enter를 치면 KeyBar가 그 frame값의 위치로 이동하고 싶다
 
-    void onEndEdit(string s)
+    void OnEndEdit(string s)
     {
         // FrameInputField 숫자를 넣고 enter를 치면 KeyBar가 그 frame값의 위치로 이동하고 싶다
         Vector2 rtPos = rt.anchoredPosition;
-        rt.anchoredPosition = new Vector2(-538 + frame, rtPos.y);
-        print(-538 + frame);
-        print(rtPos.y);
+        rt.anchoredPosition = new Vector2(int.Parse(frameInputFieldTxt.text) - 540, rtPos.y);
+
+    }
+
+    void OnValueChanged(string s)
+    {
+        frameInputFieldTxt.enabled = true;
     }
 }

@@ -34,7 +34,7 @@ public class SubLineManager : MonoBehaviour
         results = new List<RaycastResult>();
         gr.Raycast(ped, results);
         if (results.Count <= 0) return;
-        print(results[0].gameObject);
+        //print(results[0].gameObject);
         AddSubLine();
     }
 
