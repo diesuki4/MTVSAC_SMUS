@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/1. Scenes/SMUShow/LoginScene.unity
+    guid: 4b03cfba3424ca14f81cf9d596af5749
+  - enabled: 1
+    path: Assets/1. Scenes/SMUShow/SignUpScene.unity
+    guid: a235ce2ebad59924c85e3b2d91447da0
+  - enabled: 1
+    path: Assets/1. Scenes/SMUShow/ConcertListScene.unity
+    guid: 5536a46526dd62d40b4252e833f28b52
+  - enabled: 1
+    path: Assets/1. Scenes/SMUShow/ConnectionScene.unity
+    guid: 3b70221817a54ed43b449c06daffae65
+  - enabled: 1
+    path: Assets/1. Scenes/SMUShow/ConcertScene.unity
+    guid: 8fac834c58205374d9594c1076c47aef
   m_configObjects: {}
