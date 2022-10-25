@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. Scenes/SMUShow/ConcertScene.unity
     guid: 8fac834c58205374d9594c1076c47aef
+  - enabled: 1
+    path: Assets/1. Scenes/HCH/Connect+LobbyScene_HCH.unity
+    guid: 03c817380f7518645ae4958f867fb76c
+  - enabled: 1
+    path: Assets/1. Scenes/HCH/SMUS_HCH 2.unity
+    guid: b693ea7dff4cfec49a36c63821895a07
   m_configObjects: {}
