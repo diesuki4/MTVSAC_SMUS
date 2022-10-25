@@ -43,7 +43,6 @@ public class BuildingSystem : MonoBehaviour
     GridLayout gridLayout;
     Grid grid;
 
-
     void Start() { }
 
     void Update()

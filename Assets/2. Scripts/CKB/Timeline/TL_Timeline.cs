@@ -11,7 +11,7 @@ namespace Timeline
         [Serializable]
         public class TL_Timeline
         {
-            TL_ENUM_Types tlType;
+            public TL_ENUM_Types tlType;
             int itemIdx;
 
             List<TL_Types.Key> keys;
@@ -43,6 +43,18 @@ namespace Timeline
                         return DeleteKey(key);
 
                 return false;
+            }
+
+            public bool DeleteAllKeys()
+            {
+                keys.Clear();
+
+                return keys.Count == 0;                
+            }
+
+            ~TL_Timeline()
+            {
+                DeleteAllKeys();
             }
         }
     }

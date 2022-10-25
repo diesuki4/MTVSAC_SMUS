@@ -30,12 +30,32 @@ public class TimelineManager : MonoBehaviour
         return newGuid;
     }
 
-    public bool AddKey(string guid, TL_Types.Key key)
+    public bool AddKey(string guid, int frame, Transform tr)
     {
+        TL_Types.Key key;
+
         if (isTimelineExist(guid) == false)
             return false;
+        else if ((key = GenerateKey(timelines[guid].tlType, frame, tr)) != null)
+            return timelines[guid].AddKey(key);
+        else
+            return false;
+    }
 
-        return timelines[guid].AddKey(key);
+    TL_Types.Key GenerateKey(TL_ENUM_Types tlType, int frame, Transform tr)
+    {
+        switch (tlType)
+        {
+            case TL_ENUM_Types.Object :
+                return new TL_Types.Object(frame, transform.position, transform.rotation);
+            case TL_ENUM_Types.Effect :
+                return new TL_Types.Effect(frame, transform.position, transform.rotation);
+            case TL_ENUM_Types.Light :
+                Light light = tr.GetComponent<Light>();
+                return new TL_Types.Light(frame, transform.position, transform.rotation, light.intensity, light.color);
+        }
+
+        return null;
     }
 
     public bool DeleteKey(string guid, TL_Types.Key key)
@@ -52,5 +72,13 @@ public class TimelineManager : MonoBehaviour
             return false;
 
         return timelines[guid].DeleteKey(frame);
+    }
+
+    public bool DeleteAllKeys(string guid)
+    {
+        if (isTimelineExist(guid) == false)
+            return false;
+
+        return timelines[guid].DeleteAllKeys();
     }
 }

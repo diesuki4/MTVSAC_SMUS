@@ -76,7 +76,6 @@ public class PlaceableObject : MonoBehaviour
                 dir = Vector3.left;
                 break;
         }
-
         transform.position += dir * cellWidth;
 
         BuildingSystem.Instance.ClearGrid(this);
@@ -120,10 +119,11 @@ public class PlaceableObject : MonoBehaviour
     public bool isTransformable()
     {
         float rayDistance = 100;
+        float rayFrom = 0.5f;
 
         foreach (Vector3 l_vertex in l_vertices)
         {
-            Ray ray = new Ray(transform.TransformPoint(l_vertex), Vector3.down);
+            Ray ray = new Ray(transform.TransformPoint(l_vertex) + Vector3.up * rayFrom, Vector3.down);
 
             if (Physics.Raycast(ray, rayDistance, 1 << LayerMask.NameToLayer("Floor")) == false)
                 return false;
