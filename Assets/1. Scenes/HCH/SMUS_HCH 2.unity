@@ -1124,7 +1124,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 661177758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1263111593}
+        m_MethodName: OnClickAddObjectKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &661177758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2157,6 +2168,7 @@ GameObject:
   - component: {fileID: 1263111589}
   - component: {fileID: 1263111592}
   - component: {fileID: 1263111591}
+  - component: {fileID: 1263111593}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -2233,6 +2245,23 @@ MonoBehaviour:
   musicWaveAreaContent: {fileID: 1638350054}
   objectHeight: {fileID: 0}
   timerHeight: {fileID: 0}
+--- !u!114 &1263111593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263111588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954bdeb376ac83940bd4672bd888e674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectKeyFactory: {fileID: 5962544233561145435, guid: 99395ced7cdeb3642b6f73894343604f,
+    type: 3}
+  keyParent: {fileID: 46991164}
+  keyBar: {fileID: 1526968459}
+  objectKeyList: []
 --- !u!1 &1296842394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,7 +2781,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526968458}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2798,7 +2827,9 @@ MonoBehaviour:
   showFrameBase: {fileID: 2091586604}
   showFrame: {fileID: 1874219178}
   frameInputField: {fileID: 1756322151}
-  frameInputFieldtxt: {fileID: 1943476179}
+  frameInputFieldPlaceHolder: {fileID: 1943476179}
+  frameInputFieldText: {fileID: 1774702672}
+  frame: 0
 --- !u!114 &1526968464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3939,8 +3970,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 217456501}
   m_HandleRect: {fileID: 217456500}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
