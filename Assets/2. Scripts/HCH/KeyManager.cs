@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 // ObjectList가 isSelected인 상태에서 + 버튼을 누르면 Key를 생성하여 KeyParent의 자식으로 넣고 싶다 (Key의 X값 : KeyBar의 X값, Y값 : isSelected 상태인 ObjectList의 Y값)
 
-public class AddKey : MonoBehaviour
+public class KeyManager : MonoBehaviour
 {
+    public static KeyManager instance;
+
+    GameObject ObjectKey;
     public GameObject objectKeyFactory;
     public Transform keyParent;
 
@@ -12,6 +15,11 @@ public class AddKey : MonoBehaviour
     Transform objectList;
 
     public List<GameObject> objectKeyList;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +38,7 @@ public class AddKey : MonoBehaviour
             {
                 if (AddList.instance.objectList[i].GetComponent<ObjectListManager>().isSelected == true)
                 {
-                    objectList = AddList.instance.objectList[i].transform;
+                    objectList = AddList.instance.objectList[i].transform;                  
                 }
             }
         }
@@ -42,7 +50,7 @@ public class AddKey : MonoBehaviour
     {
         if (AddList.instance.objectList.Count > 0)
         {
-            GameObject ObjectKey = Instantiate(objectKeyFactory, keyParent);
+            ObjectKey = Instantiate(objectKeyFactory, keyParent);
             ObjectKey.transform.position = new Vector2(keyBar.position.x, objectList.position.y);
         }
     }
@@ -53,4 +61,8 @@ public class AddKey : MonoBehaviour
         objectKeyList = new List<GameObject>();
         objectKeyList.AddRange(GameObject.FindGameObjectsWithTag("ObjectKeyList"));
     }
+
+    // 만약 objectkeylist의 수가 0보다 크고 
+    // subLineManager.instance.results[0].gameObject의 layer가 objectkey일때
+    // 좌클릭하면  subLineManager.instance.results[0].gameObject가 isSelected된다
 }

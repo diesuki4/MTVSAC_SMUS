@@ -54,7 +54,6 @@ public class ObjectCheck : MonoBehaviour
             // 오브젝트 판별한다
             if (Physics.Raycast(ray, out hitInfo))
             {
-                print(hitInfo.transform.name);
                 if(isSave == true)
                 {
                     saveName = hitInfo.transform.name;
