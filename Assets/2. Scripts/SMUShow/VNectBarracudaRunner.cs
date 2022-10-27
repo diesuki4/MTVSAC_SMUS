@@ -17,7 +17,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     public WorkerFactory.Type WorkerType = WorkerFactory.Type.Auto;
     public bool Verbose = true;
 
-    public VNectModel VNectModel;
+    public VNectModel[] VNectModels;
 
     public VideoCapture videoCapture;
 
@@ -27,7 +27,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// <summary>
     /// Coordinates of joint points
     /// </summary>
-    private VNectModel.JointPoint[] jointPoints;
+    private VNectModel.JointPoint[,] jointPoints;
     
     /// <summary>
     /// Number of joint points
@@ -155,8 +155,10 @@ public class VNectBarracudaRunner : MonoBehaviour
         InputImageSizeHalf = InputImageSizeF / 2f;
         ImageScale = InputImageSize / (float)HeatMapCol;// 224f / (float)InputImageSize;
 
-        // Disabel sleep
+        // Disable sleep
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        jointPoints = new VNectModel.JointPoint[2, ];
 
         // Init model
         _model = ModelLoader.Load(NNModel, Verbose);
@@ -200,7 +202,8 @@ public class VNectBarracudaRunner : MonoBehaviour
         }
 
         // Init VNect model
-        jointPoints = VNectModel.Init();
+        for (int i = 0; i < jointPoints.GetLength(0); ++i)
+            jointPoints[] = VNectModels[i].Init();
 
         PredictPose();
 
@@ -209,7 +212,7 @@ public class VNectBarracudaRunner : MonoBehaviour
         // Init VideoCapture
         videoCapture.Init(InputImageSize, InputImageSize);
         Lock = false;
-        Msg.gameObject.SetActive(false);
+        if (Msg) Msg.gameObject.SetActive(false);
     }
 
     private const string inputName_1 = "input.1";

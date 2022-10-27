@@ -70,9 +70,12 @@ public class VideoCapture : MonoBehaviour
         VideoPlayer.renderMode = VideoRenderMode.RenderTexture;
         VideoPlayer.targetTexture = videoTexture;
 
-        var sd = VideoScreen.GetComponent<RectTransform>();
-        sd.sizeDelta = new Vector2(videoScreenWidth, (int)(videoScreenWidth * VideoPlayer.clip.height / VideoPlayer.clip.width));
-        VideoScreen.texture = videoTexture;
+        if (VideoScreen)
+        {
+            var sd = VideoScreen.GetComponent<RectTransform>();
+            sd.sizeDelta = new Vector2(videoScreenWidth, (int)(videoScreenWidth * VideoPlayer.clip.height / VideoPlayer.clip.width));
+            VideoScreen.texture = videoTexture;
+        }
 
         VideoPlayer.Play();
 
@@ -120,6 +123,6 @@ public class VideoCapture : MonoBehaviour
         };
 
         camera.targetTexture = MainTexture;
-        if (InputTexture.activeSelf) InputTexture.GetComponent<Renderer>().material.mainTexture = MainTexture;
+        if (InputTexture && InputTexture.activeSelf) InputTexture.GetComponent<Renderer>().material.mainTexture = MainTexture;
     }
 }
