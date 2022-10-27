@@ -27,7 +27,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// <summary>
     /// Coordinates of joint points
     /// </summary>
-    private VNectModel.JointPoint[,] jointPoints;
+    private VNectModel.JointPoint[][] jointPointss;
     
     /// <summary>
     /// Number of joint points
@@ -158,7 +158,7 @@ public class VNectBarracudaRunner : MonoBehaviour
         // Disable sleep
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        jointPoints = new VNectModel.JointPoint[2, ];
+        jointPointss = new VNectModel.JointPoint[VNectModels.Length][];
 
         // Init model
         _model = ModelLoader.Load(NNModel, Verbose);
@@ -202,10 +202,11 @@ public class VNectBarracudaRunner : MonoBehaviour
         }
 
         // Init VNect model
-        for (int i = 0; i < jointPoints.GetLength(0); ++i)
-            jointPoints[] = VNectModels[i].Init();
-
-        PredictPose();
+        for (int i = 0; i < jointPointss.Length; ++i)
+        {
+            jointPointss[i] = VNectModels[i].Init();
+            PredictPose(jointPointss[i]);
+        }
 
         yield return new WaitForSeconds(WaitTimeModelLoad);
 
@@ -274,13 +275,14 @@ public class VNectBarracudaRunner : MonoBehaviour
             b_outputs[i].Dispose();
         }
 
-        PredictPose();
+        for (int i = 0; i < jointPointss.Length; ++i)
+            PredictPose(jointPointss[i]);
     }
 
     /// <summary>
     /// Predict positions of each of joints based on network
     /// </summary>
-    private void PredictPose()
+    private void PredictPose(VNectModel.JointPoint[] jointPoints)
     {
         for (var j = 0; j < JointNum; j++)
         {
