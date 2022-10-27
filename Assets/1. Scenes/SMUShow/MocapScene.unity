@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43983644, g: 0.4882797, b: 0.56849295, a: 1}
+  m_IndirectSpecularColor: {r: 0.4398369, g: 0.48828024, b: 0.56849337, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2389,10 +2389,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27889227d895094c8cd75784aa13cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NNModel: {fileID: 5022602860645237092, guid: 2a3e00bd28d5b534fbbbe3aa51453846, type: 3}
+  NNModel: {fileID: 5022602860645237092, guid: 8a4dd1a008c69834fae07efc6d8c4e24, type: 3}
   WorkerType: 32768
   Verbose: 0
-  VNectModel: {fileID: 0}
+  VNectModel: {fileID: 1009339738}
   videoCapture: {fileID: 1873549733}
   InputImageSize: 448
   HeatMapCol: 28
@@ -2881,7 +2881,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c80dbec155708994480231da88754eee, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8315583863135958854, guid: 376f47ea3b23a0c4390f513d69e1ca66,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -2900,7 +2900,7 @@ PrefabInstance:
     - target: {fileID: 8315583863143335206, guid: 376f47ea3b23a0c4390f513d69e1ca66,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8315583863143700616, guid: 376f47ea3b23a0c4390f513d69e1ca66,
         type: 3}
