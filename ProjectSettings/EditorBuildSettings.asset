@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/1. Scenes/HCH/SMUS_HCH 2.unity
     guid: b693ea7dff4cfec49a36c63821895a07
   - enabled: 1
-    path: Assets/1. Scenes/HCH/ConcertScene_HCH.unity
+    path: Assets/1. Scenes/HCH/ConcertScenePrac_HCH.unity
     guid: 0cea2d045b7d361419c4a19bc02c2c0f
   m_configObjects: {}
