@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3123260356163675842
 Transform:
   m_ObjectHideFlags: 0
@@ -192,6 +192,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5515067232955411376}
+  - {fileID: 6792779737215110018}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed: 200
   camPos: {fileID: 3123260356163675842}
+  cam_Main: {fileID: 3123260356163675841}
 --- !u!114 &3859026188464720384
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     public WorkerFactory.Type WorkerType = WorkerFactory.Type.Auto;
     public bool Verbose = true;
 
-    public VNectModel VNectModel;
+    public VNectModel[] VNectModels;
 
     public VideoCapture videoCapture;
 
@@ -27,7 +27,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// <summary>
     /// Coordinates of joint points
     /// </summary>
-    private VNectModel.JointPoint[] jointPoints;
+    private VNectModel.JointPoint[][] jointPointss;
     
     /// <summary>
     /// Number of joint points
@@ -155,8 +155,10 @@ public class VNectBarracudaRunner : MonoBehaviour
         InputImageSizeHalf = InputImageSizeF / 2f;
         ImageScale = InputImageSize / (float)HeatMapCol;// 224f / (float)InputImageSize;
 
-        // Disabel sleep
+        // Disable sleep
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        jointPointss = new VNectModel.JointPoint[VNectModels.Length][];
 
         // Init model
         _model = ModelLoader.Load(NNModel, Verbose);
@@ -200,16 +202,18 @@ public class VNectBarracudaRunner : MonoBehaviour
         }
 
         // Init VNect model
-        jointPoints = VNectModel.Init();
-
-        PredictPose();
+        for (int i = 0; i < jointPointss.Length; ++i)
+        {
+            jointPointss[i] = VNectModels[i].Init();
+            PredictPose(jointPointss[i]);
+        }
 
         yield return new WaitForSeconds(WaitTimeModelLoad);
 
         // Init VideoCapture
         videoCapture.Init(InputImageSize, InputImageSize);
         Lock = false;
-        Msg.gameObject.SetActive(false);
+        if (Msg) Msg.gameObject.SetActive(false);
     }
 
     private const string inputName_1 = "input.1";
@@ -271,13 +275,14 @@ public class VNectBarracudaRunner : MonoBehaviour
             b_outputs[i].Dispose();
         }
 
-        PredictPose();
+        for (int i = 0; i < jointPointss.Length; ++i)
+            PredictPose(jointPointss[i]);
     }
 
     /// <summary>
     /// Predict positions of each of joints based on network
     /// </summary>
-    private void PredictPose()
+    private void PredictPose(VNectModel.JointPoint[] jointPoints)
     {
         for (var j = 0; j < JointNum; j++)
         {

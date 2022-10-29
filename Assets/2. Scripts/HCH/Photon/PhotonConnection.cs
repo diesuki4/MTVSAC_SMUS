@@ -53,6 +53,6 @@ public class PhotonConnection : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("게임서버 입장");
-        PhotonNetwork.LoadLevel("ConcertScene_HCH");
+        PhotonNetwork.LoadLevel("ConcertScenePrac_HCH");
     }
 }
