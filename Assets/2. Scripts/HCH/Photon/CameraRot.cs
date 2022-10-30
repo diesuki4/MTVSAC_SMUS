@@ -206,7 +206,7 @@ public class CameraRot : MonoBehaviourPun
             for (int i = 0; i < cameras.Length; i++)
             {
                 cameras[i].SetActive(false);
-                cameras[0].SetActive(true);
+                cameras[10].SetActive(true);
             }
         }
     }
