@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-// 포물선 그리면서
-// 거꾸로 U 모양으로 움직이쟝
 
-public class FlyingEmotion : MonoBehaviour
+public class FlyingEmotion : MonoBehaviourPun
 {
     [Header("곡률")]
     public float curvature;
@@ -27,14 +26,16 @@ public class FlyingEmotion : MonoBehaviour
     {
         t += Time.deltaTime;
 
-        Vector3 center = (origin.position + destination.position) * 0.5f - new Vector3(0, curvature, 0);
+        Vector3 center = (origin.position 
+            + destination.position) * 0.5f 
+            - new Vector3(0, curvature, 0);
         Vector3 relOriginPos = origin.position - center;
         Vector3 relDestination = destination.position - center;
 
         transform.position = Vector3.Slerp(relOriginPos, relDestination, t / flyTime) + center;
 
         if (flyTime <= t)
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
     }
 
     public void Initialize(Transform origin, Transform destination)
