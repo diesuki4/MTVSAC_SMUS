@@ -5241,7 +5241,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<col# \uBC1C\uB77C\uB4DC"
+  m_Text: "<color=teal>#</color> \uBC1C\uB77C\uB4DC"
 --- !u!222 &1648340516
 CanvasRenderer:
   m_ObjectHideFlags: 0
