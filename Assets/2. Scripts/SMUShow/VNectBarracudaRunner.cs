@@ -172,7 +172,10 @@ public class VNectBarracudaRunner : MonoBehaviour
     {
         if (!Lock)
         {
-            UpdateVNectModel();
+            if (videoCapture.VideoPlayer.isPlaying)
+                UpdateVNectModel();
+            else
+                UpdateVNectModelInitImg();
         }
     }
 
@@ -208,11 +211,12 @@ public class VNectBarracudaRunner : MonoBehaviour
             PredictPose(jointPointss[i]);
         }
 
+        Lock = false;
+        //yield return StartCoroutine(ExecuteModelAsync());
         yield return new WaitForSeconds(WaitTimeModelLoad);
 
         // Init VideoCapture
         videoCapture.Init(InputImageSize, InputImageSize);
-        Lock = false;
         if (Msg) Msg.gameObject.SetActive(false);
     }
 
@@ -233,6 +237,27 @@ public class VNectBarracudaRunner : MonoBehaviour
             inputs[inputName_1] = input;
             inputs[inputName_2] = new Tensor(videoCapture.MainTexture);
             inputs[inputName_3] = new Tensor(videoCapture.MainTexture);
+        }
+        else
+        {
+            inputs[inputName_3].Dispose();
+
+            inputs[inputName_3] = inputs[inputName_2];
+            inputs[inputName_2] = inputs[inputName_1];
+            inputs[inputName_1] = input;
+        }
+
+        StartCoroutine(ExecuteModelAsync());
+    }
+
+    private void UpdateVNectModelInitImg()
+    {
+        input = new Tensor(InitImg);
+        if (inputs[inputName_1] == null)
+        {
+            inputs[inputName_1] = input;
+            inputs[inputName_2] = new Tensor(InitImg);
+            inputs[inputName_3] = new Tensor(InitImg);
         }
         else
         {
