@@ -198,7 +198,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7977188924077066716}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5197000998683485225}
+        m_MethodName: OnClickSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &815110524171645607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,4 +235,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
+  focusColor: {r: 0.65882355, g: 1, b: 1, a: 1}
   txt: {fileID: 5021825644541194002}
