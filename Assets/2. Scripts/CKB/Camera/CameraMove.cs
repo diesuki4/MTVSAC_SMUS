@@ -25,6 +25,9 @@ public class CameraMove : MonoBehaviour
     {
         o_accel = accel;
         o_maxSpeed = maxSpeed;
+
+        rotX = -transform.eulerAngles.x;
+        rotY = transform.eulerAngles.y;
     }
 
     void Update()
