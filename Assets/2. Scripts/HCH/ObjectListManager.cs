@@ -32,53 +32,75 @@ public class ObjectListManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // graphic raycaster에 이 오브젝트가 닿고
-        if (0 < SubLineManager.instance.results.Count && SubLineManager.instance.results[0].gameObject == txt)
-        {
-            // isSelected가 false라면 선택 상태로 하고 
-            if (isSelected == false)
-            {
-                ObjectlistSelect();
-            }
-            // isSelected가 true라면 선택 상태를 해제한다
-            else
-            {
-                ObjecctlistDeselect();
-            }
-            // 다른 곳을 클릭해도 선택 상태를 해제한다    
-        }
-        else
-        {
-            ObjecctlistDeselect();
-        }
+        //// graphic raycaster에 이 오브젝트가 닿고
+        //if (0 < SubLineManager.instance.results.Count && SubLineManager.instance.results[0].gameObject == txt)
+        //{
+        //    // isSelected가 false라면 선택 상태로 하고 
+        //    if (isSelected == false)
+        //    {
+        //        ObjectlistSelect();
+        //    }
+        //    // isSelected가 true라면 선택 상태를 해제한다
+        //    else
+        //    {
+        //        ObjecctlistDeselect();
+        //    }
+        //    // 다른 곳을 클릭해도 선택 상태를 해제한다    
+        //}
+        //else
+        //{
+        //    ObjecctlistDeselect();
+        //}
 
-        // 선택 상태일 때 delete를 누르면 destroy하고 싶다
-        if (isSelected == true)
+        //// 선택 상태일 때 delete를 누르면 destroy하고 싶다
+        //if (isSelected == true)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Delete))
+        //    {
+        //        timerHeight.sizeDelta += Vector2.down * 50;
+        //        Destroy(gameObject);
+        //    }
+        //}
+        if (0 < SubLineManager.instance.results.Count && SubLineManager.instance.results[0].gameObject != txt)
         {
-            if (Input.GetKeyDown(KeyCode.Delete))
-            {
-                timerHeight.sizeDelta += Vector2.down * 50;
-                Destroy(gameObject);
-            }
+
         }
     }
 
+    //// 좌클릭시 선택 상태로 만들고 싶다
+    //// 선택 상태인 동안 색깔을 바꾸고 싶다
+    //public void ObjectlistSelect()
+    //{
+    //    if (Input.GetButtonDown("Fire1"))
+    //    {
+    //        isSelected = true;
+    //        img.color = focusColor;
+    //    }
+    //}
+
+    //// 좌클릭시 선태 상태를 해제하고 싶다
+    //// 선택 상태 해제 시 색깔을 원래대로 하고 싶다
+    //public void ObjecctlistDeselect()
+    //{
+    //    if (Input.GetButtonDown("Fire1"))
+    //    {
+    //        isSelected = false;
+    //        img.color = originColor;
+    //    }
+    //}
+
     // 좌클릭시 선택 상태로 만들고 싶다
     // 선택 상태인 동안 색깔을 바꾸고 싶다
-    public void ObjectlistSelect()
+    // 좌클릭시 선택 상태를 해제하고 싶다
+    // 선택 상태 해제 시 색깔을 원래대로 하고 싶다
+    public void OnClickSelect()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if(isSelected == false)
         {
             isSelected = true;
             img.color = focusColor;
         }
-    }
-
-    // 좌클릭시 선태 상태를 해제하고 싶다
-    // 선택 상태 해제 시 색깔을 원래대로 하고 싶다
-    public void ObjecctlistDeselect()
-    {
-        if (Input.GetButtonDown("Fire1"))
+        else
         {
             isSelected = false;
             img.color = originColor;
