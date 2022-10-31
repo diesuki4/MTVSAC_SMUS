@@ -47,7 +47,9 @@ public class ObjectDrag : MonoBehaviour
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
             position += hit.point;
 
-        transform.position = BuildingSystem.Instance.GetCellCenterPosition(position);
+        Vector3 position3D = BuildingSystem.Instance.GetCellCenterPosition(position);
+
+        transform.position = new Vector3(position3D.x, position.y, position3D.z);
 
         BuildingSystem.Instance.ClearGrid(placeableObject);
 
