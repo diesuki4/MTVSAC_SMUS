@@ -42,12 +42,14 @@ namespace Timeline
             public class Key
             {
                 public int frame;
+                public bool active;
                 public Vector3 position;
                 public Quaternion rotation;
 
-                public Key(int frame, Vector3 position, Quaternion rotation)
+                public Key(int frame, bool active, Vector3 position, Quaternion rotation)
                 {
                     this.frame = frame;
+                    this.active = active;
                     this.position = position;
                     this.rotation = rotation;
                 }
@@ -56,26 +58,19 @@ namespace Timeline
             [Serializable]
             public class Object : Key
             {
-                public Object(int _frame, Vector3 _position, Quaternion _rotation) : base(_frame, _position, _rotation) { }
+                public Object(int _frame, bool _active, Vector3 _position, Quaternion _rotation) : base(_frame, _active, _position, _rotation) { }
             }
 
             [Serializable]
             public class Effect : Key
             {
-                public Effect(int _frame, Vector3 _position, Quaternion _rotation) : base(_frame, _position, _rotation) { }
+                public Effect(int _frame, bool _active, Vector3 _position, Quaternion _rotation) : base(_frame, _active, _position, _rotation) { }
             }
 
             [Serializable]
             public class Light : Key
             {
-                public float intensity;
-                public Color color;
-
-                public Light(int _frame, Vector3 _position, Quaternion _rotation, float intensity, Color color) : base(_frame, _position, _rotation)
-                {
-                    this.intensity = intensity;
-                    this.color = color;
-                }
+                public Light(int _frame, bool _active, Vector3 _position, Quaternion _rotation) : base(_frame, _active, _position, _rotation) { }
             }
         }
     }
