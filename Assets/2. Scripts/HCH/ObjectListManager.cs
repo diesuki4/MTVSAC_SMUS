@@ -52,42 +52,30 @@ public class ObjectListManager : MonoBehaviour
         //    ObjecctlistDeselect();
         //}
 
-        //// 선택 상태일 때 delete를 누르면 destroy하고 싶다
-        //if (isSelected == true)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Delete))
-        //    {
-        //        timerHeight.sizeDelta += Vector2.down * 50;
-        //        Destroy(gameObject);
-        //    }
-        //}
-        if (0 < SubLineManager.instance.results.Count && SubLineManager.instance.results[0].gameObject != txt)
+        if (isSelected == false)
         {
+            img.color = originColor;
+        }
+        else
+        {
+            img.color = focusColor;
+        }
 
+        // 선택 상태일 때 delete를 누르면 destroy하고 싶다
+        if (isSelected == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                timerHeight.sizeDelta += Vector2.down * 50;
+                Destroy(gameObject);
+            }
+        }
+        if (SubLineManager.instance.results.Count <= 0) return;
+        if (SubLineManager.instance.results[0].gameObject != null)
+        {
+            Deselect();
         }
     }
-
-    //// 좌클릭시 선택 상태로 만들고 싶다
-    //// 선택 상태인 동안 색깔을 바꾸고 싶다
-    //public void ObjectlistSelect()
-    //{
-    //    if (Input.GetButtonDown("Fire1"))
-    //    {
-    //        isSelected = true;
-    //        img.color = focusColor;
-    //    }
-    //}
-
-    //// 좌클릭시 선태 상태를 해제하고 싶다
-    //// 선택 상태 해제 시 색깔을 원래대로 하고 싶다
-    //public void ObjecctlistDeselect()
-    //{
-    //    if (Input.GetButtonDown("Fire1"))
-    //    {
-    //        isSelected = false;
-    //        img.color = originColor;
-    //    }
-    //}
 
     // 좌클릭시 선택 상태로 만들고 싶다
     // 선택 상태인 동안 색깔을 바꾸고 싶다
@@ -95,16 +83,31 @@ public class ObjectListManager : MonoBehaviour
     // 선택 상태 해제 시 색깔을 원래대로 하고 싶다
     public void OnClickSelect()
     {
-        if(isSelected == false)
+        // 다른 버튼을 누르면 모든버튼의 isSelected를 false로 하고
+        for (int i = 0; i < AddList.instance.objectList.Count; i++)
         {
-            isSelected = true;
-            img.color = focusColor;
+            AddList.instance.objectList[i].GetComponent<ObjectListManager>().isSelected = false;
+        }
+        // 누른 버튼의 isSelected를 true로 하고 싶다
+        isSelected = true;
+    }
+
+    // KeyBar외의 오브젝트에 graphic raycaster가 닿은 상태에서 좌클릭을 하면 모든 버튼의 isSelected를 false로 하고 싶다
+    public void Deselect()
+    {
+        if(SubLineManager.instance.results[0].gameObject.name != "KeyBarText")
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                for (int i = 0; i < AddList.instance.objectList.Count; i++)
+                {
+                    AddList.instance.objectList[i].GetComponent<ObjectListManager>().isSelected = false;
+                }
+            }
         }
         else
         {
-            isSelected = false;
-            img.color = originColor;
+            return;
         }
     }
-
 }

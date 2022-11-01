@@ -78,10 +78,22 @@ public class ObjectCheck : MonoBehaviour
             objectInfo.transform.position = Input.mousePosition;
             if (Input.GetButtonUp("Fire1"))
             {
-                GameObject.Find("ObjectInfo(Clone)").GetComponent<ObjectInfoName>().BoxColliderOnOff();
-                Destroy(objectInfo, 0.1f);
-                instantiateOk = true;
-                isSave = true;
+                if (SubLineManager.instance.results.Count > 0)
+                {
+                    if (SubLineManager.instance.results[0].gameObject.name == "ObjectViewport" || SubLineManager.instance.results[0].gameObject.name == "ObjectList(Clone)")
+                    {
+                        AddList.instance.AddObjectList();
+                        Destroy(objectInfo);
+                        instantiateOk = true;
+                        isSave = true;
+                    }
+                }
+                else
+                {
+                    Destroy(objectInfo);
+                    instantiateOk = true;
+                    isSave = true;
+                }
             }
         }
     }

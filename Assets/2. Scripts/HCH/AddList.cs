@@ -26,6 +26,7 @@ public class AddList : MonoBehaviour
     public GameObject timerBaseContent;
     RectTransform timerHeight;
 
+    public GameObject objectInfo;
     private void Awake()
     {
         instance = this;
@@ -57,25 +58,21 @@ public class AddList : MonoBehaviour
             timerListPos.y = objectListPos.y;
             timerList[i].transform.position = timerListPos;
         }
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
+    // 리스트에 넣고 싶다
+    public void AddObjectList()
     {
-        if(other.tag == "Object")
+        // 만약 ObjectInfo(Clone)이 존재하고 마우스가 TimelineObjectInputBase에 있다면
+        if (objectInfo != null)
         {
-            // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 버튼을 추가하고 싶다
             GameObject ObjectList = Instantiate(objectListFactory, objectListParent);
-            //for (int i = 0; i < objectList.Count; i++)
-            //{
-            //    Vector2 objectListPos = objectList[i].transform.position;
-            //    Vector2 timerListPos = timerList[i].transform.position;
-            //    timerListPos.y = objectListPos.y;
-            //    timerList[i].transform.position = timerListPos;
-            //}
-
-            // 이미지를 추가하면서 TimelineTimerBase에 버튼을 추가하고 싶다 
             GameObject TimerList = Instantiate(timerListFactory, timerListParent);
             timerHeight.sizeDelta += Vector2.down * -50;
         }
+        // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
+        // 리스트에 넣고 싶다
     }
 }

@@ -55,6 +55,13 @@ public class TimerListManager : MonoBehaviour
             {
                 AddList.instance.timerList[i].GetComponent<Image>().color = originColor;
             }
+            // 같은 라인의 objectlist가 destroy될 때 같이 파괴하고 싶다
+            //if (AddList.instance.objectList[i] == null)
+            //{
+            //    print("123");
+            //    Destroy(gameObject);
+            //}
         }
     }
+
 }
