@@ -38,7 +38,7 @@ public class BuildingSystem : MonoBehaviour
     }
 
     [HideInInspector] public PlaceableObject objectToPlace;
-    List<PlaceableObject> objectList;
+    [HideInInspector] public List<PlaceableObject> objectList;
 
     GridLayout gridLayout;
     Grid grid;
@@ -49,14 +49,9 @@ public class BuildingSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             objectToPlace.Rotate();
-        else if (Input.GetKeyDown(KeyCode.W))
-            objectToPlace.Move(PlaceableObject.MoveDirection.Up);
-        else if (Input.GetKeyDown(KeyCode.A))
-            objectToPlace.Move(PlaceableObject.MoveDirection.Left);
-        else if (Input.GetKeyDown(KeyCode.S))
-            objectToPlace.Move(PlaceableObject.MoveDirection.Down);
-        else if (Input.GetKeyDown(KeyCode.D))
-            objectToPlace.Move(PlaceableObject.MoveDirection.Right);
+
+        if (objectToPlace)
+            objectToPlace.VerticalMove(Input.GetAxisRaw("Mouse ScrollWheel"));
     }
 
     public Vector3Int GetCellPosition(Vector3 position)
@@ -115,7 +110,7 @@ public class BuildingSystem : MonoBehaviour
 
         return area;
     }
-
+ 
     public bool isOverlapped(PlaceableObject placeableObject)
     {
         foreach (PlaceableObject po in objectList)
@@ -131,9 +126,6 @@ public class BuildingSystem : MonoBehaviour
         Box box1 = po1.GetBox();
         Box box2 = po2.GetBox();
 
-        print(box1.minX + ", " + box1.maxX + ", " + box1.minY + ", " + box1.maxY + ", " + box1.minZ + ", " + box1.maxZ);
-        print(box2.minX + ", " + box2.maxX + ", " + box2.minY + ", " + box2.maxY + ", " + box2.minZ + ", " + box2.maxZ);
-
         bool conditionX = (box1.minX < box2.maxX) & (box2.minX < box1.maxX);
         bool conditionY = (box1.minY < box2.maxY) & (box2.minY < box1.maxY);
         bool conditionZ = (box1.minZ < box2.maxZ) & (box2.minZ < box1.maxZ);
@@ -141,31 +133,12 @@ public class BuildingSystem : MonoBehaviour
         return conditionX & conditionY & conditionZ;
     }
 
-    // public bool isOverlapped(PlaceableObject placeableObject)
-    // {
-    //     float boundary = 0.2f;
-    //     float rayDistance = 1000;
-
-    //     Ray ray = new Ray(placeableObject.transform.position, Vector3.down);
-    //     RaycastHit hit;
-
-    //     if (Physics.Raycast(ray, out hit, rayDistance, 1 << LayerMask.NameToLayer("Floor")))
-    //         if (Vector3.Distance(transform.position, hit.point) >= boundary)
-    //             return false;
-
-    //     foreach (TileBase tile in GetTiles(placeableObject))
-    //         if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
-    //             return true;
-            
-    //     return false;
-    // }
-
     public Placeable isPlaceable(PlaceableObject placeableObject)
     {
         RaycastHit hit;
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")) == false)
-            ;//return Placeable.OOB;
+            return Placeable.OOB;
 
         if (isOverlapped(placeableObject))
             return Placeable.Overlap;
@@ -180,12 +153,12 @@ public class BuildingSystem : MonoBehaviour
 
     public void Fill(PlaceableObject placeableObject, Tile tile)
     {
-        Vector3Int start = GetCellPosition(placeableObject.GetStartPosition());
-        Vector3Int size = placeableObject.size;
+        // Vector3Int start = GetCellPosition(placeableObject.GetStartPosition());
+        // Vector3Int size = placeableObject.size;
 
-        mainTilemap.BoxFill(start, tiles[TileToIndex(tile)],
-                            start.x, start.y,
-                            start.x + size.x, start.y + size.y);
+        // mainTilemap.BoxFill(start, tiles[TileToIndex(tile)],
+        //                     start.x, start.y,
+        //                     start.x + size.x, start.y + size.y);
     }
 
     public void ClearGrid(PlaceableObject except = null)

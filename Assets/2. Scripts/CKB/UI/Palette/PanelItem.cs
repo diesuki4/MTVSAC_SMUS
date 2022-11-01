@@ -69,7 +69,7 @@ public class PanelItem : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
         // 해당 썸네일을 생성
         if (thumbnail == null)
             thumbnail = Instantiate(goThumbnail, rctThumbnailArea);
-
+            
         // 썸네일을 포인터 위치에 표시
         RevalidateItem(Mode.Thumbnail, Input.mousePosition);
     }

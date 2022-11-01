@@ -30,11 +30,14 @@ public class PlaceableObject : MonoBehaviour
     public Vector3Int size;
 
     Vector3[] l_vertices;
+    Transform floor;
 
     void Awake()
     {
         InitializeColliderVertexLocalPositions();
         CalculateSizeInCells();
+
+        floor = GameObject.Find("Floor").transform;
     }
 
     void InitializeColliderVertexLocalPositions()
@@ -113,6 +116,42 @@ public class PlaceableObject : MonoBehaviour
             transform.position = originPos;
         
         BuildingSystem.Instance.ClearGrid();
+    }
+
+    public void VerticalMove(float sw)
+    {
+        if (sw == 0 || gameObject.layer == LayerMask.NameToLayer("Default"))
+            return;
+
+        float cellWidth = BuildingSystem.Instance.mainTilemap.cellSize.x;
+        float deltaY = cellWidth * sw * 10f;
+
+        gameObject.layer = LayerMask.NameToLayer("Default");
+
+        if (isGrounded() == false || (isGrounded() && 0 < sw))
+            transform.position += Vector3.up * deltaY;
+
+        gameObject.layer = LayerMask.NameToLayer("Floor");
+    }
+
+    bool isGrounded()
+    {
+        float cellWidth = BuildingSystem.Instance.mainTilemap.cellSize.x;
+
+        float rayDistance = 2.5f;
+        float rayFrom = 0.5f;
+
+        foreach (Vector3 l_vertex in l_vertices)
+        {
+            Vector3 vertex = transform.TransformPoint(l_vertex);
+
+            Ray ray = new Ray(vertex + Vector3.up * rayFrom, Vector3.down);
+
+            if (Physics.Raycast(ray, rayDistance, 1 << LayerMask.NameToLayer("Floor")))
+                return true;
+        }
+
+        return false;
     }
 
     public void Rotate(float degree = 90)
