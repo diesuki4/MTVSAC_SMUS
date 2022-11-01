@@ -3,6 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct Box
+{
+    public float minX;
+    public float maxX;
+
+    public float minY;
+    public float maxY;
+
+    public float minZ;
+    public float maxZ;
+}
+
 public class PlaceableObject : MonoBehaviour
 {
     public enum MoveDirection
@@ -48,6 +60,23 @@ public class PlaceableObject : MonoBehaviour
         }
 
         size = new Vector3Int(Mathf.Abs((vertices[0] - vertices[1]).x), Mathf.Abs((vertices[0] - vertices[3]).y), 1);
+    }
+
+    public Box GetBox()
+    {
+        Box box = new Box();
+        BoxCollider bCol = GetComponent<BoxCollider>();
+
+        box.minX = transform.TransformPoint(bCol.center).x - bCol.bounds.size.x * 0.5f;
+        box.maxX = transform.TransformPoint(bCol.center).x + bCol.bounds.size.x * 0.5f;
+
+        box.minY = transform.TransformPoint(bCol.center).y - bCol.bounds.size.y * 0.5f;
+        box.maxY = transform.TransformPoint(bCol.center).y + bCol.bounds.size.y * 0.5f;
+
+        box.minZ = transform.TransformPoint(bCol.center).z - bCol.bounds.size.z * 0.5f;
+        box.maxZ = transform.TransformPoint(bCol.center).z + bCol.bounds.size.z * 0.5f;
+
+        return box;
     }
 
     public Vector3 GetStartPosition()
@@ -118,7 +147,7 @@ public class PlaceableObject : MonoBehaviour
 
     public bool isTransformable()
     {
-        float rayDistance = 100;
+        float rayDistance = 1000;
         float rayFrom = 0.5f;
 
         foreach (Vector3 l_vertex in l_vertices)

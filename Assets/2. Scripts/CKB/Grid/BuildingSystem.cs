@@ -118,19 +118,54 @@ public class BuildingSystem : MonoBehaviour
 
     public bool isOverlapped(PlaceableObject placeableObject)
     {
-        foreach (TileBase tile in GetTiles(placeableObject))
-            if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
-                return true;
-            
+        foreach (PlaceableObject po in objectList)
+            if (po != placeableObject)
+                if (isIntersect(po, placeableObject))
+                    return true;
+  
         return false;
     }
+
+    public bool isIntersect(PlaceableObject po1, PlaceableObject po2)
+    {
+        Box box1 = po1.GetBox();
+        Box box2 = po2.GetBox();
+
+        print(box1.minX + ", " + box1.maxX + ", " + box1.minY + ", " + box1.maxY + ", " + box1.minZ + ", " + box1.maxZ);
+        print(box2.minX + ", " + box2.maxX + ", " + box2.minY + ", " + box2.maxY + ", " + box2.minZ + ", " + box2.maxZ);
+
+        bool conditionX = (box1.minX < box2.maxX) & (box2.minX < box1.maxX);
+        bool conditionY = (box1.minY < box2.maxY) & (box2.minY < box1.maxY);
+        bool conditionZ = (box1.minZ < box2.maxZ) & (box2.minZ < box1.maxZ);
+
+        return conditionX & conditionY & conditionZ;
+    }
+
+    // public bool isOverlapped(PlaceableObject placeableObject)
+    // {
+    //     float boundary = 0.2f;
+    //     float rayDistance = 1000;
+
+    //     Ray ray = new Ray(placeableObject.transform.position, Vector3.down);
+    //     RaycastHit hit;
+
+    //     if (Physics.Raycast(ray, out hit, rayDistance, 1 << LayerMask.NameToLayer("Floor")))
+    //         if (Vector3.Distance(transform.position, hit.point) >= boundary)
+    //             return false;
+
+    //     foreach (TileBase tile in GetTiles(placeableObject))
+    //         if (tile == tiles[TileToIndex(Tile.Transparent)] || tile == tiles[TileToIndex(Tile.Red)])
+    //             return true;
+            
+    //     return false;
+    // }
 
     public Placeable isPlaceable(PlaceableObject placeableObject)
     {
         RaycastHit hit;
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")) == false)
-            return Placeable.OOB;
+            ;//return Placeable.OOB;
 
         if (isOverlapped(placeableObject))
             return Placeable.Overlap;

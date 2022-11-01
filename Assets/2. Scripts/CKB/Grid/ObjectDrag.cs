@@ -19,6 +19,8 @@ public class ObjectDrag : MonoBehaviour
     {
         RaycastHit hit;
 
+        gameObject.layer = LayerMask.NameToLayer("Default");
+
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
         {
             transform.position = hit.point;
@@ -31,6 +33,8 @@ public class ObjectDrag : MonoBehaviour
     void OnMouseDown()
     {
         RaycastHit hit;
+
+        gameObject.layer = LayerMask.NameToLayer("Default");
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
             offset = transform.position - hit.point;
@@ -93,6 +97,8 @@ public class ObjectDrag : MonoBehaviour
                 BuildingSystem.Instance.ClearGrid();
                 break;
         }
+
+        gameObject.layer = LayerMask.NameToLayer("Floor");
     }
 
     public void MouseUp()
