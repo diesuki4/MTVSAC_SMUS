@@ -14,6 +14,9 @@ public class ObjectDrag : MonoBehaviour
     Color clrPlaceable = new Color(67, 236, 57, 255) / 255;
     Color clrNotPlaceable = new Color(236, 57, 84, 255) / 255;
 
+    float mouseDownTime;
+    float clickThreshold = 0.3f;
+
     void Awake()
     {
         placeableObject = GetComponent<PlaceableObject>();
@@ -46,6 +49,7 @@ public class ObjectDrag : MonoBehaviour
         RaycastHit hit;
 
         gameObject.layer = LayerMask.NameToLayer("Default");
+        mouseDownTime = Time.time;
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
             offset = transform.position - hit.point;
@@ -61,6 +65,9 @@ public class ObjectDrag : MonoBehaviour
 
     void OnMouseDrag()
     {
+        if (Time.time - mouseDownTime < clickThreshold)
+            return;
+
         Vector3 position = offset;
         RaycastHit hit;
 
@@ -70,7 +77,8 @@ public class ObjectDrag : MonoBehaviour
         Vector3 position3D = BuildingSystem.Instance.GetCellCenterPosition(hit.point);
 
         transform.position = new Vector3(position3D.x, hit.point.y, position3D.z);
-
+        //transform.position = new Vector3(position3D.x, ClosestMultipleOfN(BuildingSystem.Instance.mainTilemap.cellSize.x, hit.point.y), position3D.z);
+        
         BuildingSystem.Instance.ClearGrid(placeableObject);
 
         switch (BuildingSystem.Instance.isPlaceable(placeableObject))
@@ -125,5 +133,16 @@ public class ObjectDrag : MonoBehaviour
     public void MouseUp()
     {
         OnMouseUp();
+    }
+
+    float ClosestMultipleOfN(float n, float x)
+    {
+        if (n > x)
+            return n;
+
+        x = x + n / 2;
+        x = x - (x % n);
+
+        return x;
     }
 }
