@@ -33,7 +33,6 @@ public class SubLineManager : MonoBehaviour
         ped.position = Input.mousePosition;
         results = new List<RaycastResult>();
         gr.Raycast(ped, results);
-        print(results.Count);
         if (results.Count <= 0) return;
         AddSubLine();
     }

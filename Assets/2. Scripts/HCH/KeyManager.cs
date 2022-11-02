@@ -52,9 +52,13 @@ public class KeyManager : MonoBehaviour
     {
         if (AddList.instance.objectList.Count > 0)
         {
+            ObjectListName objectListName = objectList.GetComponent<ObjectListName>();
+            TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(objectListName.guid);
+
             ObjectKey = Instantiate(objectKeyFactory, keyParent);
             ObjectKey.transform.position = new Vector2(keyBar.position.x, objectList.position.y);
-            ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(objectList.GetComponent<ObjectListName>().guid, keyBarMove.frame);
+            ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(tl_object.guid, keyBarMove.frame);
+            TimelineManager.Instance.AddKey(tl_object.guid, keyBarMove.frame, tl_object.isActive, tl_object.transform);
         }
     }
 

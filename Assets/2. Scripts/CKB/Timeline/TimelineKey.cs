@@ -14,11 +14,10 @@ public class TimelineKey : MonoBehaviour
     {
         this.guid = guid;
         this.frame = frame;
-print(guid);
-        Transform tl_transform = BuildingSystem.Instance.getTransform(guid);
+        TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
 
-        position = tl_transform.position;
-        rotation = tl_transform.rotation;
-        active = tl_transform.GetComponent<PlaceableObject>().isActive;
+        position = tl_object.transform.position;
+        rotation = tl_object.transform.rotation;
+        active = tl_object.isActive;
     }
 }

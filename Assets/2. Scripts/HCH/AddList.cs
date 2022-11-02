@@ -27,7 +27,6 @@ public class AddList : MonoBehaviour
     public GameObject timerBaseContent;
     RectTransform timerHeight;
 
-    public GameObject objectInfo;
     private void Awake()
     {
         instance = this;
@@ -64,18 +63,13 @@ public class AddList : MonoBehaviour
 
     // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
     // 리스트에 넣고 싶다
-    public void AddObjectList()
+    public void AddObjectList(ObjectInfoName objectInfoName)
     {
         // 만약 ObjectInfo(Clone)이 존재하고 마우스가 TimelineObjectInputBase에 있다면
-        if (objectInfo != null)
+        if (objectInfoName != null)
         {
-            ObjectInfoName objectInfoName = objectInfo.GetComponent<ObjectInfoName>();
-
-            ObjectListName ObjectListName = Instantiate(objectListFactory, objectListParent).GetComponent<ObjectListName>();
-            ObjectListName.SetObjectInfo(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
-            
-            if (TimelineManager.Instance.isTimelineExist(ObjectListName.guid) == false)
-                TimelineManager.Instance.NewTimeline(ObjectListName.guid, ObjectListName.tlType, ObjectListName.itemName);
+            ObjectListName objectListName = Instantiate(objectListFactory, objectListParent).GetComponent<ObjectListName>();
+            objectListName.SetObjectInfo(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
 
             GameObject TimerList = Instantiate(timerListFactory, timerListParent);
             timerHeight.sizeDelta += Vector2.down * -50;

@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tlType: 0
-  itemName: 
+  itemName: Cube
   guid: 
 --- !u!1 &352570766248580478
 GameObject:

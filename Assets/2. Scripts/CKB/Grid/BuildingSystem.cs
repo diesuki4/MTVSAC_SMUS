@@ -178,11 +178,11 @@ public class BuildingSystem : MonoBehaviour
                 Fill(placeableObject, Tile.Transparent);
     }
 
-    public Transform getTransform(string guid)
+    public TimelineObject getTimelineObject(string guid)
     {
         foreach (PlaceableObject po in objectList)
             if (po.GetComponent<TimelineObject>().guid == guid)
-                return po.transform;
+                return po.GetComponent<TimelineObject>();
 
         return null;
     }

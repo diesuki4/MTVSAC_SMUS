@@ -14,16 +14,20 @@ public class ObjectInfoName : MonoBehaviour
     [HideInInspector] public TL_ENUM_Types tlType;
     [HideInInspector] public string itemName;
 
+    void Awake()
+    {
+        TimelineObject tl_object = BuildingSystem.Instance.objectToPlace.GetComponent<TimelineObject>();
+
+        guid = tl_object.guid;
+        tlType = tl_object.tlType;
+        itemName = tl_object.itemName;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         objectInfoText = this.GetComponent<Text>();
         objectInfoText.text = ObjectCheck.instance.hitInfo.transform.name;
-
-        TimelineObject tlObject = BuildingSystem.Instance.objectToPlace.GetComponent<TimelineObject>();
-        guid = tlObject.guid;
-        tlType = tlObject.tlType;
-        itemName = tlObject.itemName;
     }
 
     // Update is called once per frame

@@ -26,13 +26,11 @@ public class PlaceableObject : MonoBehaviour
     }
 
     public bool isPlaced;
-    public bool isActive;
     [HideInInspector]
     public Vector3Int size;
 
     Vector3[] l_vertices;
     Transform floor;
-    Renderer[] renderers;
 
     void Awake()
     {
@@ -40,19 +38,6 @@ public class PlaceableObject : MonoBehaviour
         CalculateSizeInCells();
 
         floor = GameObject.Find("Floor").transform;
-    }
-
-    void Start()
-    {
-        renderers = GetComponentsInChildren<Renderer>();
-
-        isActive = true;
-    }
-
-    void Update()
-    {
-        foreach (Renderer rend in renderers)
-            rend.enabled = isActive;
     }
 
     void InitializeColliderVertexLocalPositions()

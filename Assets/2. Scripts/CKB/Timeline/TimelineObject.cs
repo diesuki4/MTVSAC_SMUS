@@ -11,8 +11,21 @@ public class TimelineObject : MonoBehaviour
 
     [HideInInspector] public string guid;
 
-    public void Start()
+    public bool isActive;
+    Renderer[] renderers;
+
+    void Start()
     {
         guid = TL_Utility.NewGuid();
+
+        renderers = GetComponentsInChildren<Renderer>();
+
+        isActive = true;
+    }
+
+    void Update()
+    {
+        foreach (Renderer rend in renderers)
+            rend.enabled = isActive;
     }
 }
