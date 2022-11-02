@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Timeline.Utility;
+using Timeline.Types;
 
 public class TimelineObject : MonoBehaviour
 {
-    public string guid;
+    public TL_ENUM_Types tlType;
+    public string itemName;
 
-    public void SetGuid(string guid)
+    [HideInInspector] public string guid;
+
+    public void Start()
     {
-        this.guid = guid;
+        guid = TL_Utility.NewGuid();
     }
 }

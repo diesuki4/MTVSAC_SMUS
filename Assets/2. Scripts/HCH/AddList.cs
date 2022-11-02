@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Timeline.Types;
 
 // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
 // 리스트에 넣고 싶다
@@ -68,7 +69,14 @@ public class AddList : MonoBehaviour
         // 만약 ObjectInfo(Clone)이 존재하고 마우스가 TimelineObjectInputBase에 있다면
         if (objectInfo != null)
         {
-            GameObject ObjectList = Instantiate(objectListFactory, objectListParent);
+            ObjectInfoName objectInfoName = objectInfo.GetComponent<ObjectInfoName>();
+
+            ObjectListName ObjectListName = Instantiate(objectListFactory, objectListParent).GetComponent<ObjectListName>();
+            ObjectListName.SetObjectInfo(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
+            
+            if (TimelineManager.Instance.isTimelineExist(ObjectListName.guid) == false)
+                TimelineManager.Instance.NewTimeline(ObjectListName.guid, ObjectListName.tlType, ObjectListName.itemName);
+
             GameObject TimerList = Instantiate(timerListFactory, timerListParent);
             timerHeight.sizeDelta += Vector2.down * -50;
         }

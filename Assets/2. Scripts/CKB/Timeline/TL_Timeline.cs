@@ -12,14 +12,14 @@ namespace Timeline
         public class TL_Timeline
         {
             public TL_ENUM_Types tlType;
-            int itemIdx;
+            string itemName;
 
             List<TL_Types.Key> keys;
 
-            public TL_Timeline(TL_ENUM_Types tlType, int itemIdx)
+            public TL_Timeline(TL_ENUM_Types tlType, string itemName)
             {
                 this.tlType = tlType;
-                this.itemIdx = itemIdx;
+                this.itemName = itemName;
 
                 keys = new List<TL_Types.Key>();
             }

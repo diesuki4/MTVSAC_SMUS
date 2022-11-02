@@ -21,6 +21,9 @@ public class BuildingSystem : MonoBehaviour
         gridLayout = grid = GetComponent<Grid>();
     }
 
+    public Canvas cnvsPalette;
+    public Canvas cnvsHCH;
+
     public Tilemap mainTilemap;
     public enum Tile
     {
@@ -137,7 +140,8 @@ public class BuildingSystem : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")) == false)
+        if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")) == false
+            || UI_Utility.GraphicRaycast(cnvsPalette, Input.mousePosition) || UI_Utility.GraphicRaycast(cnvsHCH, Input.mousePosition))
             return Placeable.OOB;
 
         if (isOverlapped(placeableObject))
@@ -172,5 +176,14 @@ public class BuildingSystem : MonoBehaviour
         foreach (PlaceableObject placeableObject in objectList)
             if (placeableObject != except)
                 Fill(placeableObject, Tile.Transparent);
+    }
+
+    public Transform getTransform(string guid)
+    {
+        foreach (PlaceableObject po in objectList)
+            if (po.GetComponent<TimelineObject>().guid == guid)
+                return po.transform;
+
+        return null;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 // 마우스 좌클릭 상태일 때 레이를 쏴서 무슨 오브젝트인지 판별하고 싶다
 // 텍스트를 마우스 커서 위에 띄우고 싶다
 // 텍스트를 TimelineObjectListBase에 끌어다 놓을 때 
@@ -52,19 +53,22 @@ public class ObjectCheck : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //RaycastHit hitInfo;
             // 오브젝트 판별한다
-            if (Physics.Raycast(ray, out hitInfo))
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, 1 << LayerMask.NameToLayer("Selected")))
             {
-                if(isSave == true)
+                if (hitInfo.transform.GetComponent<PlaceableObject>())
                 {
-                    saveName = hitInfo.transform.name;
-                    isSave = false;
-                }
-                // 말풍선을 마우스 커서 위에 띄우고 싶다
-                if (instantiateOk == true)
-                {
-                    objectInfo = Instantiate(objectInfoFactory, canvas);
-                    objectInfo.transform.position = Input.mousePosition;
-                    instantiateOk = false;
+                    if(isSave == true)
+                    {
+                        saveName = hitInfo.transform.name;
+                        isSave = false;
+                    }
+                    // 말풍선을 마우스 커서 위에 띄우고 싶다
+                    if (instantiateOk == true)
+                    {
+                        objectInfo = Instantiate(objectInfoFactory, canvas);
+                        objectInfo.transform.position = Input.mousePosition;
+                        instantiateOk = false;
+                    }
                 }
 
             }
@@ -80,13 +84,14 @@ public class ObjectCheck : MonoBehaviour
             {
                 if (SubLineManager.instance.results.Count > 0)
                 {
-                    if (SubLineManager.instance.results[0].gameObject.name == "ObjectViewport" || SubLineManager.instance.results[0].gameObject.name == "ObjectList(Clone)")
+                    if (Contains(SubLineManager.instance.results, "ObjectViewport") || Contains(SubLineManager.instance.results, "ObjectList(Clone)"))
                     {
                         AddList.instance.AddObjectList();
-                        Destroy(objectInfo);
-                        instantiateOk = true;
-                        isSave = true;
                     }
+
+                    Destroy(objectInfo);
+                    instantiateOk = true;
+                    isSave = true;
                 }
                 else
                 {
@@ -96,5 +101,14 @@ public class ObjectCheck : MonoBehaviour
                 }
             }
         }
+    }
+
+    bool Contains(List<RaycastResult> list, string name)
+    {
+        foreach (RaycastResult result in list)
+            if (result.gameObject.name == name)
+                return true;
+
+        return false;
     }
 }

@@ -31,13 +31,11 @@ public class TimelineManager : MonoBehaviour
         return timelines.ContainsKey(guid);
     }
 
-    public string NewTimeline(TL_ENUM_Types tlType, int itemIdx)
+    public bool NewTimeline(string guid, TL_ENUM_Types tlType, string itemName)
     {
-        string newGuid = TL_Utility.NewGuid();
+        timelines[guid] = new TL_Timeline(tlType, itemName);
 
-        timelines[newGuid] = new TL_Timeline(tlType, itemIdx);
-
-        return newGuid;
+        return timelines.ContainsKey(guid);
     }
 
     public bool AddKey(string guid, int frame, bool active, Transform tr)

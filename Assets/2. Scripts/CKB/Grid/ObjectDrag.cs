@@ -14,9 +14,6 @@ public class ObjectDrag : MonoBehaviour
     Color clrPlaceable = new Color(67, 236, 57, 255) / 255;
     Color clrNotPlaceable = new Color(236, 57, 84, 255) / 255;
 
-    float mouseDownTime;
-    float clickThreshold = 0.3f;
-
     void Awake()
     {
         placeableObject = GetComponent<PlaceableObject>();
@@ -27,7 +24,7 @@ public class ObjectDrag : MonoBehaviour
     {
         RaycastHit hit;
 
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMask.NameToLayer("Selected");
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
         {
@@ -48,8 +45,7 @@ public class ObjectDrag : MonoBehaviour
     {
         RaycastHit hit;
 
-        gameObject.layer = LayerMask.NameToLayer("Default");
-        mouseDownTime = Time.time;
+        gameObject.layer = LayerMask.NameToLayer("Selected");
 
         if (UI_Utility.ScreenPointRaycast(Camera.main, Input.mousePosition, out hit, 1 << LayerMask.NameToLayer("Floor")))
             offset = transform.position - hit.point;
@@ -65,9 +61,6 @@ public class ObjectDrag : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (Time.time - mouseDownTime < clickThreshold)
-            return;
-
         Vector3 position = offset;
         RaycastHit hit;
 

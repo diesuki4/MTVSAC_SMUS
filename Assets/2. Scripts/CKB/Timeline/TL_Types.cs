@@ -14,28 +14,6 @@ namespace Timeline
             Light
         }
 
-        public enum TL_ENUM_Types_Object
-        {
-            Tree1,
-            Tree2,
-            Mic1,
-            Chair1
-        }
-
-        public enum TL_ENUM_Types_Effect
-        {
-            Bomb1,
-            Bomb2,
-            Snow1
-        }
-
-        public enum TL_ENUM_Types_Light
-        {
-            Directional,
-            Point,
-            Spot
-        }
-
         public class TL_Types
         {
             [Serializable]

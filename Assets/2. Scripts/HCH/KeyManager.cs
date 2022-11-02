@@ -11,6 +11,8 @@ public class KeyManager : MonoBehaviour
     public GameObject objectKeyFactory;
     public Transform keyParent;
 
+    public KeyBarMove keyBarMove;
+
     public Transform keyBar;
     Transform objectList;
 
@@ -52,6 +54,7 @@ public class KeyManager : MonoBehaviour
         {
             ObjectKey = Instantiate(objectKeyFactory, keyParent);
             ObjectKey.transform.position = new Vector2(keyBar.position.x, objectList.position.y);
+            ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(objectList.GetComponent<ObjectListName>().guid, keyBarMove.frame);
         }
     }
 

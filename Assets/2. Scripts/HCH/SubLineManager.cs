@@ -23,18 +23,18 @@ public class SubLineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gr = GameObject.Find("Canvas").GetComponent<GraphicRaycaster>();
+        gr = canvas.GetComponent<GraphicRaycaster>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var ped = new PointerEventData(null);
+        var ped = new PointerEventData(canvas.GetComponent<EventSystem>());
         ped.position = Input.mousePosition;
         results = new List<RaycastResult>();
         gr.Raycast(ped, results);
+        print(results.Count);
         if (results.Count <= 0) return;
-        print(results[0].gameObject);
         AddSubLine();
     }
 

@@ -26,11 +26,13 @@ public class PlaceableObject : MonoBehaviour
     }
 
     public bool isPlaced;
+    public bool isActive;
     [HideInInspector]
     public Vector3Int size;
 
     Vector3[] l_vertices;
     Transform floor;
+    Renderer[] renderers;
 
     void Awake()
     {
@@ -38,6 +40,19 @@ public class PlaceableObject : MonoBehaviour
         CalculateSizeInCells();
 
         floor = GameObject.Find("Floor").transform;
+    }
+
+    void Start()
+    {
+        renderers = GetComponentsInChildren<Renderer>();
+
+        isActive = true;
+    }
+
+    void Update()
+    {
+        foreach (Renderer rend in renderers)
+            rend.enabled = isActive;
     }
 
     void InitializeColliderVertexLocalPositions()
@@ -108,6 +123,7 @@ public class PlaceableObject : MonoBehaviour
                 dir = Vector3.left;
                 break;
         }
+
         transform.position += dir * cellWidth;
 
         BuildingSystem.Instance.ClearGrid(this);
@@ -120,13 +136,13 @@ public class PlaceableObject : MonoBehaviour
 
     public void VerticalMove(float sw)
     {
-        if (sw == 0 || gameObject.layer == LayerMask.NameToLayer("Default"))
+        if (sw == 0 || gameObject.layer == LayerMask.NameToLayer("Selected"))
             return;
 
         float cellWidth = BuildingSystem.Instance.mainTilemap.cellSize.x;
         float deltaY = cellWidth * sw * 10f;
 
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMask.NameToLayer("Selected");
 
         if (isGrounded() == false || (isGrounded() && 0 < sw))
             transform.position += Vector3.up * deltaY;
