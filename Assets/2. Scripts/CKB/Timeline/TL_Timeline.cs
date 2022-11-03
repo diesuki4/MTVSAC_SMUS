@@ -24,6 +24,11 @@ namespace Timeline
                 keys = new List<TL_Types.Key>();
             }
 
+            public List<TL_Types.Key> GetKeys()
+            {
+                return keys;
+            }
+
             public bool AddKey(TL_Types.Key key)
             {
                 keys.Add(key);

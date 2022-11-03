@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Timeline.Types;
 using Timeline.Timeline;
-using Timeline.Utility;
 
 public class TimelineManager : MonoBehaviour
 {
@@ -36,6 +35,14 @@ public class TimelineManager : MonoBehaviour
         timelines[guid] = new TL_Timeline(tlType, itemName);
 
         return timelines.ContainsKey(guid);
+    }
+
+    public TL_Timeline GetTimeline(string guid)
+    {
+        if (timelines.ContainsKey(guid))
+            return timelines[guid];
+        else
+            return null;
     }
 
     public bool AddKey(string guid, int frame, bool active, Transform tr)
