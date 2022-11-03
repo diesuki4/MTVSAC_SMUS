@@ -31,7 +31,6 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - gpm_common
-    - Assembly-CSharp-firstpass
     - PhotonUnityNetworking.Demos
     - PhotonUnityNetworking.Utilities
     - IngameDebugConsole.Runtime
@@ -43,6 +42,7 @@ MonoBehaviour:
     - SimpleFileBrowser.Runtime
     - PhotonRealtime
     - PhotonVoice.PUN
+    - Assembly-CSharp-firstpass
     - PhotonVoice.Editor
     - gpm_manager
     - PhotonUnityNetworking.Editor
