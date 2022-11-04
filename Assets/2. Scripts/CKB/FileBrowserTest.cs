@@ -2,14 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NAudio;
+using NAudio.Wave;
 using SimpleFileBrowser;
 
 public class FileBrowserTest : MonoBehaviour
 {
 	// Warning: paths returned by FileBrowser dialogs do not contain a trailing '\' character
 	// Warning: FileBrowser can only show 1 dialog at a time
+	private AudioSource audioSource;
 
-	public void ShowFileBrowser()
+    private void Start()
+    {
+		audioSource = GetComponent<AudioSource>();
+	}
+
+    public void ShowFileBrowser()
 	{
 		// Set filters (optional)
 		// It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
@@ -78,6 +86,9 @@ public class FileBrowserTest : MonoBehaviour
 			byte[] bytes = FileBrowserHelpers.ReadBytesFromFile( FileBrowser.Result[0] );
             //string str = System.Text.Encoding.UTF8.GetString(bytes);
 			string str = System.Text.Encoding.Default.GetString(bytes);
+
+			audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
+			audioSource.Play();
 
 			// Or, copy the first file to persistentDataPath
 			string destinationPath = Path.Combine( Application.streamingAssetsPath, FileBrowserHelpers.GetFilename( FileBrowser.Result[0] ) );
