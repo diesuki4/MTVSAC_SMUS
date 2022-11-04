@@ -5,41 +5,67 @@ using UnityEngine;
 using NAudio;
 using NAudio.Wave;
 using SimpleFileBrowser;
+using UnityEngine.UI;
 
 public class FileBrowserTest : MonoBehaviour
 {
 	// Warning: paths returned by FileBrowser dialogs do not contain a trailing '\' character
 	// Warning: FileBrowser can only show 1 dialog at a time
-	private AudioSource audioSource;
+	AudioSource audioSource;
+	public GameObject msFactory;
+	public Transform msContent;
+	byte[] bytes;
 
-    private void Start()
-    {
+	// 스펙트럼 위치값
+	RectTransform rtSpectrum;
+	// 스펙트럼 간격
+	public float spectrumGap;
+	//스펙트럼 positionX
+	float msPosX;
+
+	public float[] samples = new float[64];
+	public Image ms;
+	RectTransform[] bars;
+	float[] spectrum = new float[256];
+
+	private void Start()
+	{
 		audioSource = GetComponent<AudioSource>();
 	}
 
-    public void ShowFileBrowser()
+	private void Update()
+	{
+		//     if(audioSource != null)
+		//     {
+		//         if (Input.GetKeyDown(KeyCode.Q))
+		//         {
+		//	audioSource.Play();
+		//}
+		//     }
+	}
+	public void ShowFileBrowser()
 	{
 		// Set filters (optional)
 		// It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
 		// if all the dialogs will be using the same filters
-		FileBrowser.SetFilters( true, new FileBrowser.Filter( "Images", ".jpg", ".png" ), new FileBrowser.Filter( "Text Files", ".txt", ".pdf" ) );
+		FileBrowser.SetFilters(true, new FileBrowser.Filter("Images", ".jpg", ".png"), new FileBrowser.Filter("Text Files", ".txt", ".pdf"));
 
 		// Set default filter that is selected when the dialog is shown (optional)
 		// Returns true if the default filter is set successfully
 		// In this case, set Images filter as the default filter
-		FileBrowser.SetDefaultFilter( ".jpg" );
+		FileBrowser.SetDefaultFilter(".jpg");
 
 		// Set excluded file extensions (optional) (by default, .lnk and .tmp extensions are excluded)
 		// Note that when you use this function, .lnk and .tmp extensions will no longer be
 		// excluded unless you explicitly add them as parameters to the function
-		FileBrowser.SetExcludedExtensions( ".lnk", ".tmp", ".zip", ".rar", ".exe" );
+		FileBrowser.SetExcludedExtensions(".lnk", ".tmp", ".zip", ".rar", ".exe");
 
 		// Add a new quick link to the browser (optional) (returns true if quick link is added successfully)
 		// It is sufficient to add a quick link just once
 		// Name: Users
 		// Path: C:\Users
 		// Icon: default (folder icon)
-		FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
+		FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
 		// Show a save file dialog 
 		// onSuccess event: not registered (which means this dialog is pretty useless)
@@ -60,7 +86,7 @@ public class FileBrowserTest : MonoBehaviour
 		//						   FileBrowser.PickMode.Folders, false, null, null, "Select Folder", "Select" );
 
 		// Coroutine example
-		StartCoroutine( ShowLoadDialogCoroutine() );
+		StartCoroutine(ShowLoadDialogCoroutine());
 	}
 
 	IEnumerator ShowLoadDialogCoroutine()
@@ -69,32 +95,63 @@ public class FileBrowserTest : MonoBehaviour
 		// Load file/folder: both, Allow multiple selection: true
 		// Initial path: default (Documents), Initial filename: empty
 		// Title: "Load File", Submit button text: "Load"
-		yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.FilesAndFolders, true, null, null, "Load Files and Folders", "Load" );
+		yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.FilesAndFolders, true, null, null, "Load Files and Folders", "Load");
 
 		// Dialog is closed
 		// Print whether the user has selected some files/folders or cancelled the operation (FileBrowser.Success)
-		Debug.Log( FileBrowser.Success );
+		Debug.Log(FileBrowser.Success);
 
-		if( FileBrowser.Success )
+		if (FileBrowser.Success)
 		{
 			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
-			for( int i = 0; i < FileBrowser.Result.Length; i++ )
-				Debug.Log( FileBrowser.Result[i] );
+			for (int i = 0; i < FileBrowser.Result.Length; i++)
+				Debug.Log(FileBrowser.Result[i]);
 
 			// Read the bytes of the first file via FileBrowserHelpers
 			// Contrary to File.ReadAllBytes, this function works on Android 10+, as well
-			byte[] bytes = FileBrowserHelpers.ReadBytesFromFile( FileBrowser.Result[0] );
-            //string str = System.Text.Encoding.UTF8.GetString(bytes);
+			bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result[0]);
+			//string str = System.Text.Encoding.UTF8.GetString(bytes);
 			string str = System.Text.Encoding.Default.GetString(bytes);
 
 			audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
+			MusicWave();
 			audioSource.Play();
+			print(bytes.Length);
+			print(audioSource.clip.length);
 
 			// Or, copy the first file to persistentDataPath
-			string destinationPath = Path.Combine( Application.streamingAssetsPath, FileBrowserHelpers.GetFilename( FileBrowser.Result[0] ) );
-			FileBrowserHelpers.CopyFile( FileBrowser.Result[0], destinationPath );
+			string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
+			FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
 		}
 	}
 
+	// 스펙트럼을 만들고 싶다
+	// 스펙트럼은 1프레임마다 막대 하나로 생성하고 싶다
+	public void MusicSpectrum()
+	{
+		for (int i = 0; i < bytes.Length; i++)
+		{
+			GameObject ms = Instantiate(msFactory, msContent);
+			rtSpectrum = ms.GetComponent<RectTransform>();
+			msPosX += spectrumGap;
+			rtSpectrum.anchoredPosition = new Vector2(msPosX, rtSpectrum.anchoredPosition.y);
+		}
 
+	}
+
+	public void MusicWave()
+	{
+		audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
+		print(spectrum.Length);
+		bars = new RectTransform[spectrum.Length];
+
+        for (int i = 1; i < bars.Length; i++)
+        {
+            bars[i] = Instantiate(ms).GetComponent<RectTransform>();
+            bars[i].parent = msContent;
+            bars[i].anchoredPosition = new Vector2(2 + i, 0);
+            bars[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, spectrum[i] * 100000000000);
+        }
+
+    }
 }
