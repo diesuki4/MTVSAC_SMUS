@@ -4286,7 +4286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &778270953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4349,7 +4349,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 778270955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1263111595}
+        m_MethodName: OnClickPlayTimeline
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &778270955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6043,6 +6054,7 @@ GameObject:
   - component: {fileID: 1263111591}
   - component: {fileID: 1263111593}
   - component: {fileID: 1263111594}
+  - component: {fileID: 1263111595}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -6149,6 +6161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a0078ebb6c5d94c8cd5a5929fe4b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1263111595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263111588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d091182ea19bcd4da8eb6bef4584aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileBrowser: {fileID: 1478857386}
+  keyBar: {fileID: 1526968458}
 --- !u!1 &1264795582
 GameObject:
   m_ObjectHideFlags: 0
@@ -7164,10 +7190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b639b08e6d9a29e409c45a10fa15f6c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   msFactory: {fileID: 2822451746833274451, guid: c24c748050092b141b423db12434a492,
     type: 3}
   msContent: {fileID: 1638350055}
-  spectrumGap: 1
   samples:
   - 0
   - 0
@@ -7234,6 +7260,7 @@ MonoBehaviour:
   - 0
   - 0
   ms: {fileID: 2822451746833274477, guid: c24c748050092b141b423db12434a492, type: 3}
+  musicWaveContent: {fileID: 1638350054}
 --- !u!82 &1478857389
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7246,7 +7273,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.111
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7490,7 +7517,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114577932}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.739
+  m_Size: 0.3695
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8105,7 +8132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -739, y: 40}
+  m_AnchoredPosition: {x: -739, y: 80}
   m_SizeDelta: {x: 2000, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1642798036
@@ -9019,7 +9046,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 217456501}
   m_HandleRect: {fileID: 217456500}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
