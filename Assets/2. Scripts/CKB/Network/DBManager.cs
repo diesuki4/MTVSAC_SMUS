@@ -7,9 +7,8 @@ using MySql.Data.MySqlClient;
 
 public static class DBManager
 {
-    //const string SERVER = "www5.dynu.net";
-    const string SERVER = "localhost";
-    const string PORT = "3306";
+    const string SERVER = "www5.dynu.net";
+    const string PORT = "46033";
     const string database = "smus";
     const string userid = "smus";
     const string passwd = "smus";

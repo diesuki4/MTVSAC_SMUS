@@ -4,21 +4,20 @@ using UnityEngine;
 
 public static class MediaProcessor
 {
-    // private Texture2D Base64ToTexture2D(byte[] imageData)
-    // {
-    //     int width, height;
-    //     GetImageSize(imageData, out width, out height);
+    static Texture2D ToTexture2D(byte[] imageBytes)
+    {
+        int width = GetWidth(imageBytes);
+        int height = GetHeight(imageBytes);
 
-    //     // 매프레임 new를 해줄경우 메모리 문제 발생 -> 멤버 변수로 변경
-    //     Texture2D texture = new Texture2D(width, height, TextureFormat.ARGB32, false, true);
+        Texture2D texture = new Texture2D(GetWidth(imageBytes), GetHeight(imageBytes), TextureFormat.ARGB32, false, true);
 
-    //     texture.hideFlags = HideFlags.HideAndDontSave;
-    //     texture.filterMode = FilterMode.Point;
-    //     texture.LoadImage(imageData);
-    //     texture.Apply();
+        texture.hideFlags = HideFlags.HideAndDontSave;
+        texture.filterMode = FilterMode.Bilinear;
+        texture.LoadImage(imageBytes);
+        texture.Apply();
 
-    //     return texture;
-    // }
+        return texture;
+    }
 
     static int GetWidth(byte[] imageBytes)
     {
@@ -30,8 +29,8 @@ public static class MediaProcessor
         return ReadInt(imageBytes, 3 + 15 + 2 + 2);
     }
 
-    static int ReadInt(byte[] imageBytes, int offset)
+    static int ReadInt(byte[] bytes, int offset)
     {
-        return (imageBytes[offset] << 8 | imageBytes[offset + 1]);
+        return (bytes[offset] << 8 | bytes[offset + 1]);
     }
 }
