@@ -9,28 +9,35 @@ using UnityEngine.UI;
 
 public class FileBrowserTest : MonoBehaviour
 {
+	public static FileBrowserTest instance;
 	// Warning: paths returned by FileBrowser dialogs do not contain a trailing '\' character
 	// Warning: FileBrowser can only show 1 dialog at a time
-	AudioSource audioSource;
+	public AudioSource audioSource;
 	public GameObject msFactory;
 	public Transform msContent;
 	byte[] bytes;
-
-	// 스펙트럼 위치값
-	RectTransform rtSpectrum;
-	// 스펙트럼 간격
-	public float spectrumGap;
-	//스펙트럼 positionX
-	float msPosX;
 
 	public float[] samples = new float[64];
 	public Image ms;
 	RectTransform[] bars;
 	float[] spectrum = new float[256];
 
-	private void Start()
+	// 총 프레임 값
+	float totalFrame;
+	// 스펙트럼 간격
+	float spectrumGap;
+
+	// musicwave content
+	public GameObject musicWaveContent;
+
+    private void Awake()
+    {
+		instance = this;
+    }
+    private void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
+		FixScrollView();
 	}
 
 	private void Update()
@@ -115,9 +122,9 @@ public class FileBrowserTest : MonoBehaviour
 
 			audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
 			MusicWave();
-			audioSource.Play();
-			print(bytes.Length);
-			print(audioSource.clip.length);
+			//audioSource.Play();
+			//print(bytes.Length);
+			//print(audioSource.clip.length);
 
 			// Or, copy the first file to persistentDataPath
 			string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
@@ -125,33 +132,48 @@ public class FileBrowserTest : MonoBehaviour
 		}
 	}
 
+	//// 스펙트럼을 만들고 싶다
+	//// 스펙트럼은 1프레임마다 막대 하나로 생성하고 싶다
+	//public void MusicSpectrum()
+	//{
+	//	for (int i = 0; i < bytes.Length; i++)
+	//	{
+	//		GameObject ms = Instantiate(msFactory, msContent);
+	//		rtSpectrum = ms.GetComponent<RectTransform>();
+	//		msPosX += spectrumGap;
+	//		rtSpectrum.anchoredPosition = new Vector2(msPosX, rtSpectrum.anchoredPosition.y);
+	//	}
+
+	//}
+
 	// 스펙트럼을 만들고 싶다
-	// 스펙트럼은 1프레임마다 막대 하나로 생성하고 싶다
-	public void MusicSpectrum()
-	{
-		for (int i = 0; i < bytes.Length; i++)
-		{
-			GameObject ms = Instantiate(msFactory, msContent);
-			rtSpectrum = ms.GetComponent<RectTransform>();
-			msPosX += spectrumGap;
-			rtSpectrum.anchoredPosition = new Vector2(msPosX, rtSpectrum.anchoredPosition.y);
-		}
-
-	}
-
+	// 총프레임은 audioSource.clip.length에 30을 곱한 값으로 한다
+	// 총프레임을 스펙트럼의 갯수(256개)로 나눈 값이 스펙트럼의 간격이다
 	public void MusicWave()
 	{
 		audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
 		print(spectrum.Length);
 		bars = new RectTransform[spectrum.Length];
 
+		totalFrame = audioSource.clip.length * 30;
+		print(totalFrame);
+		spectrumGap = totalFrame / 256;
+		print(spectrumGap);
+
         for (int i = 1; i < bars.Length; i++)
         {
             bars[i] = Instantiate(ms).GetComponent<RectTransform>();
             bars[i].parent = msContent;
-            bars[i].anchoredPosition = new Vector2(2 + i, 0);
+            bars[i].anchoredPosition = new Vector2(spectrumGap * i, 0);
             bars[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, spectrum[i] * 100000000000);
         }
 
+    }
+
+	// 버그로 인한 스크롤뷰의 height를 40으로 고정하고 싶다
+	public void FixScrollView()
+    {
+		RectTransform mwc = musicWaveContent.GetComponent<RectTransform>();
+		mwc.anchoredPosition = new Vector2(mwc.anchoredPosition.x, 40);
     }
 }
