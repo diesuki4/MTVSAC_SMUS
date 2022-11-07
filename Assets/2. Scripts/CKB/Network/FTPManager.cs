@@ -9,7 +9,7 @@ public static class FTPManager
     const string PORT = "47028";
     const string id = "smbuser";
     const string passwd = "iyashinanda12#$";
-    const string connDest = "ftp://" + SERVER + ":" + PORT + "/";
+    const string connDest = "ftp://" + SERVER + ":" + PORT + "/webdav/";
 
     public static bool Upload(byte[] bytes, string fileName)
     {
@@ -30,7 +30,7 @@ public static class FTPManager
         return response.StatusCode == FtpStatusCode.ClosingControl;
     }
 
-    public static bool Download(out byte[] bytes, string fileName)
+    public static byte[] Download(string fileName)
     {
         FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + fileName);
 
@@ -44,10 +44,6 @@ public static class FTPManager
         ftpStream.CopyTo(memoryStream);
         ftpStream.Close();
 
-        bytes = memoryStream.ToArray();
-
-        FtpWebResponse response = (FtpWebResponse)ftpWebRequest.GetResponse();
-
-        return response.StatusCode == FtpStatusCode.ClosingControl;
+        return memoryStream.ToArray();
     }
 }
