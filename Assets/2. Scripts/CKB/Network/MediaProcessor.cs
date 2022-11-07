@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class MediaProcessor
 {
-    static Texture2D ToTexture2D(byte[] imageBytes)
+    public static Texture2D ToTexture2D(byte[] imageBytes)
     {
         int width = GetWidth(imageBytes);
         int height = GetHeight(imageBytes);

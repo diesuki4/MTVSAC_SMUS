@@ -11,9 +11,9 @@ public static class FTPManager
     const string passwd = "iyashinanda12#$";
     const string connDest = "ftp://" + SERVER + ":" + PORT + "/webdav/";
 
-    public static bool Upload(byte[] bytes, string fileName)
+    public static bool Upload(byte[] bytes, string filePath)
     {
-        FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + fileName);
+        FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + filePath);
 
         ftpWebRequest.Credentials = new NetworkCredential(id, passwd);
         ftpWebRequest.UseBinary = false;
@@ -30,9 +30,9 @@ public static class FTPManager
         return response.StatusCode == FtpStatusCode.ClosingControl;
     }
 
-    public static byte[] Download(string fileName)
+    public static byte[] Download(string filePath)
     {
-        FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + fileName);
+        FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + filePath);
 
         ftpWebRequest.Credentials = new NetworkCredential(id, passwd);
         ftpWebRequest.UseBinary = false;

@@ -11,7 +11,7 @@ public static class AccountManager
 
     public static bool Login(string _id, string _passwd)
     {
-        string query = string.Format("SELECT * from userinfo WHERE id = '{0}' AND passwd = '{1}';", _id, _passwd);
+        string query = string.Format("SELECT * FROM userinfo WHERE id = '{0}' AND passwd = '{1}';", _id, _passwd);
         List<Dictionary<string, object>> result = DBManager.Select(query);
 
         isLogined = (0 < result.Count);
