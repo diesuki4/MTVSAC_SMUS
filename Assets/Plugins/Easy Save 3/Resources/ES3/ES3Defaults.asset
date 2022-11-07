@@ -30,7 +30,6 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp
-    - gpm_common
     - Assembly-CSharp-firstpass
     - PhotonUnityNetworking.Demos
     - PhotonUnityNetworking.Utilities
@@ -44,7 +43,6 @@ MonoBehaviour:
     - PhotonRealtime
     - PhotonVoice.PUN
     - PhotonVoice.Editor
-    - gpm_manager
     - PhotonUnityNetworking.Editor
     - PhotonVoice.Utilities.Editor
     - PunDemos.DemoHubEditor
