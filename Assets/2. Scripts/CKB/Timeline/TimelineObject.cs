@@ -10,7 +10,7 @@ public class TimelineObject : MonoBehaviour
     public TL_ENUM_Types tlType;
     public string itemName;
 
-    [HideInInspector] public string guid;
+    public string guid;
 
     public bool isActive;
     Renderer[] renderers;

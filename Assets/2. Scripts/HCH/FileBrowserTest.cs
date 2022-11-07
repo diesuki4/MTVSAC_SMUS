@@ -20,6 +20,7 @@ public class FileBrowserTest : MonoBehaviour
 	public float[] samples = new float[64];
 	public Image ms;
 	RectTransform[] bars;
+	//float[] spectrum = new float[256];
 	float[] spectrum = new float[256];
 
 	// 총 프레임 값
@@ -29,6 +30,7 @@ public class FileBrowserTest : MonoBehaviour
 
 	// musicwave content
 	public GameObject musicWaveContent;
+	public Image wave;
 
     private void Awake()
     {
@@ -42,13 +44,7 @@ public class FileBrowserTest : MonoBehaviour
 
 	private void Update()
 	{
-		//     if(audioSource != null)
-		//     {
-		//         if (Input.GetKeyDown(KeyCode.Q))
-		//         {
-		//	audioSource.Play();
-		//}
-		//     }
+		print(audioSource.time);
 	}
 	public void ShowFileBrowser()
 	{
@@ -121,40 +117,32 @@ public class FileBrowserTest : MonoBehaviour
 			string str = System.Text.Encoding.Default.GetString(bytes);
 
 			audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
-			MusicWave();
-			//audioSource.Play();
-			//print(bytes.Length);
-			//print(audioSource.clip.length);
+			//MusicWave();
+			totalFrame = audioSource.clip.length * 30;
+			RectTransform waveRt = wave.GetComponent<RectTransform>();
+			Rect waveWidth = waveRt.rect;
+			waveRt.sizeDelta = new Vector2(totalFrame, waveRt.sizeDelta.y);
+			
+			Texture2D texture = PaintWaveformSpectrum(audioSource.clip, 0.5f, (int)totalFrame, 80, new Color32(255,166,37,255));
+			wave.overrideSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+			print(totalFrame);
 
-			// Or, copy the first file to persistentDataPath
-			string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
+            // Or, copy the first file to persistentDataPath
+            string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
 			FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
 		}
 	}
 
-	//// 스펙트럼을 만들고 싶다
-	//// 스펙트럼은 1프레임마다 막대 하나로 생성하고 싶다
-	//public void MusicSpectrum()
-	//{
-	//	for (int i = 0; i < bytes.Length; i++)
-	//	{
-	//		GameObject ms = Instantiate(msFactory, msContent);
-	//		rtSpectrum = ms.GetComponent<RectTransform>();
-	//		msPosX += spectrumGap;
-	//		rtSpectrum.anchoredPosition = new Vector2(msPosX, rtSpectrum.anchoredPosition.y);
-	//	}
-
-	//}
-
 	// 스펙트럼을 만들고 싶다
 	// 총프레임은 audioSource.clip.length에 30을 곱한 값으로 한다
 	// 총프레임을 스펙트럼의 갯수(256개)로 나눈 값이 스펙트럼의 간격이다
+	
 	public void MusicWave()
 	{
+		
 		audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
 		print(spectrum.Length);
 		bars = new RectTransform[spectrum.Length];
-
 		totalFrame = audioSource.clip.length * 30;
 		print(totalFrame);
 		spectrumGap = totalFrame / 256;
@@ -163,12 +151,48 @@ public class FileBrowserTest : MonoBehaviour
         for (int i = 1; i < bars.Length; i++)
         {
             bars[i] = Instantiate(ms).GetComponent<RectTransform>();
-            bars[i].parent = msContent;
+            bars[i].SetParent(msContent);
             bars[i].anchoredPosition = new Vector2(spectrumGap * i, 0);
             bars[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, spectrum[i] * 100000000000);
         }
 
     }
+
+
+	public Texture2D PaintWaveformSpectrum(AudioClip audio, float saturation, int width, int height, Color col)
+	{
+		Texture2D tex = new Texture2D(width, height, TextureFormat.RGBA32, false);
+		float[] samples = new float[audio.samples];
+		float[] waveform = new float[width];
+		audio.GetData(samples, 0);
+		int packSize = (audio.samples / width) + 1;
+		int s = 0;
+		for (int i = 0; i < audio.samples; i += packSize)
+		{
+			waveform[s] = Mathf.Abs(samples[i]);
+			s++;
+		}
+
+		for (int x = 0; x < width; x++)
+		{
+			for (int y = 0; y < height; y++)
+			{
+				tex.SetPixel(x, y, Color.white);
+			}
+		}
+
+		for (int x = 0; x < waveform.Length; x++)
+		{
+			for (int y = 0; y <= waveform[x] * ((float)height * .75f); y++)
+			{
+				tex.SetPixel(x, (height / 2) + y, col);
+				tex.SetPixel(x, (height / 2) - y, col);
+			}
+		}
+		tex.Apply();
+
+		return tex;
+	}
 
 	// 버그로 인한 스크롤뷰의 height를 40으로 고정하고 싶다
 	public void FixScrollView()

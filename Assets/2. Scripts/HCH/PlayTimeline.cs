@@ -4,6 +4,7 @@ using UnityEngine;
 
 // 재생 버튼을 누르면 타임라인을 재생하고 싶다
 // keybar를 노래시간만큼 이동시키고 싶다
+
 public class PlayTimeline : MonoBehaviour
 {
     public GameObject fileBrowser;

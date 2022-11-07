@@ -8,16 +8,25 @@ using UnityEngine.UI;
 public class KeySelectDelete : MonoBehaviour
 {
     public bool isSelected;
+    public bool isActived;
     Image img;
     Color focusColor = new Color32(168, 255, 255, 255);
+    Color deActivationColor = new Color32(255, 0, 0, 255);
     Color originColor;
+
+    TimelineKey tk;
+    string guid;
 
     // Start is called before the first frame update
     void Start()
     {
         isSelected = false;
+        isActived = true;
         img = GetComponent<Image>();
         originColor = img.color;
+
+        tk = this.GetComponent<TimelineKey>();
+        guid = tk.guid;
     }
 
     // Update is called once per frame
@@ -25,6 +34,7 @@ public class KeySelectDelete : MonoBehaviour
     {
         KeyManagement();
         DeleteKey();
+        KeyActiveManagement();
     }
 
     // Key를 선택상태로 만들고 싶다
@@ -45,7 +55,14 @@ public class KeySelectDelete : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             isSelected = false;
-            img.color = originColor;
+            if(isActived == true)
+            {
+                img.color = originColor;
+            }
+            else
+            {
+                img.color = deActivationColor;
+            }
         }
     }
 
@@ -87,5 +104,54 @@ public class KeySelectDelete : MonoBehaviour
                 KeyDeselect();
             }
         }      
+    }
+
+    // 키 SetActive true
+    public void KeySetActiveTrue()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            isActived = true;
+            img.color = originColor;
+            tk.active = true;
+            TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
+            tl_object.isActive = true;
+            print(tl_object.isActive);
+        }
+    }
+
+    // 키 SetActive false
+    public void KeySetActiveFalse()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            isActived = false;
+            img.color = deActivationColor;
+            tk.active = false;
+            TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
+            tl_object.isActive = false;
+        }
+    }
+
+    // 키 SetActive관리
+    public void KeyActiveManagement()
+    {
+        if (SubLineManager.instance.results.Count > 0)
+        {
+            // graphic raycaster에 이 오브젝트가 닿고
+            if (0 < KeyManager.instance.objectKeyList.Count && SubLineManager.instance.results[0].gameObject == this.gameObject)
+            {
+                // isActived가 true라면 우클릭 했을 때 false로
+                if (isActived == true)
+                {
+                    KeySetActiveFalse();
+                }
+                // isActived가 false라면 우클릭 했을 때 true로
+                else
+                {
+                    KeySetActiveTrue();
+                }
+            }
+        }
     }
 }
