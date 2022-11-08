@@ -44,7 +44,7 @@ public class FileBrowserTest : MonoBehaviour
 
 	private void Update()
 	{
-		print(audioSource.time);
+		//print(audioSource.time);
 	}
 	public void ShowFileBrowser()
 	{

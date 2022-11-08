@@ -52,6 +52,7 @@ public class KeyManager : MonoBehaviour
     {
         if (AddList.instance.objectList.Count > 0)
         {
+
             ObjectListName objectListName = objectList.GetComponent<ObjectListName>();
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(objectListName.guid);
 
