@@ -95,10 +95,4 @@ public class TimelineManager : MonoBehaviour
 
         return timelines[guid].DeleteAllKeys();
     }
-
-    public void Play()
-    {
-        foreach (string guid in timelines.Keys)
-            BuildingSystem.Instance.getTimelineObject(guid).Play();
-    }
 }
