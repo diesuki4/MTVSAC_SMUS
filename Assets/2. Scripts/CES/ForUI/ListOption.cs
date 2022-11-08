@@ -34,6 +34,6 @@ public class ListOption : MonoBehaviour
     // 로그아웃 버튼 누르면 로그인 창으로 돌아감
     public void OnClickLogoutButton()
     {
-        SceneManager.LoadScene("LoginScene_C");
+        SceneManager.LoadScene("ShowLoginScene_C");
     }
 }

@@ -783,7 +783,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SMU<color=teal>:</color>S
+  m_Text: SMU<color=teal>:</color>Show
 --- !u!222 &340409788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1541,7 +1541,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "<color=teal>\uACE8\uB77C\uB77C</color>"
+  m_Text: "\uB2E4\uB978 <color=teal>\uACC4\uC815</color>\uC73C\uB85C \uB85C\uADF8\uC778"
 --- !u!222 &955766988
 CanvasRenderer:
   m_ObjectHideFlags: 0

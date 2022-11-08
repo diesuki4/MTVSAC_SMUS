@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/1. Scenes/SMUShow/LoginScene.unity
     guid: 4b03cfba3424ca14f81cf9d596af5749
   - enabled: 1
-    path: Assets/1. Scenes/CES/GGu/LoginScene_C.unity
+    path: Assets/1. Scenes/CES/GGu/ShowLoginScene_C.unity
     guid: e4215c8f027ae93418f20c32ef81138a
   - enabled: 1
     path: Assets/1. Scenes/SMUShow/SignUpScene.unity

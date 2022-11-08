@@ -95,4 +95,9 @@ public class TimelineManager : MonoBehaviour
 
         return timelines[guid].DeleteAllKeys();
     }
+
+    public int IndexOf(string guid, int frame)
+    {
+        return timelines[guid].IndexOf(frame);
+    }
 }
