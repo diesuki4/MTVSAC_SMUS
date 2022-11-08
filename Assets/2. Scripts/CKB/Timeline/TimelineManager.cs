@@ -62,11 +62,11 @@ public class TimelineManager : MonoBehaviour
         switch (tlType)
         {
             case TL_ENUM_Types.Object :
-                return new TL_Types.Object(frame, active, transform.position, transform.rotation);
+                return new TL_Types.Object(frame, active, tr.position, tr.rotation);
             case TL_ENUM_Types.Effect :
-                return new TL_Types.Effect(frame, active, transform.position, transform.rotation);
+                return new TL_Types.Effect(frame, active, tr.position, tr.rotation);
             case TL_ENUM_Types.Light :
-                return new TL_Types.Light(frame, active, transform.position, transform.rotation);
+                return new TL_Types.Light(frame, active, tr.position, tr.rotation);
         }
 
         return null;
