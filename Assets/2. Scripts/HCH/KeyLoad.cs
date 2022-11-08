@@ -14,6 +14,8 @@ public class KeyLoad : MonoBehaviour
     TimelineObject tl_object;
 
     Renderer[] renderers;
+    //Vector3 savePos;
+    //Quaternion saveRot;
     Vector3 startPos;
     Vector3 endPos;
     Quaternion startRot;
@@ -29,6 +31,12 @@ public class KeyLoad : MonoBehaviour
         kbm = keyBar.GetComponent<KeyBarMove>();
         tl_object = BuildingSystem.Instance.getTimelineObject(tk.guid);
         renderers = tl_object.GetComponentsInChildren<Renderer>();
+
+        //savePos = tl_object.transform.position;
+        //saveRot = tl_object.transform.rotation;
+        //print(savePos);
+        //startPos = keys[keyOrder].position;
+        //startRot = keys[keyOrder].rotation;
     }
 
     // Update is called once per frame
@@ -38,11 +46,12 @@ public class KeyLoad : MonoBehaviour
         foreach (Renderer rend in renderers)
             rend.enabled = tl_object.isActive;
 
-        if(startPos != null && endPos != null)
-        {
-            Vector3.Lerp(startPos, endPos, Time.deltaTime);
-            Quaternion.Lerp(startRot, endRot, Time.deltaTime);
-        }
+        //if (startPos != null && endPos != null)
+        //{
+        //    print("lerp");
+        //    Vector3.Lerp(startPos, endPos, Time.deltaTime);
+        //    Quaternion.Lerp(startRot, endRot, Time.deltaTime);
+        //}
 
     }
 
@@ -55,24 +64,24 @@ public class KeyLoad : MonoBehaviour
             // 그 key의 정보를 불러오고 싶다
             // position, rotation은 lerp로 이동하고 싶다
             keys = TimelineManager.Instance.GetTimeline(tk.guid).GetKeys();
-            keyOrder = TimelineManager.Instance.GetTimeline(tk.guid).IndexOf(tk.frame);   
-            startPos = keys[keyOrder].position;
-            startRot = keys[keyOrder].rotation;
-            if (keyOrder + 1 == keys.Count)
-            {
-                endPos = keys[keyOrder].position;
-                endRot = keys[keyOrder].rotation;
-                print(endPos);
-            }
-            else
-            {
-                endPos = keys[keyOrder + 1].position;
-                endRot = keys[keyOrder + 1].rotation;
-                print(endPos);
-            }
+            keyOrder = TimelineManager.Instance.GetTimeline(tk.guid).IndexOf(tk.frame);
+            //startPos = keys[keyOrder].position;
+            //startRot = keys[keyOrder].rotation;
+            //if (keyOrder + 1 == keys.Count)
+            //{
+            //    endPos = keys[keyOrder].position;
+            //    endRot = keys[keyOrder].rotation;
+            //    print("시작 : " + startPos + " " + "끝 : " + endPos);
+            //}
+            //else
+            //{
+            //    endPos = keys[keyOrder + 1].position;
+            //    endRot = keys[keyOrder + 1].rotation;
+            //    print("시작 : " + startPos + " " + "끝 : " + endPos);
+            //}
 
-            //tl_object.transform.position = tk.position;
-            //tl_object.transform.rotation = tk.rotation;
+            tl_object.transform.position = tk.position;
+            tl_object.transform.rotation = tk.rotation;
             tl_object.isActive = tk.active;
         }
     }
