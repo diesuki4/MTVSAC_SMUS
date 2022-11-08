@@ -13,29 +13,28 @@ namespace Timeline
         public class TL_Timeline
         {
             public TL_ENUM_Types tlType;
-            string itemName;
+            public string itemName;
 
-            SortedSet<TL_Types.Key> keys;
+            CDTSortedSet keys;
 
             public TL_Timeline(TL_ENUM_Types tlType, string itemName)
             {
                 this.tlType = tlType;
                 this.itemName = itemName;
 
-                keys = new SortedSet<TL_Types.Key>(new KeyComparer());
-            }
-
-            class KeyComparer : IComparer<TL_Types.Key>
-            {
-                public int Compare(TL_Types.Key x, TL_Types.Key y)
-                {
-                    return x.frame.CompareTo(y.frame);
-                }
+                keys = new CDTSortedSet();
             }
 
             public List<TL_Types.Key> GetKeys()
             {
                 return keys.ToList();
+            }
+
+            public void SetKeys(CDTSortedSet keys)
+            {
+                DeleteAllKeys();
+
+                this.keys = keys;
             }
 
             public bool AddKey(TL_Types.Key key)

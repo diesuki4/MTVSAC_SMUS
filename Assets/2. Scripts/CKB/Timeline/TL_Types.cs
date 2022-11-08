@@ -7,6 +7,19 @@ namespace Timeline
 {
     namespace Types
     {
+        public class CDTSortedSet : SortedSet<TL_Types.Key>
+        {
+            public CDTSortedSet() : base(new KeyComparer()) {}
+        }
+
+        class KeyComparer : IComparer<TL_Types.Key>
+        {
+            public int Compare(TL_Types.Key x, TL_Types.Key y)
+            {
+                return x.frame.CompareTo(y.frame);
+            }
+        }
+
         public enum TL_ENUM_Types
         {
             Object,
