@@ -540,7 +540,6 @@ GameObject:
   - component: {fileID: 148910660}
   - component: {fileID: 148910659}
   - component: {fileID: 148910658}
-  - component: {fileID: 148910661}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -618,30 +617,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148910656}
   m_CullTransparentMesh: 0
---- !u!114 &148910661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148910656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8bc7fe52a698444b2cf9fc26555ce4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ver1Content: {fileID: 0}
-  ver2: {fileID: 0}
-  ver2Content: {fileID: 0}
-  buttonPrefab: {fileID: 0}
-  listParent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  findParent: {fileID: 0}
-  contentOfParent: {fileID: 0}
 --- !u!1 &241346862
 GameObject:
   m_ObjectHideFlags: 0
