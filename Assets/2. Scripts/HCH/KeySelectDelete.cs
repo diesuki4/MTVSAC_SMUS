@@ -27,6 +27,7 @@ public class KeySelectDelete : MonoBehaviour
 
         tk = this.GetComponent<TimelineKey>();
         guid = tk.guid;
+        tk.active = true;
     }
 
     // Update is called once per frame
@@ -130,6 +131,7 @@ public class KeySelectDelete : MonoBehaviour
             tk.active = false;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = false;
+            print(tl_object.isActive);
         }
     }
 

@@ -27,6 +27,8 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public int frame;
 
+    public GameObject timelineManager;
+    PlayTimeline pt;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -46,6 +48,13 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         frameInputFieldTxt.enabled = false;
         frameInputFieldPlaceHolderTxt.enabled = true;
+
+        // 바를 움직이면 오디오클립의 시간은 프레임을 따라가게 하고 싶다
+        if(pt.audio.clip != null)
+        {
+            pt.audio.time = frame / 30;
+        }
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -71,6 +80,8 @@ public class KeyBarMove : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         frameInputField.onEndEdit.AddListener(OnEndEdit);
         //frameInputField에서 값이 바뀌면 호출되는 함수 등록
         frameInputField.onValueChanged.AddListener(OnValueChanged);
+
+        pt = timelineManager.GetComponent<PlayTimeline>();
     }
 
     // Update is called once per frame
