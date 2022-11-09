@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/1. Scenes/CES/GGu/ScrollScene.unity
     guid: 67958f1e37cab9342a1d2e2a7bcaa1ee
   - enabled: 1
-    path: Assets/1. Scenes/CES/GGu/ConcertListScene_C.unity
+    path: Assets/1. Scenes/CES/No/ConcertListScene_C.unity
     guid: d4c9962dd4800654b833f039ace91e68
   - enabled: 1
     path: Assets/1. Scenes/SMUShow/ConnectionScene.unity
@@ -48,6 +48,6 @@ EditorBuildSettings:
     path: Assets/1. Scenes/HCH/ConcertScenePrac_HCH.unity
     guid: bf78b8557a6d70b4db46e0c7f6b634d1
   - enabled: 1
-    path: Assets/1. Scenes/CES/ConcertScenePrac_NewC.unity
+    path: Assets/1. Scenes/CES/Other/ConcertScenePrac_NewC.unity
     guid: 1085949abcba0584986baa8dfe8bf5cf
   m_configObjects: {}
