@@ -96,6 +96,14 @@ public class TimelineManager : MonoBehaviour
         return timelines[guid].DeleteAllKeys();
     }
 
+    public bool UpdateKey(string guid, TL_Types.Key key)
+    {
+        if (isTimelineExist(guid) == false)
+            return false;
+
+        return timelines[guid].UpdateKey(key);
+    }
+
     public int IndexOf(string guid, int frame)
     {
         return timelines[guid].IndexOf(frame);

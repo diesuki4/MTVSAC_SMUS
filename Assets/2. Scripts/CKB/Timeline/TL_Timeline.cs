@@ -65,6 +65,16 @@ namespace Timeline
                 return keys.Count == 0;                
             }
 
+            public bool UpdateKey(TL_Types.Key key)
+            {
+                bool result = 0 < keys.RemoveWhere(x => x.frame == key.frame);
+
+                if (result)
+                    keys.Add(key);
+
+                return result;
+            }
+
             public int IndexOf(int frame)
             {
                 List<TL_Types.Key> lstKeys = keys.ToList();
