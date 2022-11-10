@@ -16,6 +16,7 @@ public class KeySelectDelete : MonoBehaviour
 
     TimelineKey tk;
     string guid;
+    int saveFrame;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,6 @@ public class KeySelectDelete : MonoBehaviour
 
         tk = this.GetComponent<TimelineKey>();
         guid = tk.guid;
-        tk.active = true;
     }
 
     // Update is called once per frame
@@ -117,7 +117,7 @@ public class KeySelectDelete : MonoBehaviour
             tk.active = true;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = true;
-            print(tl_object.isActive);
+            //TimelineManager.Instance.UpdateKey();
         }
     }
 
@@ -131,7 +131,6 @@ public class KeySelectDelete : MonoBehaviour
             tk.active = false;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = false;
-            print(tl_object.isActive);
         }
     }
 

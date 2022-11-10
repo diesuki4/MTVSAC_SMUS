@@ -27,6 +27,11 @@ public class AddList : MonoBehaviour
     public GameObject timerBaseContent;
     RectTransform timerHeight;
 
+    // 오브젝트리스트 생성시 저장할 정보들
+    //Vector3 firstKeyPosition;
+    //Quaternion firstKeyRotation;
+    //bool firstKeyActive;
+
     private void Awake()
     {
         instance = this;
@@ -35,21 +40,17 @@ public class AddList : MonoBehaviour
     void Start()
     {
         timerHeight = timerBaseContent.GetComponent<RectTransform>();
+        objectList = new List<GameObject>();
+        timerList = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 리스트에 넣고 싶다()
-        objectList = new List<GameObject>();
-        objectList.AddRange(GameObject.FindGameObjectsWithTag("ObjectList"));
         //for(int i = 0; i < objectList.Count; i++)
         //{
         //    print(objectList[i]);
         //}
-
-        timerList = new List<GameObject>();
-        timerList.AddRange(GameObject.FindGameObjectsWithTag("TimerList"));
 
         for (int i = 0; i < objectList.Count; i++)
         {
@@ -71,7 +72,15 @@ public class AddList : MonoBehaviour
             ObjectListName objectListName = Instantiate(objectListFactory, objectListParent).GetComponent<ObjectListName>();
             objectListName.SetObjectInfo(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
 
+            // 리스트에 넣고 싶다()
+            objectList.AddRange(GameObject.FindGameObjectsWithTag("ObjectList"));
+            //// 오브젝트의 처음 데이터 저장
+            //firstKeyPosition = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid).transform.position;
+            //firstKeyRotation = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid).transform.rotation;
+            //firstKeyActive = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid).isActive;
+
             GameObject TimerList = Instantiate(timerListFactory, timerListParent);
+            timerList.AddRange(GameObject.FindGameObjectsWithTag("TimerList"));
             timerHeight.sizeDelta += Vector2.down * -50;
         }
         // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
