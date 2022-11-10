@@ -155,7 +155,7 @@ public class PlaceableObject : MonoBehaviour
         return false;
     }
 
-    public void Rotate(float degree = 90)
+    public void RotateHorizontal(float degree = 90)
     {
         Quaternion originRot = transform.rotation;
         Vector3Int originSize = size;
@@ -163,7 +163,37 @@ public class PlaceableObject : MonoBehaviour
         Vector3[] oringinLocalVertices = new Vector3[4];
         Array.Copy(l_vertices, oringinLocalVertices, l_vertices.Length);
 
-        transform.Rotate(0, degree, 0);
+        transform.eulerAngles += Vector3.up * degree;
+        size = new Vector3Int(size.y, size.x, 1);
+
+        Vector3[] vertices = new Vector3[l_vertices.Length];
+
+        for (int i = 0; i < vertices.Length; ++i)
+            vertices[i] = l_vertices[(i + 1) % l_vertices.Length];
+
+        l_vertices = vertices;
+
+        BuildingSystem.Instance.ClearGrid(this);
+
+        if (isTransformable() == false || BuildingSystem.Instance.isOverlapped(this))
+        {
+            transform.rotation = originRot;
+            size = originSize;
+            Array.Copy(oringinLocalVertices, l_vertices, l_vertices.Length);
+        }
+
+        BuildingSystem.Instance.ClearGrid();
+    }
+
+    public void RotateVertical(float degree = 90)
+    {
+        Quaternion originRot = transform.rotation;
+        Vector3Int originSize = size;
+
+        Vector3[] oringinLocalVertices = new Vector3[4];
+        Array.Copy(l_vertices, oringinLocalVertices, l_vertices.Length);
+
+        transform.eulerAngles += Vector3.right * degree;
         size = new Vector3Int(size.y, size.x, 1);
 
         Vector3[] vertices = new Vector3[l_vertices.Length];

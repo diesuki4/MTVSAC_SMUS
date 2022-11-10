@@ -25,13 +25,13 @@ public static class ConcertManager
     {
         ConcertData concertData = new ConcertData();
 
-        string filePath = concert_id + ".png";
+        string filePath = "thumbnail/" + concert_id + ".png";
         concertData.thumbnail = MediaProcessor.ToSprite(FTPManager.Download(filePath));
 
-        filePath = concert_id + ".mp3";
+        filePath = "bgm/" + concert_id + ".mp3";
         concertData.bgm = FTPManager.Download(filePath);
 
-        filePath = concert_id + ".cdata";
+        filePath = "concertdata/" + concert_id + ".cdata";
         concertData.concertData = Encoding.Default.GetString(FTPManager.Download(filePath));
 
         return concertData;
