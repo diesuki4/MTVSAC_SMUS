@@ -19,6 +19,8 @@ public class ObjectListManager : MonoBehaviour
     GameObject timerBaseContent;
     RectTransform timerHeight;
 
+    ObjectListName oln;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class ObjectListManager : MonoBehaviour
         originColor = img.color;
         timerBaseContent = GameObject.Find("TimerBaseContent");
         timerHeight = timerBaseContent.GetComponent<RectTransform>();
+        oln = this.GetComponent<ObjectListName>();
     }
 
     // Update is called once per frame
@@ -90,6 +93,12 @@ public class ObjectListManager : MonoBehaviour
         }
         // 누른 버튼의 isSelected를 true로 하고 싶다
         isSelected = true;
+
+        // 버튼을 누르면 그 버튼에 해당하는 오브젝트의 아웃라인을 활성화하고 싶다
+        foreach (PlaceableObject po in BuildingSystem.Instance.objectList)
+            po.GetComponent<Outline>().enabled = false;
+        BuildingSystem.Instance.getTimelineObject(oln.guid).GetComponent<Outline>().enabled = true;
+        BuildingSystem.Instance.objectToPlace = BuildingSystem.Instance.getTimelineObject(oln.guid).GetComponent<PlaceableObject>();
     }
 
     // KeyBar외의 오브젝트에 graphic raycaster가 닿은 상태에서 좌클릭을 하면 모든 버튼의 isSelected를 false로 하고 싶다

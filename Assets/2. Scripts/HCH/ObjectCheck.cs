@@ -87,14 +87,12 @@ public class ObjectCheck : MonoBehaviour
                     if (Contains(SubLineManager.instance.results, "ObjectViewport") || Contains(SubLineManager.instance.results, "ObjectList(Clone)"))
                     {
                         ObjectInfoName objectInfoName = objectInfo.GetComponent<ObjectInfoName>();
-
                         if (TimelineManager.Instance.isTimelineExist(objectInfoName.guid) == false)
                         {
                             TimelineManager.Instance.NewTimeline(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
                             AddList.instance.AddObjectList(objectInfoName);
                         }
                     }
-
                     Destroy(objectInfo);
                     instantiateOk = true;
                     isSave = true;

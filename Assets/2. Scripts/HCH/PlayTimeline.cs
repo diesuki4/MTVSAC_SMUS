@@ -23,7 +23,7 @@ public class PlayTimeline : MonoBehaviour
     Image img;
     Color originColor = new Color32(255, 255, 255, 255);
     Color playColor = new Color32(255, 255, 255, 150);
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class PlayTimeline : MonoBehaviour
         rtKeybar = keyBar.GetComponent<RectTransform>();
         firstKeyBarPos = rtKeybar.anchoredPosition.x;
         isPlay = false;
-        img = playButton.GetComponent<Image>();
+        img = playButton.GetComponent<Image>();       
     }
 
     // Update is called once per frame
@@ -64,7 +64,6 @@ public class PlayTimeline : MonoBehaviour
         {
             img.color = originColor;
         }
-        print(audio.time);
     }
 
     // 재생 버튼을 누르면 노래를 플레이하고
