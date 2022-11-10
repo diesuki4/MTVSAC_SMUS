@@ -32,6 +32,10 @@ public class FileBrowserTest : MonoBehaviour
 	public GameObject musicWaveContent;
 	public Image wave;
 
+	// 음악 넣을 때 텍스트도 파일명으로 변경
+	public GameObject musicInputBase;
+	Text musicTxt;
+
     private void Awake()
     {
 		instance = this;
@@ -39,6 +43,7 @@ public class FileBrowserTest : MonoBehaviour
     private void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
+		musicTxt = musicInputBase.GetComponentInChildren<Text>();
 		FixScrollView();
 	}
 
@@ -130,7 +135,8 @@ public class FileBrowserTest : MonoBehaviour
             // Or, copy the first file to persistentDataPath
             string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
 			FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
-		}
+            musicTxt.text = FileBrowser.Result[0];
+        }
 	}
 
 	// 스펙트럼을 만들고 싶다

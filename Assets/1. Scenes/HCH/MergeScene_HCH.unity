@@ -7690,6 +7690,7 @@ MonoBehaviour:
   ms: {fileID: 2822451746833274477, guid: c24c748050092b141b423db12434a492, type: 3}
   musicWaveContent: {fileID: 1638350054}
   wave: {fileID: 655449405}
+  musicInputBase: {fileID: 683409491}
 --- !u!82 &1478857389
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7946,7 +7947,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114577932}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.3695
+  m_Size: 0.739
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8644,7 +8645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -739, y: 80}
+  m_AnchoredPosition: {x: -739, y: 40}
   m_SizeDelta: {x: 2000, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1642798036
@@ -9558,7 +9559,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 217456501}
   m_HandleRect: {fileID: 217456500}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
