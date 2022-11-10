@@ -101,6 +101,14 @@ public class TimelineManager : MonoBehaviour
         return timelines[guid].IndexOf(frame);
     }
 
+    public bool UpdateKey(TimelineKey tlKey)
+    {
+        if (isTimelineExist(tlKey.guid) == false)
+            return false;
+
+        return timelines[tlKey.guid].UpdateKey(tlKey);
+    }
+
     public Dictionary<string, TL_Timeline> GetTimelines()
     {
         return timelines;
