@@ -369,7 +369,7 @@ public class VNectBarracudaRunner : MonoBehaviour
         {
             foreach (var jp in jointPoints)
             {
-                jp.PrevPos3D[0] = jp.Pos3D;
+                jp.PrevPos3D[0] = jp.Pos3D;print(jp.Pos3D);
                 for (var i = 1; i < jp.PrevPos3D.Length; i++)
                 {
                     jp.PrevPos3D[i] = jp.PrevPos3D[i] * LowPassParam + jp.PrevPos3D[i - 1] * (1f - LowPassParam);

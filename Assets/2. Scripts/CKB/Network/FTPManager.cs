@@ -9,7 +9,7 @@ public static class FTPManager
     const string PORT = "47028";
     const string id = "smbuser";
     const string passwd = "iyashinanda12#$";
-    const string connDest = "ftp://" + SERVER + ":" + PORT + "/webdav/";
+    const string connDest = "ftp://" + SERVER + ":" + PORT + "/";
 
     public static bool Upload(byte[] bytes, string filePath)
     {
