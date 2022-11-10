@@ -117,7 +117,7 @@ public class KeySelectDelete : MonoBehaviour
             tk.active = true;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = true;
-            //TimelineManager.Instance.UpdateKey();
+            TimelineManager.Instance.UpdateKey(tk);
         }
     }
 
@@ -131,6 +131,7 @@ public class KeySelectDelete : MonoBehaviour
             tk.active = false;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = false;
+            TimelineManager.Instance.UpdateKey(tk);
         }
     }
 
