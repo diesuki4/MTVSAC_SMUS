@@ -15,7 +15,7 @@ public class TimelineObject : MonoBehaviour
     public bool isActive;
     Renderer[] renderers;
 
-    void Start()
+    void Awake()
     {
         guid = TL_Utility.NewGuid();
 
@@ -26,7 +26,16 @@ public class TimelineObject : MonoBehaviour
 
     void Update()
     {
-        foreach (Renderer rend in renderers)
-            rend.enabled = isActive;
+
+    }
+
+    public void Initialize(TL_ENUM_Types tlType, string itemName, string guid, TL_Types.Key key)
+    {
+        this.tlType = tlType;
+        this.itemName = itemName;
+        this.guid = guid;
+
+        transform.position = key.position;
+        transform.rotation = key.rotation;
     }
 }

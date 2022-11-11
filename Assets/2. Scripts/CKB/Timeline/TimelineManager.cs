@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Timeline.Types;
+using Timeline.Utility;
 using Timeline.Timeline;
 
 public class TimelineManager : MonoBehaviour
@@ -14,16 +17,52 @@ public class TimelineManager : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
+
+        timelines = new Dictionary<string, TL_Timeline>();
+
+        string path = Application.dataPath + "/1.cdata";
+
+        if (File.Exists(path))
+        {
+            timelines = TL_Utility.FromCDATA(File.ReadAllText(path));
+
+            Initialize();
+        }
     }
 
     public Dictionary<string, TL_Timeline> timelines;
     
-    void Start()
+    public Dictionary<string, TimelineObject> timelineObjects;
+
+    public TimelineObject GetTimelineObject(string guid)
     {
-        timelines = new Dictionary<string, TL_Timeline>();
+        if (timelineObjects.ContainsKey(guid) == false)
+            return null;
+
+        return timelineObjects[guid];
     }
 
     void Update() { }
+
+    void Initialize()
+    {
+        foreach (KeyValuePair<string, TL_Timeline> pair in timelines)
+        {
+            string guid = pair.Key;
+            TL_Timeline timeline = pair.Value;
+
+            TimelineObject tlObject = Instantiate(GetPrefab(timeline.tlType, timeline.itemName)).GetComponent<TimelineObject>();
+            tlObject.Initialize(timeline.tlType, timeline.itemName, guid, timeline.GetKeys().First());
+            timelineObjects.Add(guid, tlObject);
+        }
+
+        GetComponent<TimelinePlayer>().LoadKeyData();
+    }
+
+    public GameObject GetPrefab(TL_ENUM_Types tlType, string itemName)
+    {
+        return Resources.Load(tlType.ToString() + "/" + itemName) as GameObject;
+    }
 
     public bool isTimelineExist(string guid)
     {

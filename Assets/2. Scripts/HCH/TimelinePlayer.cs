@@ -8,37 +8,52 @@ using Timeline.Types;
 // 특정 버튼을 누르면 프레임에 따라 저장된 키 값(position, rotation, active)을 불러오고 싶다
 public class TimelinePlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Dictionary<string, TL_Timeline> timelines;
 
-    // Update is called once per frame
+    bool isPlaying;
+    const int frameSpeed = 30;
+    float fFrame;
+    int frame;
+
     void Update()
     {
-        
+        if (isPlaying)
+        {
+            fFrame += Time.deltaTime * frameSpeed;
+            frame = (int)fFrame;
+
+            PlayKeyData();
+        }
     }
 
-    public void LoadKeyData()
+    public void PlayKeyData()
     {
-        Dictionary<string, TL_Timeline> timelines = TimelineManager.Instance.GetTimelines();
-
         foreach (KeyValuePair<string, TL_Timeline> pair in timelines)
         {
             string guid = pair.Key;
-            TL_Timeline tlTimeline = pair.Value;
-            List<TL_Types.Key> keyList =  tlTimeline.GetKeys();
+            List<TL_Types.Key> keyList = pair.Value.GetKeys();
 
             foreach (TL_Types.Key key in keyList)
             {
-                //key.frame
+                if (key.frame == frame)
+                {
+                    TimelineObject tlObject = TimelineManager.Instance.GetTimelineObject(guid);
+
+                    tlObject.transform.position = key.position;
+                    tlObject.transform.rotation = key.rotation;
+                    tlObject.GetComponent<Renderer>().enabled = key.active;
+                }
             }
         }
     }
 
+    public void LoadKeyData()
+    {
+        timelines = TimelineManager.Instance.GetTimelines();
+    }
+
     public void OnClickPlayKeyData()
     {
-
+        isPlaying = true;
     }
 }

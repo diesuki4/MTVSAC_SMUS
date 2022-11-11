@@ -90,6 +90,8 @@ public class ObjectCheck : MonoBehaviour
                         if (TimelineManager.Instance.isTimelineExist(objectInfoName.guid) == false)
                         {
                             TimelineManager.Instance.NewTimeline(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
+                            TimelineObject tlObject = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid);
+                            TimelineManager.Instance.AddKey(tlObject.guid, 0, true, tlObject.transform);
                             AddList.instance.AddObjectList(objectInfoName);
                         }
                     }
