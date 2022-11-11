@@ -113,9 +113,9 @@ namespace Timeline
                 return timelines;
             }
 
-            static int          ToInt(string s)         { return int.Parse(s); }
-            static float        ToFloat(string s)       { return float.Parse(s); }
-            static bool         ToBool(string s)        { return bool.Parse(s); }
+            static int          ToInt(string s)     { return int.Parse(s); }
+            static float        ToFloat(string s)   { return float.Parse(s); }
+            static bool         ToBool(string s)    { return bool.Parse(s); }
             static Vector3      ToVector3(string s)
             {
                 float[] t = s.Split(',').Select(x => ToFloat(x)).ToArray();

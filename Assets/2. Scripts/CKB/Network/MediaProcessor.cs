@@ -19,6 +19,18 @@ public static class MediaProcessor
         return texture;
     }
 
+    public static Sprite ToSprite(byte[] imageBytes)
+    {
+        int width = GetWidth(imageBytes);
+        int height = GetHeight(imageBytes);
+        
+        Texture2D texture = new Texture2D(width, height);
+        texture.LoadImage(imageBytes);
+        texture.Apply();
+
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(width, height));
+    }   
+
     static int GetWidth(byte[] imageBytes)
     {
         return ReadInt(imageBytes, 3 + 15);

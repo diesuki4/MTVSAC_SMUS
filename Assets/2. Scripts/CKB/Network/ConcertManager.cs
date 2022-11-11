@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,19 +14,19 @@ public class ConcertInfo
 
 public class ConcertData
 {
-    public Texture2D thumbnail;
+    public Sprite thumbnail;
     public byte[] bgm;
     public string concertData;
 }
 
 public static class ConcertManager
 {
-    public static ConcertData GetConcertData(string concert_id)
+    public static ConcertData GetConcertData(int concert_id)
     {
         ConcertData concertData = new ConcertData();
 
         string filePath = "thumbnail/" + concert_id + ".png";
-        concertData.thumbnail = MediaProcessor.ToTexture2D(FTPManager.Download(filePath));
+        concertData.thumbnail = MediaProcessor.ToSprite(FTPManager.Download(filePath));
 
         filePath = "bgm/" + concert_id + ".mp3";
         concertData.bgm = FTPManager.Download(filePath);
@@ -36,9 +37,10 @@ public static class ConcertManager
         return concertData;
     }
 
-    public static ConcertInfo GetConcert(string concert_id)
+    public static ConcertInfo GetConcert(int concert_id, bool active = true)
     {
-        string query = string.Format("SELECT * FROM concertinfo WHERE concert_id = '{0}';", concert_id);
+        string activeQuery = (active) ? " AND active = 1" : "";
+        string query = string.Format("SELECT * FROM concertinfo WHERE concert_id = '{0}'" + activeQuery + ";", concert_id);
         List<Dictionary<string, object>> result = DBManager.Select(query);
 
         ConcertInfo concertInfo = new ConcertInfo();
@@ -51,9 +53,10 @@ public static class ConcertManager
         return concertInfo;
     }
 
-    public static List<ConcertInfo> GetConcertsWithId(string id)
+    public static List<ConcertInfo> GetConcertsWithId(string id, bool active = true)
     {
-        string query = string.Format("SELECT * FROM concertinfo WHERE id = '{0}';", id);
+        string activeQuery = (active) ? " AND active = 1" : "";
+        string query = string.Format("SELECT * FROM concertinfo WHERE id = '{0}'" + activeQuery + ";", id);
         List<Dictionary<string, object>> result = DBManager.Select(query);
 
         List<ConcertInfo> concertInfos = new List<ConcertInfo>();
@@ -73,9 +76,10 @@ public static class ConcertManager
         return concertInfos;
     }
 
-    public static List<ConcertInfo> GetConcertsWithGenre(string genre)
+    public static List<ConcertInfo> GetConcertsWithGenre(string genre, bool active = true)
     {
-        string query = string.Format("SELECT * FROM concertinfo WHERE genre = '{0}';", genre);
+        string activeQuery = (active) ? " AND active = 1" : "";
+        string query = string.Format("SELECT * FROM concertinfo WHERE genre = '{0}'" + activeQuery + ";", genre);
         List<Dictionary<string, object>> result = DBManager.Select(query);
 
         List<ConcertInfo> concertInfos = new List<ConcertInfo>();
@@ -95,9 +99,10 @@ public static class ConcertManager
         return concertInfos;
     }
 
-    public static List<ConcertInfo> SearchConcerts(string searchQuery)
+    public static List<ConcertInfo> SearchConcerts(string searchQuery, bool active = true)
     {
-        string query = string.Format("SELECT * FROM concertinfo WHERE title LIKE '%{0}%';", searchQuery);
+        string activeQuery = (active) ? " AND active = 1" : "";
+        string query = string.Format("SELECT * FROM concertinfo WHERE title LIKE '%{0}%'" + activeQuery + ";", searchQuery);
         List<Dictionary<string, object>> result = DBManager.Select(query);
 
         List<ConcertInfo> concertInfos = new List<ConcertInfo>();
@@ -115,5 +120,12 @@ public static class ConcertManager
         }
 
         return concertInfos;
+    }
+
+    public static bool SetConcertState(int concert_id, bool active)
+    {
+        string query = string.Format("UPDATE concertinfo SET active = " + Convert.ToInt32(active) + " WHERE concert_id = '{0}';", concert_id);
+
+        return DBManager.Execute(query);           
     }
 }

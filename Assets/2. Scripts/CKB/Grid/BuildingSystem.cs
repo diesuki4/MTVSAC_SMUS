@@ -50,10 +50,33 @@ public class BuildingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            objectToPlace.Rotate();
+        if (objectToPlace == null)
+            return;
 
-        if (objectToPlace)
+        // Rotate
+        if (Input.GetKeyDown(KeyCode.R))
+            objectToPlace.RotateHorizontal(15);
+        else if (Input.GetKeyDown(KeyCode.F))
+            objectToPlace.RotateHorizontal(-15);
+        else if (Input.GetKeyDown(KeyCode.T))
+            objectToPlace.RotateVertical(15);
+        else if (Input.GetKeyDown(KeyCode.G))
+            objectToPlace.RotateVertical(-15);
+
+        // Move
+        if (Input.GetMouseButtonDown(1) == false)
+            if (Input.GetKeyDown(KeyCode.W))
+                objectToPlace.Move(PlaceableObject.MoveDirection.Up);
+            else if (Input.GetKeyDown(KeyCode.A))
+                objectToPlace.Move(PlaceableObject.MoveDirection.Left);
+            else if (Input.GetKeyDown(KeyCode.S))
+                objectToPlace.Move(PlaceableObject.MoveDirection.Down);
+            else if (Input.GetKeyDown(KeyCode.D))
+                objectToPlace.Move(PlaceableObject.MoveDirection.Right);
+
+        // Horizontal Move
+        if (UI_Utility.GraphicRaycast(cnvsHCH, Input.mousePosition) == false &&
+            UI_Utility.GraphicRaycast(cnvsPalette, Input.mousePosition) == false)
             objectToPlace.VerticalMove(Input.GetAxisRaw("Mouse ScrollWheel"));
     }
 

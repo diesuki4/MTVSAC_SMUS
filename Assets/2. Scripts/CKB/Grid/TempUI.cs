@@ -21,6 +21,6 @@ public class TempUI : MonoBehaviour
 
     public void OnClickRotateButton()
     {
-        BuildingSystem.Instance.objectToPlace.Rotate();
+        BuildingSystem.Instance.objectToPlace.RotateVertical();
     }
 }
