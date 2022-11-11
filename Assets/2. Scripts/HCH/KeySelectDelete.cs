@@ -76,6 +76,7 @@ public class KeySelectDelete : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Delete))
             {
                 Destroy(gameObject);
+                TimelineManager.Instance.DeleteKey(guid, tk.frame);
             }
         }
     }

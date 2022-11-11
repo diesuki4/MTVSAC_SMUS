@@ -7148,7 +7148,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 5000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -7193,9 +7193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f7dc10c03c2ba44a6b46182b8d180c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel: 50
-  maxSpeed: 500
-  boostFactor: 3
+  accel: 100
+  maxSpeed: 1000
+  boostFactor: 4
   rotSpeed: 200
   maxRotX: 45
 --- !u!1 &1439886433
@@ -7947,7 +7947,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114577932}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.739
+  m_Size: 0.3695
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8645,7 +8645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -739, y: 40}
+  m_AnchoredPosition: {x: -739, y: 80}
   m_SizeDelta: {x: 2000, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1642798036
@@ -9560,7 +9560,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 217456500}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
