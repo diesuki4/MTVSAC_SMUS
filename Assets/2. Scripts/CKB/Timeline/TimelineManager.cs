@@ -19,6 +19,7 @@ public class TimelineManager : MonoBehaviour
             Destroy(this);
 
         timelines = new Dictionary<string, TL_Timeline>();
+        timelineObjects = new Dictionary<string, TimelineObject>();
 
         string path = Application.dataPath + "/1.cdata";
 

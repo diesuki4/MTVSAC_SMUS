@@ -41,7 +41,8 @@ public class TimelinePlayer : MonoBehaviour
 
                     tlObject.transform.position = key.position;
                     tlObject.transform.rotation = key.rotation;
-                    tlObject.GetComponent<Renderer>().enabled = key.active;
+                    foreach (Renderer rend in tlObject.GetComponentsInChildren<Renderer>())
+                        rend.enabled = key.active;
                 }
             }
         }
