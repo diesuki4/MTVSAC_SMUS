@@ -15,8 +15,8 @@ public class PlayTimeline : MonoBehaviour
     float firstKeyBarPos;
     Vector3 saveKeyBarPos;
     float keyBarSpeed;
-    bool isMove = false;
     float currentTime;
+    bool isMove = false;
     public bool isPlay;
 
     public GameObject playButton;

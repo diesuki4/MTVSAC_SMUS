@@ -16,7 +16,7 @@ public class TimelineManager : MonoBehaviour
             Destroy(this);
     }
 
-    Dictionary<string, TL_Timeline> timelines;
+    public Dictionary<string, TL_Timeline> timelines;
     
     void Start()
     {
