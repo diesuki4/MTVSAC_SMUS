@@ -11,8 +11,6 @@ public class CESPlayerMove : MonoBehaviourPun
 {
     CharacterController cc;
 
-    public Animator anim;
-    public GameObject player;
     PlayerState playerState;
 
     public float moveSpeed = 10.0f;
@@ -27,7 +25,6 @@ public class CESPlayerMove : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        anim = player.GetComponent<Animator>();
         cc = transform.GetComponent<CharacterController>();
         playerState = transform.GetComponent<PlayerState>();
     }
@@ -53,11 +50,10 @@ public class CESPlayerMove : MonoBehaviourPun
 
     void PlayerMove()
     {
-        if (!photonView.IsMine) return;
 
         transform.forward = Camera.main.transform.forward;
 
-        //if (photonView.RPC("OnTheGround()",RpcTarget.All)
+        if (OnTheGround())
         {
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
@@ -79,7 +75,6 @@ public class CESPlayerMove : MonoBehaviourPun
     }
 
     // 땅 확인
-    [PunRPC]
     bool OnTheGround()
     {
         Ray ray = new Ray(rayPos.position, Vector3.down);
