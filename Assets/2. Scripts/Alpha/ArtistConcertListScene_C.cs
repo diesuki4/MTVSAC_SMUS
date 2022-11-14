@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class ArtistConcertListScene_C : MonoBehaviour
 {
-    Dropdown dropdown;
+    InputField id;
     InputField passwd;
     public Transform concertParent;
     public GameObject concertButton;
 
     void Start()
     {
-        dropdown = transform.Find("Option/BackGroundImage/Tag Dropdown").GetComponent<Dropdown>();
-        passwd = transform.Find("Option/BackGroundImage/PW InputField").GetComponent<InputField>();
+        id = transform.Find("Option/Image (3)/ID InputField").GetComponent<InputField>();
+        passwd = transform.Find("Option/Image (3)/PW InputField").GetComponent<InputField>();
 
-        dropdown.value = dropdown.options.FindIndex(option => option.text == AccountManager.genre);
+        id.text = AccountManager.id;
         passwd.text = AccountManager.passwd;
 
         LoadMyConcerts();
@@ -31,7 +31,7 @@ public class ArtistConcertListScene_C : MonoBehaviour
             int concert_id = info.concert_id;
 
             GameObject concertBtn = Instantiate(concertButton, Vector3.zero, Quaternion.identity, concertParent);
-print(concert_id);
+
             concertBtn.GetComponent<ConcertButton>().Initialize(info);
             concertBtn.GetComponent<Image>().overrideSprite = ConcertManager.GetConcertData(concert_id).thumbnail;
         }
@@ -39,7 +39,7 @@ print(concert_id);
 
     public void OnClickModify()
     {
-        if (AccountManager.Update(passwd.text, dropdown.options[dropdown.value].text))
+        if (AccountManager.Update(passwd.text, AccountManager.genre))
             Debug.Log("정보 수정 성공");
         else
             Debug.Log("정보 수정 실패");
@@ -51,6 +51,11 @@ print(concert_id);
         
         Debug.Log("로그아웃");
 
-        SceneManager.LoadScene("ShowLoginScene_C 1");
+        SceneManager.LoadScene("ShowLoginScene_C");
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

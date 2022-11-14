@@ -1854,8 +1854,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1877312763}
-        m_MethodName: LoginLoadScene
+      - m_Target: {fileID: 1877312762}
+        m_MethodName: OnClickLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2534,7 +2534,6 @@ GameObject:
   - component: {fileID: 1877312759}
   - component: {fileID: 1877312758}
   - component: {fileID: 1877312762}
-  - component: {fileID: 1877312763}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2641,19 +2640,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1877312757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc71253c768ed74fbe3136e09434691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1877312763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877312757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c4a4ea57c2c0049bf883ebe46391f7, type: 3}
+  m_Script: {fileID: 11500000, guid: db7bfd63779496f4e9b7cf4485aa154b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1884059094

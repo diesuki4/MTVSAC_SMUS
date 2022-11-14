@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6219643342368921511}
   - component: {fileID: 1476361288589930309}
   m_Layer: 5
-  m_Name: LightBeamColor 1 I
+  m_Name: LightBeamColor Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d0b2f187495363468311cf6e72bb36b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 003fd9c424e6cb34da3a9adf2f90cabe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

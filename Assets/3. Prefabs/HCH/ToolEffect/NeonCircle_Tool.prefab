@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3270738529954531212}
   - component: {fileID: 3270738529954531213}
-  - component: {fileID: 8388389713729176858}
+  - component: {fileID: -4581323306040495874}
   m_Layer: 0
-  m_Name: NeonCircle
+  m_Name: NeonCircle_Tool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 1
   m_Emitting: 1
---- !u!114 &8388389713729176858
+--- !u!114 &-4581323306040495874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3270738529954531215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aa7a85845fa76c4ab0e831164a8346b, type: 3}
+  m_Script: {fileID: 11500000, guid: 98f45dc89af1ed946a9b568e1df4a01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0

@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/1. Scenes/Alpha/ArtistConcertListScene_C 1.unity
-    guid: 9784b465ec60920469025abab343a890
+    path: Assets/1. Scenes/CES/!!!USE!!!/ShowLoginScene_C.unity
+    guid: e4215c8f027ae93418f20c32ef81138a
   - enabled: 1
-    path: Assets/1. Scenes/Alpha/ScrollScene 1.unity
-    guid: ad8dc94d37b04ea4d82f094a9f5d3268
+    path: Assets/1. Scenes/CES/!!!USE!!!/SignUpScene_C.unity
+    guid: a3d4d42b1b0d7764f83dd6204b6d874c
   - enabled: 1
-    path: Assets/1. Scenes/Alpha/ShowLoginScene_C 1.unity
-    guid: d67680986008de8449599abe5f72e2ae
+    path: Assets/1. Scenes/CES/!!!USE!!!/ArtistConcertListScene_C.unity
+    guid: 1e227b2897da8d34bacfa7bae24d6394
   - enabled: 1
-    path: Assets/1. Scenes/Alpha/SignUpScene_C 1.unity
-    guid: 7c355bb24d749ef41860f9ff9a7b5a94
+    path: Assets/1. Scenes/CES/!!!USE!!!/ScrollScene.unity
+    guid: 67958f1e37cab9342a1d2e2a7bcaa1ee
   - enabled: 1
-    path: Assets/1. Scenes/Alpha/SMUShowUI 1.unity
-    guid: 5cb5c722d8658a64d93162a949ff2a6a
+    path: Assets/Scenes/SampleScene_Alpha.unity
+    guid: 7bb2adda13646b74aa98d385fc5e94b1
   - enabled: 1
-    path: Assets/1. Scenes/Alpha/StudioLOginScene_C 1.unity
-    guid: 85e7be6e11a74b343a4fc1cf5eda2b74
+    path: Assets/1. Scenes/HCH/Concert_Alpha_HCH.unity
+    guid: 130c8c2b8b54bb145a9b770219486558
   m_configObjects: {}

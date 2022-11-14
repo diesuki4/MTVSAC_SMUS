@@ -12,14 +12,14 @@ public class NeonMove_Tool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.localEulerAngles = Vector3.left * 90;
     }
 
     // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
-        this.transform.position += Vector3.forward * speed * Time.deltaTime;
+        this.transform.position += transform.parent.forward * speed * Time.deltaTime;
         if(currentTime > lifeTime)
         {
             Destroy(gameObject);

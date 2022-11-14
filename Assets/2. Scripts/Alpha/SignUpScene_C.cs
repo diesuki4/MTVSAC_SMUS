@@ -29,11 +29,11 @@ public class SignUpScene_C : MonoBehaviour
         
         Debug.Log("회원가입 성공");
 
-        SceneManager.LoadScene("ShowLoginScene_C 1");
+        SceneManager.LoadScene("ShowLoginScene_C");
     }
 
     public void OnClickLogin()
     {
-        SceneManager.LoadScene("ShowLoginScene_C 1");  
+        SceneManager.LoadScene("ShowLoginScene_C");  
     }
 }

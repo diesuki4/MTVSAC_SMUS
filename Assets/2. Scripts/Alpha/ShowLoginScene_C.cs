@@ -31,10 +31,10 @@ public class ShowLoginScene_C : MonoBehaviour
 
         // 관객
         if (dropdown.value == 0)
-            SceneManager.LoadScene("ScrollScene 1");
+            SceneManager.LoadScene("ScrollScene");
         // 아티스트
         else if (dropdown.value == 1)
-            SceneManager.LoadScene("ArtistConcertListScene_C 1");
+            SceneManager.LoadScene("ArtistConcertListScene_C");
     }
 
     public void LoadScene(string sceneName)

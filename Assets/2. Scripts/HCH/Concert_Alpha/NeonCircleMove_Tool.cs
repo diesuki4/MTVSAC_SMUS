@@ -11,13 +11,12 @@ public class NeonCircleMove_Tool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        point = this.transform.position;
         speed = Random.Range(110, 160);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(point, Vector3.up, speed * Time.deltaTime);
+        transform.RotateAround(transform.parent.position, Vector3.up, speed * Time.deltaTime);
     }
 }
