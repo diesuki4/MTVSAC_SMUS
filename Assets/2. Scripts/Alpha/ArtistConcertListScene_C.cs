@@ -40,9 +40,14 @@ public class ArtistConcertListScene_C : MonoBehaviour
     public void OnClickModify()
     {
         if (AccountManager.Update(passwd.text, AccountManager.genre))
+        {
             Debug.Log("정보 수정 성공");
+            transform.Find("Option").gameObject.SetActive(false);
+        }
         else
+        {
             Debug.Log("정보 수정 실패");
+        }
     }
 
     public void OnClickLogout()

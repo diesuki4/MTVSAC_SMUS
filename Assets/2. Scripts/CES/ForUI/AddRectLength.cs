@@ -116,12 +116,11 @@ public class AddRectLength : MonoBehaviour
         {
             // 얘의 콘텐트를 찾아서
             Transform content = listParent[i].GetChild(0).transform.GetChild(0);
-            print(content);
 
             // btnNum[i]개 만큼 버튼 만들어
             for (int j = 0; j < btnNum[i]; j++)
             {
-                print(btnNum[i]);
+                print("btnNum + " + btnNum.Length);
                 Button listButton = Instantiate(buttonPrefab);
                 listButton.transform.SetParent(content, false);
                 if (btnImage[j] == null) return;
@@ -129,6 +128,7 @@ public class AddRectLength : MonoBehaviour
             }
             // 이미지 지워
             Array.Clear(btnImage, 0, btnNum[i]);
+            print("listParent + " + listParent.Length);
         }
         startAdd = false;
     }

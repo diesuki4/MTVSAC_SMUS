@@ -12,6 +12,8 @@ public class ShowLoginScene_C : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.DeleteKey("Created");
+
         dropdown = transform.Find("VerDropdown").GetComponent<Dropdown>();
         id = transform.Find("ID InputField").GetComponent<InputField>();
         passwd = transform.Find("PW InputField").GetComponent<InputField>();

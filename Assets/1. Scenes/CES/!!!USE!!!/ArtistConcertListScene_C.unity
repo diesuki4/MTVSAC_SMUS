@@ -232,9 +232,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 33312725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc71253c768ed74fbe3136e09434691, type: 3}
+  m_Script: {fileID: 11500000, guid: 798c50f2398f75b42a71d28ba0f9c867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainConcert: {fileID: 1540231192}
 --- !u!1 &66567086
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +820,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -949,7 +950,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1708691103}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -957,7 +958,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: LoginScene_C
+          m_StringArgument: SampleScene_Alpha
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &249880349
@@ -1128,7 +1129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &317471910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1410,7 +1411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -1539,7 +1540,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -1668,7 +1669,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -1797,7 +1798,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -1926,7 +1927,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -2288,8 +2289,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 241346867}
-        m_MethodName: OnClickLogoutButton
+      - m_Target: {fileID: 1708691103}
+        m_MethodName: OnClickLogout
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2417,7 +2418,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -2970,7 +2971,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -3255,7 +3256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -3549,7 +3550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1540231193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3562,12 +3563,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1830983740}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 725, y: -350}
+  m_SizeDelta: {x: 450, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540231194
 MonoBehaviour:
@@ -3612,7 +3613,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 1708691103}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -3620,7 +3621,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ConnectionScene
+          m_StringArgument: Concert_Alpha_HCH
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1540231195
@@ -3695,7 +3696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1665, y: -350}
+  m_AnchoredPosition: {x: 1195, y: -350}
   m_SizeDelta: {x: 450, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552627892
@@ -3741,7 +3742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -4055,7 +4056,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -4208,7 +4209,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1830983740}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4258,7 +4259,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -4318,13 +4319,14 @@ GameObject:
   - component: {fileID: 1708691101}
   - component: {fileID: 1708691100}
   - component: {fileID: 1708691099}
+  - component: {fileID: 1708691103}
   m_Layer: 5
   m_Name: OptionCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1708691099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4405,6 +4407,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1708691103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708691098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36a7e6696b73364280944490e6d624d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  concertParent: {fileID: 1830983740}
+  concertButton: {fileID: 3123396101960093891, guid: f1cfc3cc984205240b37adb7180507d7,
+    type: 3}
 --- !u!1 &1759224990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,8 +4529,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1540231193}
   - {fileID: 1689029861}
+  - {fileID: 1540231193}
   - {fileID: 1907426935}
   - {fileID: 1552627891}
   - {fileID: 544892506}
@@ -4655,7 +4672,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -4992,7 +5009,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 1708691103}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -5000,7 +5017,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ConcertScenePrac_NewC
+          m_StringArgument: Studio_Alpha_HCH
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1907426937
@@ -5204,7 +5221,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 33312730}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -5334,9 +5351,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 1708691103}
+        m_MethodName: OnClickModify
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

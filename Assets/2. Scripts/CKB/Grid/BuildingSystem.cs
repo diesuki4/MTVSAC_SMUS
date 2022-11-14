@@ -64,7 +64,7 @@ public class BuildingSystem : MonoBehaviour
             objectToPlace.RotateVertical(-15);
 
         // Move
-        if (Input.GetMouseButtonDown(1) == false)
+        if (Input.GetMouseButton(1) == false)
             if (Input.GetKeyDown(KeyCode.W))
                 objectToPlace.Move(PlaceableObject.MoveDirection.Up);
             else if (Input.GetKeyDown(KeyCode.A))
@@ -139,6 +139,8 @@ public class BuildingSystem : MonoBehaviour
  
     public bool isOverlapped(PlaceableObject placeableObject)
     {
+        return false;
+
         foreach (PlaceableObject po in objectList)
             if (po != placeableObject)
                 if (isIntersect(po, placeableObject))
