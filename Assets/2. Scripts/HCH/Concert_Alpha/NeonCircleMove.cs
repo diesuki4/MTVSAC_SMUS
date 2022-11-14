@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// 시네머신 카메라가 돌게 하고 싶다
 
 public class NeonCircleMove : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class NeonCircleMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        character = GameObject.Find("NeonCircleFactory_Tool");
+        character = GameObject.Find("Character_Big");
         point = character.transform.position;
         speed = Random.Range(110, 160);
     }

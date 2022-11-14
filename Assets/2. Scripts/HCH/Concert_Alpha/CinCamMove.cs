@@ -20,14 +20,9 @@ public class CinCamMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(startPlay == true)
+       if(PlayCinemachine.instance.startCameraMove == true)
        {
             transform.RotateAround(point, Vector3.up, speed * Time.deltaTime);
        }
-    }
-
-    private void OnEnable()
-    {
-        startPlay = true;
     }
 }
