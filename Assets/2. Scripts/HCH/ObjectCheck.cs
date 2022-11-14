@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UI.Utility;
 // 마우스 좌클릭 상태일 때 레이를 쏴서 무슨 오브젝트인지 판별하고 싶다
 // 텍스트를 마우스 커서 위에 띄우고 싶다
 // 텍스트를 TimelineObjectListBase에 끌어다 놓을 때 
@@ -47,7 +48,7 @@ public class ObjectCheck : MonoBehaviour
     public void DistinctObject()
     {
         // 마우스 좌클릭하면
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && UI_Utility.GraphicRaycast(canvas.GetComponent<Canvas>(), Input.mousePosition) == false)
         {
             // 레이를 쏜다
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -97,6 +97,8 @@ public class FileBrowserTest : MonoBehaviour
 		StartCoroutine(ShowLoadDialogCoroutine());
 	}
 
+	public GameObject musicInputBG;
+
 	IEnumerator ShowLoadDialogCoroutine()
 	{
 		// Show a load file dialog and wait for a response from user
@@ -131,11 +133,16 @@ public class FileBrowserTest : MonoBehaviour
 			Texture2D texture = PaintWaveformSpectrum(audioSource.clip, 0.5f, (int)totalFrame, 80, new Color32(255,166,37,255));
 			wave.overrideSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 			print(totalFrame);
+			wave.transform.parent.parent.parent.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+			wave.transform.parent.parent.GetComponent<Image>().color = new Color(255, 255, 255, 255) / 255;
 
             // Or, copy the first file to persistentDataPath
             string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
 			FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
-            musicTxt.text = FileBrowser.Result[0];
+			string path = FileBrowser.Result[0];
+            musicTxt.text = path.Substring(path.LastIndexOf('\\') + 1);
+
+			musicInputBG.SetActive(false);
         }
 	}
 
@@ -183,7 +190,7 @@ public class FileBrowserTest : MonoBehaviour
 		{
 			for (int y = 0; y < height; y++)
 			{
-				tex.SetPixel(x, y, Color.white);
+				tex.SetPixel(x, y, new Color(0, 0, 0, 0));
 			}
 		}
 

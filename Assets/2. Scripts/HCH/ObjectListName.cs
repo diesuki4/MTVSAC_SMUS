@@ -18,7 +18,7 @@ public class ObjectListName : MonoBehaviour
     void Start()
     {
         objectListText = this.GetComponentInChildren<Text>();
-        objectListText.text = ObjectCheck.instance.saveName;
+        objectListText.text = ObjectCheck.instance.saveName.Replace("(Clone)", "");
     }
 
     // Update is called once per frame

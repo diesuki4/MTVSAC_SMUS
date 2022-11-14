@@ -2361,6 +2361,22 @@ MonoBehaviour:
   - {fileID: 434687450}
   debug: 1
   threshold: 0.01
+--- !u!1 &293028430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 487175559}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487175560}
+  m_Layer: 0
+  m_Name: EasyMotionRecorder (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &304977038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8315583863143700700, guid: 376f47ea3b23a0c4390f513d69e1ca66,
@@ -4295,6 +4311,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5895dea4164774fb2acc16e71cecc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &335815295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 487175559}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 335815296}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &335815296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4734933881020700, guid: 26de42e5745b2b547b1714ecb3625597,
+    type: 3}
+  m_PrefabInstance: {fileID: 487175559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335815295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 487175560}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338212910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8315583863143335264, guid: 376f47ea3b23a0c4390f513d69e1ca66,
@@ -4898,12 +4945,21 @@ PrefabInstance:
       objectReference: {fileID: 2083668348}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26de42e5745b2b547b1714ecb3625597, type: 3}
---- !u!4 &487175560 stripped
+--- !u!4 &487175560
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4734933881020700, guid: 26de42e5745b2b547b1714ecb3625597,
-    type: 3}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 487175559}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293028430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 335815296}
+  m_Father: {fileID: 1758307469}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &494197398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8380,7 +8436,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1758307469}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &796490641 stripped
 Transform:
@@ -23017,10 +23073,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 487175560}
   - {fileID: 769284635}
   - {fileID: 1873549736}
   - {fileID: 1875476001}
+  - {fileID: 487175560}
   - {fileID: 8315583862970724776}
   - {fileID: 1747313955}
   m_Father: {fileID: 0}
@@ -30556,7 +30612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1758307469}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875475999
 GameObject:
@@ -30614,7 +30670,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1758307469}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876944998 stripped
 GameObject:
@@ -31066,6 +31122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123260356163675841, guid: 0f91f7a9fd703f44aa52f11544ef2223,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3123260357292611988, guid: 0f91f7a9fd703f44aa52f11544ef2223,
         type: 3}

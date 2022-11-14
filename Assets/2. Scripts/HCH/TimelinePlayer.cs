@@ -8,53 +8,42 @@ using Timeline.Types;
 // 특정 버튼을 누르면 프레임에 따라 저장된 키 값(position, rotation, active)을 불러오고 싶다
 public class TimelinePlayer : MonoBehaviour
 {
-    Dictionary<string, TL_Timeline> timelines;
+    // const int frameSpeed = 30;
 
-    bool isPlaying;
-    const int frameSpeed = 30;
-    float fFrame;
-    int frame;
+    // public void OnClickPlayKeyData()
+    // {
+    //     Dictionary<string, TL_Timeline> timelines = TimelineManager.Instance.GetTimelines();
 
-    void Update()
-    {
-        if (isPlaying)
-        {
-            fFrame += Time.deltaTime * frameSpeed;
-            frame = (int)fFrame;
+    //     foreach (KeyValuePair<string, TL_Timeline> pair in timelines)
+    //     {
+    //         string guid = pair.Key;
+    //         List<TL_Types.Key> keyList = pair.Value.GetKeys();
 
-            PlayKeyData();
-        }
-    }
+    //         StartCoroutine(IEPlayKeyData(guid, keyList));
+    //     }
+    // }
 
-    public void PlayKeyData()
-    {
-        foreach (KeyValuePair<string, TL_Timeline> pair in timelines)
-        {
-            string guid = pair.Key;
-            List<TL_Types.Key> keyList = pair.Value.GetKeys();
+    // IEnumerator IEPlayKeyData(string guid, List<TL_Types.Key> keyList)
+    // {
+    //     int currentKeyNo = 0;
+    //     int lastKeyNo = keyList.Count - 1;
+    //     float f_frame = 0;
+    //     int frame = 0;
 
-            foreach (TL_Types.Key key in keyList)
-            {
-                if (key.frame == frame)
-                {
-                    TimelineObject tlObject = TimelineManager.Instance.GetTimelineObject(guid);
+    //     while (currentKeyNo <= lastKeyNo)
+    //     {
+    //         if (frame == keyList[lastKeyNo].frame)
+    //         {
+    //             TimelineObject tlObject = TimelineManager.Instance.GetTimelineObject(guid);
 
-                    tlObject.transform.position = key.position;
-                    tlObject.transform.rotation = key.rotation;
-                    foreach (Renderer rend in tlObject.GetComponentsInChildren<Renderer>())
-                        rend.enabled = key.active;
-                }
-            }
-        }
-    }
+    //             tlObject.transform.position = key.position;
+    //             tlObject.transform.rotation = key.rotation;
+    //             foreach (Renderer rend in tlObject.GetComponentsInChildren<Renderer>())
+    //                 rend.enabled = key.active;
+    //         }
 
-    public void LoadKeyData()
-    {
-        timelines = TimelineManager.Instance.GetTimelines();
-    }
-
-    public void OnClickPlayKeyData()
-    {
-        isPlaying = true;
-    }
+    //         f_frame += Time.deltaTime * frameSpeed;
+    //         frame = (int)f_frame;
+    //     }
+    // }
 }

@@ -25,9 +25,9 @@ public class TimelineManager : MonoBehaviour
 
         if (File.Exists(path))
         {
-            timelines = TL_Utility.FromCDATA(File.ReadAllText(path));
+            //timelines = TL_Utility.FromCDATA(File.ReadAllText(path));
 
-            Initialize();
+            //Initialize();
         }
     }
 
@@ -57,7 +57,7 @@ public class TimelineManager : MonoBehaviour
             timelineObjects.Add(guid, tlObject);
         }
 
-        GetComponent<TimelinePlayer>().LoadKeyData();
+        //GetComponent<TimelinePlayer>().LoadKeyData();
     }
 
     public GameObject GetPrefab(TL_ENUM_Types tlType, string itemName)
