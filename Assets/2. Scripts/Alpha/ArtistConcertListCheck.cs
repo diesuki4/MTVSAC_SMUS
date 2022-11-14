@@ -9,10 +9,7 @@ public class ArtistConcertListCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("Created") == 1)
-        {
-            mainConcert.SetActive(true);
-        }
+        mainConcert.SetActive(true);
     }
 
     // Update is called once per frame
