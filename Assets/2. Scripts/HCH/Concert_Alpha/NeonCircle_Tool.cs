@@ -10,7 +10,7 @@ public class NeonCircle_Tool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MakeNeonCircle();
+
     }
 
     // Update is called once per frame
@@ -27,5 +27,10 @@ public class NeonCircle_Tool : MonoBehaviour
             GameObject neonCircle = Instantiate(neonCircleFactory, this.transform);
             neonCircle.transform.localPosition = new Vector3(5, PosY++, 0);
         }
+    }
+
+    private void OnEnable()
+    {
+        MakeNeonCircle();
     }
 }
