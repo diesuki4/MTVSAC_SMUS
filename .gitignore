@@ -77,3 +77,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/Resources/SMUShow/Resnet34_3inputs_448x448_20200609.onnx
+Assets/TerrainTexturesPackFree/TerrainTextures/GrassUV01.png
+Assets/TerrainTexturesPackFree/TerrainTextures/GrassUV01_N.png
+Assets/TerrainTexturesPackFree/TerrainTextures/GrassUV02.png
+Assets/TerrainTexturesPackFree/TerrainTextures/GrassUV02_N.png
