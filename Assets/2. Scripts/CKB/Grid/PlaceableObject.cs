@@ -163,7 +163,7 @@ public class PlaceableObject : MonoBehaviour
         Vector3[] oringinLocalVertices = new Vector3[4];
         Array.Copy(l_vertices, oringinLocalVertices, l_vertices.Length);
 
-        transform.eulerAngles += Vector3.up * degree;
+        transform.Rotate(Vector3.up * degree);
         size = new Vector3Int(size.y, size.x, 1);
 
         Vector3[] vertices = new Vector3[l_vertices.Length];
@@ -193,7 +193,7 @@ public class PlaceableObject : MonoBehaviour
         Vector3[] oringinLocalVertices = new Vector3[4];
         Array.Copy(l_vertices, oringinLocalVertices, l_vertices.Length);
 
-        transform.eulerAngles += Vector3.right * degree;
+        transform.Rotate(Vector3.right * degree);
         size = new Vector3Int(size.y, size.x, 1);
 
         Vector3[] vertices = new Vector3[l_vertices.Length];
