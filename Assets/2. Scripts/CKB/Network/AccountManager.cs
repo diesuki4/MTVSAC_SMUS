@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 public static class AccountManager
 {
-    public static string id;
-    public static string passwd;
-    public static string genre;
+    static string DB_USERINFO = Encoder.Decode("dXNlcmluZm8=");
 
+    public static string id;
+    public static string genre;
     public static bool isLogined;
 
     public static bool Login(string _id, string _passwd)
     {
-        string query = string.Format("SELECT * FROM userinfo WHERE id = '{0}' AND passwd = '{1}';", _id, _passwd);
+        string query = string.Format("SELECT * FROM " + DB_USERINFO + " WHERE id = '{0}' AND passwd = '{1}';", _id, Encoder.Encode(_passwd));
         List<Dictionary<string, object>> result = DBManager.Select(query);
 
         isLogined = (0 < result.Count);
@@ -19,13 +19,11 @@ public static class AccountManager
         if (isLogined)
         {
             id = _id;
-            passwd = _passwd;
             genre = result[0]["genre"] as string;
         }
         else
         {
             id = null;
-            passwd = null;
             genre = null;
         }
 
@@ -35,7 +33,6 @@ public static class AccountManager
     public static void Logout()
     {
         id = null;
-        passwd = null;
         genre = null;
 
         isLogined = false;
@@ -43,7 +40,7 @@ public static class AccountManager
 
     public static bool SignUp(string _id, string _passwd, string _genre)
     {
-        string query = string.Format("INSERT INTO userinfo VALUES('{0}', '{1}', '{2}');", _id, _passwd, _genre);
+        string query = string.Format("INSERT INTO " + DB_USERINFO + " VALUES('{0}', '{1}', '{2}');", _id, Encoder.Encode(_passwd), _genre);
 
         return DBManager.Execute(query);
     }
@@ -53,7 +50,7 @@ public static class AccountManager
         if (id == null)
             return false;
 
-        string query = string.Format("UPDATE userinfo SET passwd = '{0}', genre = '{1}' WHERE id = '{2}';", _passwd, _genre, id);
+        string query = string.Format("UPDATE " + DB_USERINFO + " SET passwd = '{0}', genre = '{1}' WHERE id = '{2}';", Encoder.Encode(_passwd), _genre, id);
 
         return DBManager.Execute(query);        
     }

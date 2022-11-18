@@ -7,12 +7,12 @@ using MySql.Data.MySqlClient;
 
 public static class DBManager
 {
-    const string SERVER = "www5.dynu.net";
-    const string PORT = "56033";
-    const string database = "smus";
-    const string userid = "smus";
-    const string passwd = "smus";
-    const string connInfo = "Server="+ SERVER + ";Port=" + PORT + ";Database=" + database + ";User Id=" + userid + ";Password=" + passwd + "";
+    static string SERVER = Encoder.Decode("d3d3NS5keW51Lm5ldA==");
+    static string PORT = Encoder.Decode("NTYwMzM=");
+    static string database = Encoder.Decode("c211cw==");
+    static string userid = Encoder.Decode("c211cw==");
+    static string passwd = Encoder.Decode("c211cw==");
+    static string connInfo = "Server=" + SERVER + ";Port=" + PORT + ";Database=" + database + ";User Id=" + userid + ";Password=" + passwd + "";
 
     static MySqlConnection conn;
 

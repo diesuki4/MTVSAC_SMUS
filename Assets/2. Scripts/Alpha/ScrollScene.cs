@@ -19,7 +19,7 @@ public class ScrollScene : MonoBehaviour
 
         dropdown.value = dropdown.options.FindIndex(option => option.text == AccountManager.genre);
         id.text = AccountManager.id;
-        passwd.text = AccountManager.passwd;
+        passwd.text = "";
     }
 
     public void OnClickModify()

@@ -17,7 +17,7 @@ public class ArtistConcertListScene_C : MonoBehaviour
         passwd = transform.Find("Option/Image (3)/PW InputField").GetComponent<InputField>();
 
         id.text = AccountManager.id;
-        passwd.text = AccountManager.passwd;
+        passwd.text = "";
 
         LoadMyConcerts();
     }

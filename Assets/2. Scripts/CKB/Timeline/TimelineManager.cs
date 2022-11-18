@@ -57,7 +57,7 @@ public class TimelineManager : MonoBehaviour
             timelineObjects.Add(guid, tlObject);
         }
 
-        //GetComponent<TimelinePlayer>().LoadKeyData();
+        GetComponent<TimelinePlayer>().LoadKeyData();
     }
 
     public GameObject GetPrefab(TL_ENUM_Types tlType, string itemName)

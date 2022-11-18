@@ -5,17 +5,18 @@ using System.Collections.Generic;
 
 public static class FTPManager
 {
-    const string SERVER = "www5.dynu.net";
-    const string PORT = "47028";
-    const string id = "smbuser";
-    const string passwd = "iyashinanda12#$";
-    const string connDest = "ftp://" + SERVER + ":" + PORT + "/";
+    static string SERVER = Encoder.Decode("d3d3NS5keW51Lm5ldA==");
+    static string PORT = Encoder.Decode("NDcwMjg=");
+    static string id = Encoder.Decode("c21idXNlcg==");
+    static string passwd = Encoder.Decode("aXlhc2hpbmFuZGExMiMk");
+    static string connDest = "ftp://" + SERVER + ":" + PORT + "/";
+    static NetworkCredential credential = new NetworkCredential(id, passwd);
 
     public static bool Upload(byte[] bytes, string filePath)
     {
         FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + filePath);
 
-        ftpWebRequest.Credentials = new NetworkCredential(id, passwd);
+        ftpWebRequest.Credentials = credential;
         ftpWebRequest.UseBinary = false;
         ftpWebRequest.Method = WebRequestMethods.Ftp.UploadFile;
 
@@ -34,7 +35,7 @@ public static class FTPManager
     {
         FtpWebRequest ftpWebRequest = (FtpWebRequest)WebRequest.Create(connDest + filePath);
 
-        ftpWebRequest.Credentials = new NetworkCredential(id, passwd);
+        ftpWebRequest.Credentials = credential;
         ftpWebRequest.UseBinary = false;
         ftpWebRequest.Method = WebRequestMethods.Ftp.DownloadFile;
 
