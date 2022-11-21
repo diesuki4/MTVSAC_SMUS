@@ -6,6 +6,7 @@ using NAudio;
 using NAudio.Wave;
 using SimpleFileBrowser;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class FileBrowserTest : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class FileBrowserTest : MonoBehaviour
 	// 배경 이미지
 	//public Image bg;
 	public GameObject quad;
+
+	// 배경 비디오
+	public GameObject videoQuad;
 
     private void Awake()
     {
@@ -135,11 +139,44 @@ public class FileBrowserTest : MonoBehaviour
 
 			Texture2D texture = new Texture2D(0, 0);
 			texture.LoadImage(bytes);
-			quad.GetComponent<Renderer>().material.mainTexture = texture;
-            //bg.overrideSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
+			quad.GetComponent<Renderer>().material.mainTexture = texture;
         }
 	}
+
+	public void ShowFileBrowserInputVideo()
+	{
+		FileBrowser.SetFilters(true, new FileBrowser.Filter("Images", ".jpg", ".png"), new FileBrowser.Filter("Text Files", ".txt", ".pdf"));
+		FileBrowser.SetDefaultFilter(".jpg");
+		FileBrowser.SetExcludedExtensions(".lnk", ".tmp", ".zip", ".rar", ".exe");
+		FileBrowser.AddQuickLink("Users", "C:\\Users", null);
+		StartCoroutine(ShowLoadDialogCoroutineInputVideo());
+	}
+
+	// filebrowser에서 가져온 mp4 파일을 video player에 넣고 싶다
+	IEnumerator ShowLoadDialogCoroutineInputVideo()
+	{
+		// Show a load file dialog and wait for a response from user
+		// Load file/folder: both, Allow multiple selection: true
+		// Initial path: default (Documents), Initial filename: empty
+		// Title: "Load File", Submit button text: "Load"
+		yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.FilesAndFolders, true, null, null, "Load Files and Folders", "Load");
+
+		// Dialog is closed
+		// Print whether the user has selected some files/folders or cancelled the operation (FileBrowser.Success)
+		Debug.Log(FileBrowser.Success);
+
+		if (FileBrowser.Success)
+		{
+			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
+			for (int i = 0; i < FileBrowser.Result.Length; i++)
+				Debug.Log(FileBrowser.Result[i]);
+
+			VideoPlayer vp = videoQuad.GetComponent<VideoPlayer>();
+			vp.url = FileBrowser.Result[0];
+		}
+	}
+
 
 	public GameObject musicInputBG;
 

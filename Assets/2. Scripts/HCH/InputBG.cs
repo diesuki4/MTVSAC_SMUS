@@ -14,8 +14,8 @@ public class InputBG : MonoBehaviour
     void Start()
     {
         fbt = fileBrowser.GetComponent<FileBrowserTest>();
-        fbt.ShowFileBrowserInputImage();
-        
+        //fbt.ShowFileBrowserInputImage();
+        fbt.ShowFileBrowserInputVideo();
     }
 
     // Update is called once per frame
