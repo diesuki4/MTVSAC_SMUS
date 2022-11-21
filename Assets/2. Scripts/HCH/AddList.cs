@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Timeline.Types;
+using Timeline.Timeline;
 
 // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
 // 리스트에 넣고 싶다
@@ -73,17 +74,39 @@ public class AddList : MonoBehaviour
             objectListName.SetObjectInfo(objectInfoName.guid, objectInfoName.tlType, objectInfoName.itemName);
 
             // 리스트에 넣고 싶다()
-            objectList.AddRange(GameObject.FindGameObjectsWithTag("ObjectList"));
+            //objectList.AddRange(GameObject.FindGameObjectsWithTag("ObjectList"));
+            objectList.Add(objectListName.gameObject);
             //// 오브젝트의 처음 데이터 저장
             //firstKeyPosition = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid).transform.position;
             //firstKeyRotation = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid).transform.rotation;
             //firstKeyActive = BuildingSystem.Instance.getTimelineObject(objectInfoName.guid).isActive;
 
             GameObject TimerList = Instantiate(timerListFactory, timerListParent);
-            timerList.AddRange(GameObject.FindGameObjectsWithTag("TimerList"));
+            //timerList.AddRange(GameObject.FindGameObjectsWithTag("TimerList"));
+            timerList.Add(TimerList);
             timerHeight.sizeDelta += Vector2.down * -50;
         }
         // ObjectInfo(Clone)이 TimelineObjectInputBase에 닿으면 이미지를 추가하고
         // 리스트에 넣고 싶다
+    }
+
+    public ObjectListName AddObjectList(string guid, TL_Timeline timeline)
+    {
+        if (TimelineManager.Instance.isTimelineExist(guid))
+        {
+            ObjectListName objectListName = Instantiate(objectListFactory, objectListParent).GetComponent<ObjectListName>();
+            objectListName.SetObjectInfo(guid, timeline.tlType, timeline.itemName);
+
+            objectList.Add(objectListName.gameObject);
+
+            GameObject TimerList = Instantiate(timerListFactory, timerListParent);
+            timerList.Add(TimerList);
+
+            timerHeight.sizeDelta += Vector2.down * -50;
+
+            return objectListName;
+        }
+
+        return null;
     }
 }

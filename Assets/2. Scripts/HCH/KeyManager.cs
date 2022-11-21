@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Timeline.Types;
 // ObjectList가 isSelected인 상태에서 + 버튼을 누르면 Key를 생성하여 KeyParent의 자식으로 넣고 싶다 (Key의 X값 : KeyBar의 X값, Y값 : isSelected 상태인 ObjectList의 Y값)
 
 public class KeyManager : MonoBehaviour
@@ -60,6 +61,13 @@ public class KeyManager : MonoBehaviour
             ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(tl_object.guid, keyBarMove.frame);
             TimelineManager.Instance.AddKey(tl_object.guid, keyBarMove.frame, tl_object.isActive, tl_object.transform);
         }
+    }
+
+    public void AddObjectKey(ObjectListName objectListName, TL_Types.Key key)
+    {
+        ObjectKey = Instantiate(objectKeyFactory, keyParent);
+        ObjectKey.transform.position = new Vector2(key.frame, objectListName.transform.position.y);
+        ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(objectListName.guid, key.frame);
     }
 
     // 생성된 key를 keyList에 저장

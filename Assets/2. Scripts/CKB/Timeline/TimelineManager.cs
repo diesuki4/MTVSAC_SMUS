@@ -21,13 +21,13 @@ public class TimelineManager : MonoBehaviour
         timelines = new Dictionary<string, TL_Timeline>();
         timelineObjects = new Dictionary<string, TimelineObject>();
 
-        string path = Application.dataPath + "/1.cdata";
+        string path = Application.streamingAssetsPath + "/1.cdata";
 
         if (File.Exists(path))
         {
-            //timelines = TL_Utility.FromCDATA(File.ReadAllText(path));
+            timelines = TL_Utility.FromCDATA(File.ReadAllText(path));
 
-            //Initialize();
+            Initialize();
         }
     }
 
@@ -55,6 +55,12 @@ public class TimelineManager : MonoBehaviour
             TimelineObject tlObject = Instantiate(GetPrefab(timeline.tlType, timeline.itemName)).GetComponent<TimelineObject>();
             tlObject.Initialize(timeline.tlType, timeline.itemName, guid, timeline.GetKeys().First());
             timelineObjects.Add(guid, tlObject);
+            BuildingSystem.Instance.objectList.Add(tlObject.GetComponent<PlaceableObject>());
+
+            ObjectListName objectListName = AddList.instance.AddObjectList(guid, timeline);
+
+            foreach (TL_Types.Key key in timeline.GetKeys())
+                KeyManager.instance.AddObjectKey(objectListName, key);
         }
 
         GetComponent<TimelinePlayer>().LoadKeyData();
