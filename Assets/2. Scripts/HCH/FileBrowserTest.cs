@@ -36,6 +36,11 @@ public class FileBrowserTest : MonoBehaviour
 	public GameObject musicInputBase;
 	Text musicTxt;
 
+
+	// 배경 이미지
+	//public Image bg;
+	public GameObject quad;
+
     private void Awake()
     {
 		instance = this;
@@ -95,6 +100,45 @@ public class FileBrowserTest : MonoBehaviour
 
 		// Coroutine example
 		StartCoroutine(ShowLoadDialogCoroutine());
+	}
+
+	public void ShowFileBrowserInputImage()
+	{
+		FileBrowser.SetFilters(true, new FileBrowser.Filter("Images", ".jpg", ".png"), new FileBrowser.Filter("Text Files", ".txt", ".pdf"));
+		FileBrowser.SetDefaultFilter(".jpg");
+		FileBrowser.SetExcludedExtensions(".lnk", ".tmp", ".zip", ".rar", ".exe");
+		FileBrowser.AddQuickLink("Users", "C:\\Users", null);
+		StartCoroutine(ShowLoadDialogCoroutineInputImage());
+	}
+
+	// filebrowser에서 가져온 이미지를 텍스쳐로 변환하고
+	// 매터리얼에 넣고 싶다
+	IEnumerator ShowLoadDialogCoroutineInputImage()
+	{
+		// Show a load file dialog and wait for a response from user
+		// Load file/folder: both, Allow multiple selection: true
+		// Initial path: default (Documents), Initial filename: empty
+		// Title: "Load File", Submit button text: "Load"
+		yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.FilesAndFolders, true, null, null, "Load Files and Folders", "Load");
+
+		// Dialog is closed
+		// Print whether the user has selected some files/folders or cancelled the operation (FileBrowser.Success)
+		Debug.Log(FileBrowser.Success);
+
+		if (FileBrowser.Success)
+		{
+			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
+			for (int i = 0; i < FileBrowser.Result.Length; i++)
+				Debug.Log(FileBrowser.Result[i]);
+
+			bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result[0]);
+
+			Texture2D texture = new Texture2D(0, 0);
+			texture.LoadImage(bytes);
+			quad.GetComponent<Renderer>().material.mainTexture = texture;
+            //bg.overrideSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+        }
 	}
 
 	public GameObject musicInputBG;
