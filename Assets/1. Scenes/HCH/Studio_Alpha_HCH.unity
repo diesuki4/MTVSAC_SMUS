@@ -3919,7 +3919,7 @@ GameObject:
   - component: {fileID: 502635600}
   - component: {fileID: 502635599}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SaveButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3958,7 +3958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5108,14 +5108,14 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 3
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 0
-  m_Url: https://www.youtube.com/watch?v=9KcyyOAwhzs
+  m_Url: file://C:/Users/HP/Desktop/BGVideo.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -5131,7 +5131,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638563799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4409456418483c447a33953cc0aabcb7, type: 3}
   m_Name: 
@@ -5389,6 +5389,7 @@ GameObject:
   - component: {fileID: 661177759}
   - component: {fileID: 661177758}
   - component: {fileID: 661177757}
+  - component: {fileID: 661177760}
   m_Layer: 5
   m_Name: AddObjectButton
   m_TagString: Untagged
@@ -5507,6 +5508,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661177755}
   m_CullTransparentMesh: 0
+--- !u!114 &661177760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661177755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a01ae74a17d4f347bbd92fe8dab0236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaPer: 0.4
 --- !u!1001 &679054815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5576,6 +5590,7 @@ GameObject:
   - component: {fileID: 683409495}
   - component: {fileID: 683409494}
   - component: {fileID: 683409493}
+  - component: {fileID: 683409496}
   m_Layer: 5
   m_Name: MusicInput
   m_TagString: Untagged
@@ -5694,6 +5709,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683409491}
   m_CullTransparentMesh: 0
+--- !u!114 &683409496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683409491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a01ae74a17d4f347bbd92fe8dab0236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaPer: 0.15
 --- !u!1 &687536248
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,6 +5966,7 @@ GameObject:
   - component: {fileID: 735788474}
   - component: {fileID: 735788473}
   - component: {fileID: 735788472}
+  - component: {fileID: 735788475}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -6056,6 +6085,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735788470}
   m_CullTransparentMesh: 0
+--- !u!114 &735788475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735788470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a01ae74a17d4f347bbd92fe8dab0236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaPer: 0.4
 --- !u!1 &737427458
 GameObject:
   m_ObjectHideFlags: 0
@@ -6216,6 +6258,7 @@ GameObject:
   - component: {fileID: 737926717}
   - component: {fileID: 737926716}
   - component: {fileID: 737926715}
+  - component: {fileID: 737926718}
   m_Layer: 5
   m_Name: SaveButton
   m_TagString: Untagged
@@ -6334,6 +6377,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737926713}
   m_CullTransparentMesh: 0
+--- !u!114 &737926718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737926713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a01ae74a17d4f347bbd92fe8dab0236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaPer: 0.4
 --- !u!1001 &752926577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6650,6 +6706,7 @@ GameObject:
   - component: {fileID: 778270956}
   - component: {fileID: 778270955}
   - component: {fileID: 778270954}
+  - component: {fileID: 778270957}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -6768,6 +6825,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778270952}
   m_CullTransparentMesh: 0
+--- !u!114 &778270957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778270952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a01ae74a17d4f347bbd92fe8dab0236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaPer: 0.4
 --- !u!1 &797677465
 GameObject:
   m_ObjectHideFlags: 0
@@ -7117,7 +7187,7 @@ GameObject:
   - component: {fileID: 826382304}
   - component: {fileID: 826382303}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlayButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7156,7 +7226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7688,7 +7758,7 @@ GameObject:
   - component: {fileID: 929021029}
   - component: {fileID: 929021028}
   m_Layer: 5
-  m_Name: Text
+  m_Name: MusicInputText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7727,7 +7797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11944,7 +12014,7 @@ GameObject:
   - component: {fileID: 1531054547}
   - component: {fileID: 1531054546}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AddObjectButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11983,7 +12053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12267,7 +12337,7 @@ GameObject:
   - component: {fileID: 1578295150}
   - component: {fileID: 1578295149}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12306,7 +12376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
