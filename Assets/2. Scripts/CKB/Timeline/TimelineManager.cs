@@ -45,6 +45,8 @@ public class TimelineManager : MonoBehaviour
 
     void Update() { }
 
+    float posY = 125;
+
     void Initialize()
     {
         foreach (KeyValuePair<string, TL_Timeline> pair in timelines)
@@ -59,8 +61,10 @@ public class TimelineManager : MonoBehaviour
 
             ObjectListName objectListName = AddList.instance.AddObjectList(guid, timeline);
 
-            foreach (TL_Types.Key key in timeline.GetKeys())
-                KeyManager.instance.AddObjectKey(objectListName, key);
+            foreach (TL_Types.Key key in timeline.GetKeys().Skip(1))
+                KeyManager.instance.AddObjectKey(objectListName, key, posY);
+
+            posY -= 50;
         }
 
         GetComponent<TimelinePlayer>().LoadKeyData();

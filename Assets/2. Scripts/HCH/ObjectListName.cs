@@ -14,11 +14,15 @@ public class ObjectListName : MonoBehaviour
     [HideInInspector] public TL_ENUM_Types tlType;
     [HideInInspector] public string itemName;
 
+    void Awake()
+    {
+        objectListText = this.GetComponentInChildren<Text>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        objectListText = this.GetComponentInChildren<Text>();
-        objectListText.text = ObjectCheck.instance.saveName.Replace("(Clone)", "");
+        //objectListText.text = ObjectCheck.instance.saveName.Replace("(Clone)", "");
     }
 
     // Update is called once per frame
@@ -32,5 +36,6 @@ public class ObjectListName : MonoBehaviour
         this.guid = guid;
         this.tlType = tlType;
         this.itemName = itemName;
+        objectListText.text = itemName;
     }
 }

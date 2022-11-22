@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Timeline.Types;
 
 public class TimelineKey : MonoBehaviour
 {
@@ -19,5 +20,15 @@ public class TimelineKey : MonoBehaviour
         position = tl_object.transform.position;
         rotation = tl_object.transform.rotation;
         active = tl_object.isActive;
+    }
+
+    public void SetKeyInfo(string guid, TL_Types.Key key)
+    {
+        this.guid = guid;
+        this.frame = key.frame;
+
+        position = key.position;
+        rotation = key.rotation;
+        active = key.active;
     }
 }

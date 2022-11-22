@@ -21,12 +21,15 @@ public class KeySelectDelete : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isSelected = false;
-        isActived = true;
+        tk = this.GetComponent<TimelineKey>();
         img = GetComponent<Image>();
+
+        isSelected = false;
+        isActived = tk.active;
         originColor = img.color;
 
-        tk = this.GetComponent<TimelineKey>();
+        img.color = (isActived) ? originColor : deActivationColor;
+
         guid = tk.guid;
     }
 
@@ -113,9 +116,8 @@ public class KeySelectDelete : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            isActived = true;
+            tk.active = isActived = true;
             img.color = originColor;
-            tk.active = true;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = true;
             TimelineManager.Instance.UpdateKey(tk);
@@ -127,9 +129,8 @@ public class KeySelectDelete : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            isActived = false;
+            tk.active = isActived = false;
             img.color = deActivationColor;
-            tk.active = false;
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(guid);
             tl_object.isActive = false;
             TimelineManager.Instance.UpdateKey(tk);

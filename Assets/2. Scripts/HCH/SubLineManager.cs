@@ -16,10 +16,12 @@ public class SubLineManager : MonoBehaviour
 
     public List<RaycastResult> results;
 
-    private void Awake()
+    public SubLineManager()
     {
         instance = this;
+        results = new List<RaycastResult>();
     }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -19,9 +19,10 @@ public class KeyManager : MonoBehaviour
 
     public List<GameObject> objectKeyList;
 
-    private void Awake()
+    public KeyManager()
     {
         instance = this;
+        objectKeyList = new List<GameObject>();
     }
 
     // Start is called before the first frame update
@@ -45,7 +46,6 @@ public class KeyManager : MonoBehaviour
                 }
             }
         }
-        AddObjectKeyList();
     }
 
     // ObjectList가 isSelected인 상태에서 + 버튼을 누르면 Key를 생성하여 KeyParent의 자식으로 넣고 싶다 (Key의 X값 : KeyBar의 X값, Y값 : isSelected 상태인 ObjectList의 Y값)
@@ -57,24 +57,19 @@ public class KeyManager : MonoBehaviour
             TimelineObject tl_object = BuildingSystem.Instance.getTimelineObject(objectListName.guid);
 
             ObjectKey = Instantiate(objectKeyFactory, keyParent);
+            objectKeyList.Add(ObjectKey);
             ObjectKey.transform.position = new Vector2(keyBar.position.x, objectList.position.y);
             ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(tl_object.guid, keyBarMove.frame);
             TimelineManager.Instance.AddKey(tl_object.guid, keyBarMove.frame, tl_object.isActive, tl_object.transform);
         }
     }
 
-    public void AddObjectKey(ObjectListName objectListName, TL_Types.Key key)
+    public void AddObjectKey(ObjectListName objectListName, TL_Types.Key key, float posY)
     {
         ObjectKey = Instantiate(objectKeyFactory, keyParent);
-        ObjectKey.transform.position = new Vector2(key.frame, objectListName.transform.position.y);
-        ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(objectListName.guid, key.frame);
-    }
-
-    // 생성된 key를 keyList에 저장
-    public void AddObjectKeyList()
-    {
-        objectKeyList = new List<GameObject>();
-        objectKeyList.AddRange(GameObject.FindGameObjectsWithTag("ObjectKeyList"));
+        ObjectKey.transform.position = new Vector2(key.frame - 323, posY);
+        ObjectKey.GetComponent<TimelineKey>().SetKeyInfo(objectListName.guid, key);
+        objectKeyList.Add(ObjectKey);
     }
 
     // 만약 objectkeylist의 수가 0보다 크고 

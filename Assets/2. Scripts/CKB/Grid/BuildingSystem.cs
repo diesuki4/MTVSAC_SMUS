@@ -9,7 +9,7 @@ public class BuildingSystem : MonoBehaviour
 {
     public static BuildingSystem Instance;
 
-    void Awake()
+    public BuildingSystem()
     {
         if (Instance == null)
             Instance = this;
@@ -17,7 +17,10 @@ public class BuildingSystem : MonoBehaviour
             Destroy(gameObject);
 
         objectList = new List<PlaceableObject>();
+    }
 
+    void Awake()
+    {
         gridLayout = grid = GetComponent<Grid>();
     }
 
@@ -82,7 +85,7 @@ public class BuildingSystem : MonoBehaviour
 
     public Vector3Int GetCellPosition(Vector3 position)
     {
-        return gridLayout.WorldToCell(position);
+        return GetComponent<Grid>().WorldToCell(position);
     }
 
     public Vector3 GetCellCenterPosition(Vector3 position)
