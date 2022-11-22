@@ -31,11 +31,24 @@ public class SubLineManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var ped = new PointerEventData(canvas.GetComponent<EventSystem>());
+        //var ped = new PointerEventData(canvas.GetComponent<EventSystem>());
+        //ped.position = Input.mousePosition;
+        //results = new List<RaycastResult>();
+        //gr.Raycast(ped, results);
+        //if (results.Count <= 0) return;
+
+        var ped = new PointerEventData(EventSystem.current);
         ped.position = Input.mousePosition;
         results = new List<RaycastResult>();
-        gr.Raycast(ped, results);
+        EventSystem.current.RaycastAll(ped, results);
+
+        foreach(RaycastResult hit in results)
+        {
+            GameObject go = hit.gameObject;
+        }
+
         if (results.Count <= 0) return;
+        print(results[0]);
         AddSubLine();
     }
 

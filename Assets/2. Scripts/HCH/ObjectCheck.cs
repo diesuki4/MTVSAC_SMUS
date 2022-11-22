@@ -83,7 +83,7 @@ public class ObjectCheck : MonoBehaviour
             objectInfo.transform.position = Input.mousePosition;
             if (Input.GetButtonUp("Fire1"))
             {
-                if (SubLineManager.instance.results.Count > 0)
+                if(SubLineManager.instance.results.Count > 0)
                 {
                     if (Contains(SubLineManager.instance.results, "ObjectViewport") || Contains(SubLineManager.instance.results, "ObjectList(Clone)"))
                     {
