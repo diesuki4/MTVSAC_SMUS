@@ -10,11 +10,13 @@ public class FadeInOut : MonoBehaviour
     Image img;
     Color originColor;
     public float AlphaPer = 0.4f;
+    public bool isCheck;
     // Start is called before the first frame update
     void Start()
     {
         img = this.GetComponent<Image>();
         originColor = img.color;
+        isCheck = false;
     }
 
     // Update is called once per frame
@@ -37,10 +39,12 @@ public class FadeInOut : MonoBehaviour
         {
             // 알파값을 100으로 하고 싶다
             img.DOFade(AlphaPer, 0.2f);
+            isCheck = true;
         }
         else
         {
             img.color = originColor;
+            isCheck = false;
         }
     }
 }
