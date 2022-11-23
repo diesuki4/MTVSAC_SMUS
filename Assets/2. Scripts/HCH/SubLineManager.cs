@@ -48,7 +48,6 @@ public class SubLineManager : MonoBehaviour
         }
 
         if (results.Count <= 0) return;
-        print(results[0]);
         AddSubLine();
     }
 
