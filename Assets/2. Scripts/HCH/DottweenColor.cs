@@ -10,12 +10,16 @@ public class DottweenColor : MonoBehaviour
     Image img;
     Color originColor;
     Color checkColor;
+    public byte R = 174;
+    public byte G = 174;
+    public byte B = 174;
+    public byte A = 255;
     // Start is called before the first frame update
     void Start()
     {
         img = this.GetComponent<Image>();
         originColor = img.color;
-        checkColor = new Color32(174, 174, 174, 255);
+        checkColor = new Color32(R, G, B, A);
     }
 
     // Update is called once per frame
