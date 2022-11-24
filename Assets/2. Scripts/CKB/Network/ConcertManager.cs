@@ -14,9 +14,10 @@ public class ConcertInfo
 
 public class ConcertData
 {
-    public Sprite thumbnail;
+    public int concert_id;
+    public byte[] thumbnail;
     public byte[] bgm;
-    public string concertData;
+    public string cdata;
 }
 
 public static class ConcertManager
@@ -30,16 +31,41 @@ public static class ConcertManager
     {
         ConcertData concertData = new ConcertData();
 
+        concertData.concert_id = concert_id;
+
         string filePath = FTP_THUMB_PATH + concert_id + ".png";
-        concertData.thumbnail = MediaProcessor.ToSprite(FTPManager.Download(filePath));
+        concertData.thumbnail = FTPManager.Download(filePath);
 
         filePath = FTP_BGM_PATH + concert_id + ".mp3";
         concertData.bgm = FTPManager.Download(filePath);
 
         filePath = FTP_CDATA_PATH + concert_id + ".cdata";
-        concertData.concertData = Encoding.Default.GetString(FTPManager.Download(filePath));
+        concertData.cdata = Encoding.Default.GetString(FTPManager.Download(filePath));
 
         return concertData;
+    }
+
+    public static int NextConcertId()
+    {
+        string query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = '" + DB_CONCERTINFO + "'";
+
+        return (int)DBManager.Select(query)[0]["AUTO_INCREMENT"];
+    }
+
+    public static bool SetConcertData(ConcertData concertData)
+    {
+        int concert_id = concertData.concert_id;
+
+        string filePath = FTP_THUMB_PATH + concert_id + ".png";
+        bool bResult1 = FTPManager.Upload(concertData.thumbnail, filePath);
+
+        filePath = FTP_BGM_PATH + concert_id + ".mp3";
+        bool bResult2 = FTPManager.Upload(concertData.bgm, filePath);
+
+        filePath = FTP_CDATA_PATH + concert_id + ".cdata";
+        bool bResult3 = FTPManager.Upload(Encoding.Default.GetBytes(concertData.cdata), filePath);
+
+        return bResult1 & bResult2 & bResult3;
     }
 
     public static ConcertInfo GetConcert(int concert_id, bool active = true)

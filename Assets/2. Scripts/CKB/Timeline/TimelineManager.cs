@@ -11,6 +11,8 @@ public class TimelineManager : MonoBehaviour
 {
     public static TimelineManager Instance;
 
+    public ConcertData concertData;
+
     void Awake()
     {
         if (Instance == null)
@@ -21,11 +23,13 @@ public class TimelineManager : MonoBehaviour
         timelines = new Dictionary<string, TL_Timeline>();
         timelineObjects = new Dictionary<string, TimelineObject>();
 
-        string path = Application.streamingAssetsPath + "/1.cdata";
-
-        if (File.Exists(path))
+        if (PlayerPrefs.HasKey("concert_id"))
         {
-            timelines = TL_Utility.FromCDATA(File.ReadAllText(path));
+            int concert_id = PlayerPrefs.GetInt("concert_id");
+
+            concertData = ConcertManager.GetConcertData(concert_id);
+
+            timelines = TL_Utility.FromCDATA(concertData.cdata);
 
             Initialize();
         }
@@ -68,6 +72,13 @@ public class TimelineManager : MonoBehaviour
         }
 
         GetComponent<TimelinePlayer>().LoadKeyData();
+    }
+
+    public bool Save()
+    {
+        concertData.cdata = TL_Utility.ToCDATA(timelines);
+
+        return ConcertManager.SetConcertData(concertData);
     }
 
     public GameObject GetPrefab(TL_ENUM_Types tlType, string itemName)

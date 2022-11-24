@@ -19,6 +19,8 @@ public class ArtistConcertListScene_C : MonoBehaviour
         id.text = AccountManager.id;
         passwd.text = "";
 
+        PlayerPrefs.DeleteKey("concert_id");
+
         LoadMyConcerts();
     }
 
@@ -33,7 +35,7 @@ public class ArtistConcertListScene_C : MonoBehaviour
             GameObject concertBtn = Instantiate(concertButton, Vector3.zero, Quaternion.identity, concertParent);
 
             concertBtn.GetComponent<ConcertButton>().Initialize(info);
-            concertBtn.GetComponent<Image>().overrideSprite = ConcertManager.GetConcertData(concert_id).thumbnail;
+            concertBtn.GetComponent<Image>().overrideSprite = MediaProcessor.ToSprite(ConcertManager.GetConcertData(concert_id).thumbnail);
         }
     }
 

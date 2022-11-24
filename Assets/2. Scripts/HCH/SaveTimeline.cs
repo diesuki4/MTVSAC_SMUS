@@ -22,7 +22,8 @@ public class SaveTimeline : MonoBehaviour
 
     public void OnClickSaveTimeline()
     {
-        File.WriteAllText(Application.streamingAssetsPath + "/1.cdata", TL_Utility.ToCDATA(TimelineManager.Instance.GetTimelines()));
+        //File.WriteAllText(Application.streamingAssetsPath + "/1.cdata", TL_Utility.ToCDATA(TimelineManager.Instance.GetTimelines()));
+        TimelineManager.Instance.Save();
     }
 
     public void OnClickLoadTimeline()

@@ -204,6 +204,8 @@ public class FileBrowserTest : MonoBehaviour
 			//string str = System.Text.Encoding.UTF8.GetString(bytes);
 			string str = System.Text.Encoding.Default.GetString(bytes);
 
+			TimelineManager.Instance.concertData.bgm = bytes;
+
 			audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
 			//MusicWave();
 			totalFrame = audioSource.clip.length * 30;
@@ -325,12 +327,14 @@ public class FileBrowserTest : MonoBehaviour
 
             bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result[0]);
 
-			ByteToString b2s = new ByteToString();
-			b2s.bytes = bytes;
+			TimelineManager.Instance.concertData.thumbnail = bytes;
 
-			string me = JsonUtility.ToJson(b2s);
+			//ByteToString b2s = new ByteToString();
+			//b2s.bytes = bytes;
 
-			print(me.Split(':')[1]);
+			//string me = JsonUtility.ToJson(b2s);
+
+			//print(me.Split(':')[1]);
 
             //byte[] imageData = File.ReadAllBytes(FileBrowser.Result[0]);
             //print(imageData);
