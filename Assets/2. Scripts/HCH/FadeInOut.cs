@@ -55,7 +55,7 @@ public class FadeInOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     // }
 
     Tween tween;
-    Color o_color;
+    public Color o_color;
 
     void Awake()
     {

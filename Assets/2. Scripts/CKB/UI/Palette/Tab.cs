@@ -28,8 +28,12 @@ public class Tab : MonoBehaviour
     [Header("패널들의 부모 트랜스폼")]
     public RectTransform rctPanels;
 
+    FadeInOut fio;
+
     void Start()
     {
+        fio = GetComponent<FadeInOut>();
+
         // 기본으로 0번째 탭을 선택
         selectedTab = IndexToTab(0);
 
@@ -51,7 +55,7 @@ public class Tab : MonoBehaviour
         Image image = tab.GetComponent<Image>();
 
         if (image)
-            image.color = (emphasize) ? clrSelectedTab : clrUnselectedTab;
+            fio.o_color = image.color = (emphasize) ? clrSelectedTab : clrUnselectedTab;
     }
 
     // 해당 탭만을 강조
