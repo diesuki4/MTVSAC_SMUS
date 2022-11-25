@@ -137,6 +137,8 @@ public class FileBrowserTest : MonoBehaviour
 
 			bytes = FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result[0]);
 
+			TimelineManager.Instance.concertData.thumbnail = bytes;
+
 			Texture2D texture = new Texture2D(0, 0);
 			texture.LoadImage(bytes);
 
@@ -220,13 +222,37 @@ public class FileBrowserTest : MonoBehaviour
 			wave.transform.parent.parent.GetComponent<Image>().color = new Color(255, 255, 255, 255) / 255;
 
             // Or, copy the first file to persistentDataPath
-            string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
-			FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
+            //string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
+			//FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
 			string path = FileBrowser.Result[0];
-            musicTxt.text = path.Substring(path.LastIndexOf('\\') + 1);
+            TimelineManager.Instance.concertInfo.music_name = musicTxt.text = path.Substring(path.LastIndexOf('\\') + 1);
 
 			musicInputBG.SetActive(false);
         }
+	}
+
+	public void SetMusicWave(string musicName, byte[] bytes)
+	{
+		audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
+		//MusicWave();
+		totalFrame = audioSource.clip.length * 30;
+		RectTransform waveRt = wave.GetComponent<RectTransform>();
+		Rect waveWidth = waveRt.rect;
+		waveRt.sizeDelta = new Vector2(totalFrame, waveRt.sizeDelta.y);
+		
+		Texture2D texture = PaintWaveformSpectrum(audioSource.clip, 0.5f, (int)totalFrame, 80, new Color32(255,166,37,255));
+		wave.overrideSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+		print(totalFrame);
+		wave.transform.parent.parent.parent.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+		wave.transform.parent.parent.GetComponent<Image>().color = new Color(255, 255, 255, 255) / 255;
+
+		// Or, copy the first file to persistentDataPath
+		//string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
+		//FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
+		string path = FileBrowser.Result[0];
+		musicTxt.text = musicName;
+
+		musicInputBG.SetActive(false);
 	}
 
 	// 스펙트럼을 만들고 싶다

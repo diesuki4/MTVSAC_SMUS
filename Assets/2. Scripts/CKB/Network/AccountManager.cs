@@ -52,6 +52,6 @@ public static class AccountManager
 
         string query = string.Format("UPDATE " + DB_USERINFO + " SET passwd = '{0}', genre = '{1}' WHERE id = '{2}';", Encoder.Encode(_passwd), _genre, id);
 
-        return DBManager.Execute(query);        
+        return DBManager.Execute(query);
     }
 }

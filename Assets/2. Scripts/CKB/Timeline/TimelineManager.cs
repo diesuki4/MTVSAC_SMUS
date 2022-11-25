@@ -11,6 +11,7 @@ public class TimelineManager : MonoBehaviour
 {
     public static TimelineManager Instance;
 
+    public ConcertInfo concertInfo;
     public ConcertData concertData;
 
     void Awake()
@@ -28,10 +29,24 @@ public class TimelineManager : MonoBehaviour
             int concert_id = PlayerPrefs.GetInt("concert_id");
 
             concertData = ConcertManager.GetConcertData(concert_id);
+            concertInfo = ConcertManager.GetConcert(concert_id, false);
 
             timelines = TL_Utility.FromCDATA(concertData.cdata);
 
+            FileBrowserTest.instance.SetMusicWave(concertInfo.music_name, concertData.bgm);
+
             Initialize();
+        }
+        else
+        {
+            int concert_id = ConcertManager.NextConcertId();
+
+            concertInfo = new ConcertInfo();
+            concertInfo.concert_id = concert_id;
+            concertInfo.id = AccountManager.id;
+
+            concertData = new ConcertData();
+            concertData.concert_id = concert_id;
         }
     }
 
@@ -76,9 +91,14 @@ public class TimelineManager : MonoBehaviour
 
     public bool Save()
     {
+        bool b1, b2;
+
         concertData.cdata = TL_Utility.ToCDATA(timelines);
 
-        return ConcertManager.SetConcertData(concertData);
+        b1 = ConcertManager.SetConcert(concertInfo);
+        b2 = ConcertManager.SetConcertData(concertData);
+
+        return b1 & b2;
     }
 
     public GameObject GetPrefab(TL_ENUM_Types tlType, string itemName)

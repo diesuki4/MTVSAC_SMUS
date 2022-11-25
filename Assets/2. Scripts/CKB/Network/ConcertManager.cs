@@ -10,6 +10,7 @@ public class ConcertInfo
     public string id;
     public string title;
     public string genre;
+    public string music_name;
 }
 
 public class ConcertData
@@ -68,6 +69,14 @@ public static class ConcertManager
         return bResult1 & bResult2 & bResult3;
     }
 
+    public static bool SetConcert(ConcertInfo concertInfo)
+    {
+        string query = string.Format("UPDATE " + DB_CONCERTINFO + " SET id = '{0}', music_name = '{1}' WHERE concert_id = '{2}';",
+                                        concertInfo.id, concertInfo.music_name, concertInfo.concert_id);
+
+        return DBManager.Execute(query);  
+    }
+
     public static ConcertInfo GetConcert(int concert_id, bool active = true)
     {
         string activeQuery = (active) ? " AND active = 1" : "";
@@ -80,6 +89,7 @@ public static class ConcertManager
         concertInfo.id          = result[0]["id"] as string;
         concertInfo.title       = result[0]["title"] as string;
         concertInfo.genre       = result[0]["genre"] as string;
+        concertInfo.music_name  = result[0]["music_name"] as string;
 
         return concertInfo;
     }
@@ -100,6 +110,7 @@ public static class ConcertManager
             concertInfo.id          = dict["id"] as string;
             concertInfo.title       = dict["title"] as string;
             concertInfo.genre       = dict["genre"] as string;
+            concertInfo.music_name  = dict["music_name"] as string;
 
             concertInfos.Add(concertInfo);
         }
@@ -123,6 +134,7 @@ public static class ConcertManager
             concertInfo.id          = dict["id"] as string;
             concertInfo.title       = dict["title"] as string;
             concertInfo.genre       = dict["genre"] as string;
+            concertInfo.music_name  = dict["music_name"] as string;
 
             concertInfos.Add(concertInfo);
         }
@@ -146,6 +158,7 @@ public static class ConcertManager
             concertInfo.id          = dict["id"] as string;
             concertInfo.title       = dict["title"] as string;
             concertInfo.genre       = dict["genre"] as string;
+            concertInfo.music_name  = dict["music_name"] as string;
 
             concertInfos.Add(concertInfo);
         }
