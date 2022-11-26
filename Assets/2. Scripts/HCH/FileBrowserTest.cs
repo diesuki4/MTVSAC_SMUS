@@ -355,12 +355,12 @@ public class FileBrowserTest : MonoBehaviour
 
 			TimelineManager.Instance.concertData.thumbnail = bytes;
 
-			//ByteToString b2s = new ByteToString();
-			//b2s.bytes = bytes;
+            ByteToString b2s = new ByteToString();
+            //b2s.bytes = bytes;
 
-			//string me = JsonUtility.ToJson(b2s);
+            //string me = JsonUtility.ToJson(b2s);
 
-			//print(me.Split(':')[1]);
+            //print(me.Split(':')[1]);
 
             //byte[] imageData = File.ReadAllBytes(FileBrowser.Result[0]);
             //print(imageData);

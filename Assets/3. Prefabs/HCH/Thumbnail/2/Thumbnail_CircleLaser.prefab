@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8217931432914449776}
   - component: {fileID: 904610055041551501}
   m_Layer: 5
-  m_Name: Thumbnail_Mic
+  m_Name: Thumbnail_CircleLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a384c541ba3e12444b7e1431bff55833, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00b5476a1ca0b374f8e973de8c4678a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
