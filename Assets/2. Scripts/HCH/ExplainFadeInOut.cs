@@ -29,22 +29,39 @@ public class ExplainFadeInOut : MonoBehaviour
         ExplainFade();
     }
 
+    bool bFadeInExecuted;
+    bool bFadeOutExecuted;
+
+    Tween twFadeInImg;
+    Tween twFadeOutImg;
+    Tween twFadeInTxt;
+    Tween twFadeOutTxt;
+
     public void ExplainFade()
     {
         if (fio.isCheck == true)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime > waitTime)
+            if (bFadeInExecuted == false)
             {
-                img.DOFade(1, fadeInTime);
-                txt.DOFade(1, fadeInTime);
+                twFadeOutImg.Kill();
+                twFadeOutTxt.Kill();
+                twFadeInImg = img.DOFade(1, fadeInTime);
+                twFadeInTxt = txt.DOFade(1, fadeInTime);
+                bFadeInExecuted = true;
+                bFadeOutExecuted = false; 
             }
         }
         else
         {
-            currentTime = 0;
-            img.DOFade(0, fadeOutTime);
-            txt.DOFade(0, fadeOutTime);
+            if (bFadeOutExecuted == false)
+            {
+                twFadeInImg.Kill();
+                twFadeInTxt.Kill();
+                twFadeOutImg = img.DOFade(0, fadeOutTime);
+                twFadeOutTxt = txt.DOFade(0, fadeOutTime);
+                bFadeInExecuted = false;
+                bFadeOutExecuted = true;
+            }
         }
     }
 }

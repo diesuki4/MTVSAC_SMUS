@@ -64,12 +64,14 @@ public class FadeInOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        isCheck = true;
         o_color = img.color;
         tween = img.DOFade(AlphaPer, 0.2f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        isCheck = false;
         tween.Kill();
         img.color = o_color;
     }

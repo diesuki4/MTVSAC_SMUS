@@ -48,9 +48,9 @@ public static class ConcertManager
 
     public static int NextConcertId()
     {
-        string query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = '" + DB_CONCERTINFO + "'";
+        string query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = '" + DB_CONCERTINFO + "';";
 
-        return (int)DBManager.Select(query)[0]["AUTO_INCREMENT"];
+        return int.Parse(string.Format("{0}", DBManager.Select(query)[0]["AUTO_INCREMENT"]));
     }
 
     public static bool SetConcertData(ConcertData concertData)
