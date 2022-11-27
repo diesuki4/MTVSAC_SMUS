@@ -56,6 +56,9 @@ public class BuildingSystem : MonoBehaviour
         if (objectToPlace == null)
             return;
 
+        if (objectToPlace.GetComponent<Camera>())
+            return;
+
         // Rotate
         if (Input.GetKeyDown(KeyCode.R))
             objectToPlace.RotateHorizontal(15);

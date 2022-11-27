@@ -28,6 +28,18 @@ public static class ConcertManager
     static string FTP_CDATA_PATH = Encoder.Decode("Y29uY2VydGRhdGEv");
     static string DB_CONCERTINFO = Encoder.Decode("Y29uY2VydGluZm8=");
 
+    public static int NextConcertId()
+    {
+        string query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = '" + DB_CONCERTINFO + "';";
+
+        return int.Parse(string.Format("{0}", DBManager.Select(query)[0]["AUTO_INCREMENT"]));
+    }
+
+    public static bool NewConcertData(ConcertData concertData)
+    {
+        return SetConcertData(concertData);
+    }
+
     public static ConcertData GetConcertData(int concert_id)
     {
         ConcertData concertData = new ConcertData();
@@ -46,13 +58,6 @@ public static class ConcertManager
         return concertData;
     }
 
-    public static int NextConcertId()
-    {
-        string query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = '" + DB_CONCERTINFO + "';";
-
-        return int.Parse(string.Format("{0}", DBManager.Select(query)[0]["AUTO_INCREMENT"]));
-    }
-
     public static bool SetConcertData(ConcertData concertData)
     {
         int concert_id = concertData.concert_id;
@@ -69,9 +74,17 @@ public static class ConcertManager
         return bResult1 & bResult2 & bResult3;
     }
 
+    public static bool NewConcert(ConcertInfo concertInfo)
+    {
+        string query = string.Format("INSERT INTO " + DB_CONCERTINFO + " VALUES(0, '{0}', '{1}', 'R&B', '{1}', 0);",
+                                        AccountManager.id, concertInfo.title);
+
+        return DBManager.Execute(query);  
+    }
+
     public static bool SetConcert(ConcertInfo concertInfo)
     {
-        string query = string.Format("UPDATE " + DB_CONCERTINFO + " SET id = '{0}', music_name = '{1}' WHERE concert_id = '{2}';",
+        string query = string.Format("UPDATE " + DB_CONCERTINFO + " SET id = '{0}', title = '{1}', music_name = '{1}' WHERE concert_id = '{2}';",
                                         concertInfo.id, concertInfo.music_name, concertInfo.concert_id);
 
         return DBManager.Execute(query);  

@@ -18,6 +18,7 @@ public class ObjectDrag : MonoBehaviour
     {
         placeableObject = GetComponent<PlaceableObject>();
         outline = GetComponent<Outline>();
+        if (outline == null) outline = GetComponentInChildren<Outline>();
     }
 
     void OnEnable()
@@ -35,7 +36,12 @@ public class ObjectDrag : MonoBehaviour
         BuildingSystem.Instance.objectToPlace = placeableObject;
 
         foreach (PlaceableObject po in BuildingSystem.Instance.objectList)
-            po.GetComponent<Outline>().enabled = false;
+        {
+            Outline ol = po.GetComponent<Outline>();
+            if (ol == null) ol = po.GetComponentInChildren<Outline>();
+
+            ol.enabled = false;
+        }
 
         outline.OutlineColor = clrPlaceable;
         outline.enabled = true;
@@ -54,7 +60,12 @@ public class ObjectDrag : MonoBehaviour
         originPos = transform.position;
 
         foreach (PlaceableObject po in BuildingSystem.Instance.objectList)
-            po.GetComponent<Outline>().enabled = false;
+        {
+            Outline ol = po.GetComponent<Outline>();
+            if (ol == null) ol = po.GetComponentInChildren<Outline>();
+
+            ol.enabled = false;
+        }
 
         outline.enabled = true;
     }

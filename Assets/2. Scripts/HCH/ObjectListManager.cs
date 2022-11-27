@@ -96,8 +96,17 @@ public class ObjectListManager : MonoBehaviour
 
         // 버튼을 누르면 그 버튼에 해당하는 오브젝트의 아웃라인을 활성화하고 싶다
         foreach (PlaceableObject po in BuildingSystem.Instance.objectList)
-            po.GetComponent<Outline>().enabled = false;
-        BuildingSystem.Instance.getTimelineObject(oln.guid).GetComponent<Outline>().enabled = true;
+        {
+            Outline ol = po.GetComponent<Outline>();
+            if (ol == null) ol = po.GetComponentInChildren<Outline>();
+
+            ol.enabled = false;
+        }
+
+        Outline outline = BuildingSystem.Instance.getTimelineObject(oln.guid).GetComponent<Outline>();
+        if (outline == null) outline = BuildingSystem.Instance.getTimelineObject(oln.guid).GetComponentInChildren<Outline>();
+
+        outline.enabled = true;
         BuildingSystem.Instance.objectToPlace = BuildingSystem.Instance.getTimelineObject(oln.guid).GetComponent<PlaceableObject>();
     }
 

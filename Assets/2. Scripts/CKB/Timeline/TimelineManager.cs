@@ -14,6 +14,8 @@ public class TimelineManager : MonoBehaviour
     public ConcertInfo concertInfo;
     public ConcertData concertData;
 
+    bool bNewConcert;
+
     void Awake()
     {
         if (Instance == null)
@@ -28,6 +30,8 @@ public class TimelineManager : MonoBehaviour
         {
             int concert_id = PlayerPrefs.GetInt("concert_id");
 
+            bNewConcert = false;
+
             concertData = ConcertManager.GetConcertData(concert_id);
             concertInfo = ConcertManager.GetConcert(concert_id, false);
 
@@ -40,6 +44,8 @@ public class TimelineManager : MonoBehaviour
         else
         {
             int concert_id = ConcertManager.NextConcertId();
+
+            bNewConcert = true;
 
             concertInfo = new ConcertInfo();
             concertInfo.concert_id = concert_id;
@@ -95,8 +101,16 @@ public class TimelineManager : MonoBehaviour
 
         concertData.cdata = TL_Utility.ToCDATA(timelines);
 
-        b1 = ConcertManager.SetConcert(concertInfo);
-        b2 = ConcertManager.SetConcertData(concertData);
+        if (bNewConcert)
+        {
+            b1 = ConcertManager.NewConcert(concertInfo);
+            b2 = ConcertManager.NewConcertData(concertData);
+        }
+        else
+        {
+            b1 = ConcertManager.SetConcert(concertInfo);
+            b2 = ConcertManager.SetConcertData(concertData);
+        }
 
         return b1 & b2;
     }

@@ -15,8 +15,8 @@ public class ConcertButton : MonoBehaviour
     public void OnClickButton()
     {
         PlayerPrefs.SetInt("concert_id", concertInfo.concert_id);
-        ConcertManager.SetConcertState(concertInfo.concert_id, true);
+        //ConcertManager.SetConcertState(concertInfo.concert_id, true);
 
-        SceneManager.LoadScene("SMUShowUI 1");        
+        SceneManager.LoadScene("Studio_Alpha_HCH");        
     }
 }

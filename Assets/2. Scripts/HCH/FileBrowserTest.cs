@@ -45,10 +45,11 @@ public class FileBrowserTest : MonoBehaviour
 	// 배경 비디오
 	public GameObject videoQuad;
 
-    private void Awake()
-    {
+	FileBrowserTest()
+	{
 		instance = this;
-    }
+	}
+
     private void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
@@ -225,7 +226,10 @@ public class FileBrowserTest : MonoBehaviour
             //string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
 			//FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
 			string path = FileBrowser.Result[0];
-            TimelineManager.Instance.concertInfo.music_name = musicTxt.text = path.Substring(path.LastIndexOf('\\') + 1);
+			string musicName = path.Substring(path.LastIndexOf('\\') + 1);
+			musicName = musicName.Substring(0, musicName.LastIndexOf('.'));
+
+            TimelineManager.Instance.concertInfo.title = TimelineManager.Instance.concertInfo.music_name = musicTxt.text = musicName;
 
 			musicInputBG.SetActive(false);
         }
@@ -233,6 +237,11 @@ public class FileBrowserTest : MonoBehaviour
 
 	public void SetMusicWave(string musicName, byte[] bytes)
 	{
+		if (audioSource == null)
+			audioSource = GetComponent<AudioSource>();
+		if (musicTxt == null)
+			musicTxt = musicInputBase.GetComponentInChildren<Text>();
+
 		audioSource.clip = NAudioPlayer.FromMp3Data(bytes);
 		//MusicWave();
 		totalFrame = audioSource.clip.length * 30;
@@ -249,7 +258,7 @@ public class FileBrowserTest : MonoBehaviour
 		// Or, copy the first file to persistentDataPath
 		//string destinationPath = Path.Combine(Application.streamingAssetsPath, FileBrowserHelpers.GetFilename(FileBrowser.Result[0]));
 		//FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
-		string path = FileBrowser.Result[0];
+		//string path = FileBrowser.Result[0];
 		musicTxt.text = musicName;
 
 		musicInputBG.SetActive(false);

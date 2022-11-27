@@ -32,6 +32,11 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
+        PlaceableObject po = GetComponent<PlaceableObject>();
+
+        if (po != null && po != BuildingSystem.Instance.objectToPlace)
+            return;
+
         // 우클릭을 누르고 있을 때만 움직일 수 있다
         if (Input.GetMouseButton(1) == false)
             return;
