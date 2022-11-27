@@ -71,7 +71,7 @@ public class SwipeMenu : MonoBehaviour
                 // 콘텐트의 i번째 자식의 스케일 = 지금 스케일에서 큰 스케일까지 Lerp로 키워
                 transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(bigScale, bigScale), 0.1f);
                 // sortLayer은 20으로 맞춰 - 앞에서 보이게
-                canvass[i].sortingOrder = 20;
+                canvass[i].sortingOrder = 2;
                 // 또 반복
                 for (int a = 0; a < pos.Length; a++)
                 {
@@ -80,7 +80,7 @@ public class SwipeMenu : MonoBehaviour
                     {
                         // i번째가 아니면 스케일 작게, sortLayer는 19로 뒤에 가려지게
                         transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(smallScale, smallScale), 0.1f);
-                        canvass[a].sortingOrder = 19;   
+                        canvass[a].sortingOrder = 1;   
                     }
                 }
 
