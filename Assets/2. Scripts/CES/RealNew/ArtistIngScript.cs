@@ -14,6 +14,7 @@ public class ArtistIngScript : MonoBehaviour
     public RectTransform warningImage;
     Transform namee;
     public Text push;
+    public Sprite[] dropdownImages = new Sprite[2];
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class ArtistIngScript : MonoBehaviour
         SuperviseUI();
         GoBackShowInfoImage();
         StartTheShow();
+        InsertImage();
     }
 
     // 드롭다운 내려왔을 때 다른 곳 누르면 무조건 드롭다운 들어가게 하는 애 없애기
@@ -105,6 +107,15 @@ public class ArtistIngScript : MonoBehaviour
         {
             if (push.color.a == 1) push.DOFade(0.1f, 1f);
             else if (push.color.a < 0.11) push.DOFade(1, 1f);
+        }
+    }
+
+    void InsertImage()
+    {
+        if (GameObject.Find("Item 0: SkillSet") != null)
+        {
+            GameObject.Find("Item 0: SkillSet").GetComponentInChildren<Image>().sprite = dropdownImages[0];
+            GameObject.Find("Item 1: Exit").GetComponentInChildren<Image>().sprite = dropdownImages[1];
         }
     }
 }

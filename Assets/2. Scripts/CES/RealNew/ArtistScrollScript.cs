@@ -13,16 +13,27 @@ public class ArtistScrollScript : MonoBehaviour
     // 버튼들 들어있는 content
     public Transform parent;
 
+    public RectTransform option;
+
+    public GameObject optionButton;
+    public GameObject closeButton;
+
+    public Transform[] names = new Transform[2];
+
     // Start is called before the first frame update
     void Start()
     {
         popUp.gameObject.SetActive(false);
+        option.gameObject.SetActive(false);
+
+        names[0].gameObject.SetActive(false);
+        names[1].gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ClosePopUp();
+
     }
 
     // 공연 썸네일 누르면 팝업이 떠야해
@@ -36,17 +47,29 @@ public class ArtistScrollScript : MonoBehaviour
     }
 
     // 마우스 눌렀는데 닿은 애가 parent의 자식이 아니면 팝업 꺼져야해
-    void ClosePopUp()
+    public void ClosePopUp()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            print(EventSystem.current.currentSelectedGameObject);
-            // 눌린 게 없거나
-            if (EventSystem.current.currentSelectedGameObject == null) popUp.gameObject.SetActive(false);
-            // 부모개체가 없거나
-            else if (EventSystem.current.currentSelectedGameObject.transform.parent == null) popUp.gameObject.SetActive(false);
-            // 부모가 parent가 아니면
-            else if (EventSystem.current.currentSelectedGameObject.transform.parent.parent != parent) popUp.gameObject.SetActive(false);
-        }
+        popUp.gameObject.SetActive(false);
+    }
+
+    public void ClickOptionButton()
+    {
+        option.gameObject.SetActive(true);
+        option.DOScale(new Vector2(0.9f, 0.9f), 0.1f);
+    }
+
+    public void ClickOptionCloseButton()
+    {
+        option.DOScale(new Vector2(0.6f, 0.6f), 0.2f);
+        option.gameObject.SetActive(false);
+    }
+
+    public void ShowYourName(int i)
+    {
+        names[i].gameObject.SetActive(true);
+    }
+    public void GetAwayName(int i)
+    {
+        names[i].gameObject.SetActive(false);
     }
 }

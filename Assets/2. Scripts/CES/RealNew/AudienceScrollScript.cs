@@ -124,4 +124,6 @@ public class AudienceScrollScript : MonoBehaviour
         option.DOScale(new Vector2(0.6f, 0.6f), 0.3f).SetEase(Ease.InOutExpo);
         option.gameObject.SetActive(false);
     }
+
+    // 버튼 누르면 입장할지 말지
 }

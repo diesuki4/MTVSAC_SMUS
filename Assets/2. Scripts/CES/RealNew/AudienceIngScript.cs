@@ -13,6 +13,7 @@ public class AudienceIngScript : MonoBehaviour
     bool iCanSeeShowInfo = false;
     public RectTransform warningImage;
     Transform namee;
+    public Sprite[] dropdownImages = new Sprite[3];
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class AudienceIngScript : MonoBehaviour
         DestroyBlocker();
         SuperviseUI();
         GoBackShowInfoImage();
+        InsertImage();
     }
 
     // 드롭다운 내려왔을 때 다른 곳 누르면 무조건 드롭다운 들어가게 하는 애 없애기
@@ -98,5 +100,25 @@ public class AudienceIngScript : MonoBehaviour
     void SetActiveFalseDelay()
     {
         namee.gameObject.SetActive(false);
+    }
+
+    // 드롭다운 이미지들 넣기
+    void InsertImage()
+    {
+        if (GameObject.Find("Item 0: KeyManual") != null)
+        {
+            GameObject.Find("Item 0: KeyManual").GetComponentInChildren<Image>().sprite = dropdownImages[0];
+            GameObject.Find("Item 1: ShowInfo").GetComponentInChildren<Image>().sprite = dropdownImages[1];
+            GameObject.Find("Item 2: Exit").GetComponentInChildren<Image>().sprite = dropdownImages[2];
+        }
+    }
+
+    // 드롭다운 클릭하면 없어지게
+    public void DestroyDropdownList()
+    {
+        if (GameObject.Find("Dropdown List") != null)// && Input.GetMouseButtonUp(0))
+        {
+            Destroy(GameObject.Find("Dropdown List"));
+        }
     }
 }
