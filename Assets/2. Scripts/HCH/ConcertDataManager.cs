@@ -9,7 +9,7 @@ public class ConcertDataManager : MonoBehaviour
     public static ConcertDataManager instance;
 
     public ConcertInfo concertInfo;
-    public int concertId;
+    public int concert_Id;
 
     private void Awake()
     {
@@ -30,15 +30,15 @@ public class ConcertDataManager : MonoBehaviour
 
     public void OnClickShow()
     {
-        PlayerPrefs.SetInt("concert_id", concertId);
+        PlayerPrefs.SetInt("concert_id", concert_Id);
         SceneManager.LoadScene("Concert_Beta_HCH");
-        print(concertId);
+        print(concert_Id);
     }
 
     public void OnClickModify()
     {
-        PlayerPrefs.SetInt("concert_id", concertId);
+        PlayerPrefs.SetInt("concert_id", concert_Id);
         SceneManager.LoadScene("Studio_Alpha_HCH");
-        print(concertId);
+        print(concert_Id);
     }
 }
