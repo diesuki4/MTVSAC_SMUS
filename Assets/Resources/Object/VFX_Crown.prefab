@@ -4804,7 +4804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5d6d857a2448b4abf4a7d8fc8c79af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tlType: 0
+  tlType: 1
   itemName: VFX_Crown
   guid: 
   isActive: 0
