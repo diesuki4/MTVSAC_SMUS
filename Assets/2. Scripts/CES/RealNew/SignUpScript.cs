@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class SignUpScript : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class SignUpScript : MonoBehaviour
     int buttonCount = 0;
     List<string> genres = new List<string>();
 
+    InputField id;
+    InputField passwd;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        id = userInfo[0];
+        passwd = userInfo[1];
     }
 
     // Update is called once per frame
@@ -68,6 +73,26 @@ public class SignUpScript : MonoBehaviour
     // 회원가입 -> 장르 선택
     public void ClickSignUpToSelectGenre()
     {
+
+        //if (AccountManager.SignUp(id.text, passwd.text) == false)
+        //{
+        //    Debug.Log("회원가입 실패");
+        //    id.text = "";
+        //    passwd.text = "";
+        //    return;
+        //}
+        //else
+        //{
+        //    Debug.Log("회원가입 성공");
+        //    if (CheckInputField())
+        //    {
+        //        PlayerPrefs.SetString("UserID", userInfo[0].text);
+        //        sets[0].DOAnchorPosX(-1700, 0.4f).SetEase(Ease.OutExpo);
+        //        sets[1].DOAnchorPosX(0, 0.4f).SetEase(Ease.OutExpo);
+        //        sets[2].DOAnchorPosX(1700, 0.4f).SetEase(Ease.OutExpo);
+        //    }
+        //}
+
         if (CheckInputField())
         {
             PlayerPrefs.SetString("UserID", userInfo[0].text);
@@ -75,6 +100,7 @@ public class SignUpScript : MonoBehaviour
             sets[1].DOAnchorPosX(0, 0.4f).SetEase(Ease.OutExpo);
             sets[2].DOAnchorPosX(1700, 0.4f).SetEase(Ease.OutExpo);
         }
+
     }
     // 장르 선택 -> 프로필
     public void ClickSelectGenreToProfile()
@@ -94,5 +120,10 @@ public class SignUpScript : MonoBehaviour
     {
         sets[1].DOAnchorPosX(0, 0.4f).SetEase(Ease.OutExpo);
         sets[2].DOAnchorPosX(1700, 0.4f).SetEase(Ease.OutExpo);
+    }
+
+    public void OnClickBackToLogIn()
+    {
+        SceneManager.LoadScene("ShowLoginScene_C");
     }
 }

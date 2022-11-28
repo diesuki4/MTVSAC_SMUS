@@ -11,7 +11,7 @@ public class LogInScript : MonoBehaviour
     public InputField[] users = new InputField[2];// 0 = ID, 1 = PW
     public Transform infoImage;
     public Text InfoImageText;
-    bool amIArtist = false;
+    public bool amIArtist = false;
     bool justOne = true;
     public Button[] goWhat = new Button[2];
 
