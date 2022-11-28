@@ -10,13 +10,17 @@ public class ShowLoginScene_C : MonoBehaviour
     InputField id;
     InputField passwd;
 
+    LogInScript ls;
     void Start()
     {
         PlayerPrefs.DeleteKey("Created");
 
-        dropdown = transform.Find("VerDropdown").GetComponent<Dropdown>();
-        id = transform.Find("ID InputField").GetComponent<InputField>();
-        passwd = transform.Find("PW InputField").GetComponent<InputField>();
+        //dropdown = transform.Find("VerDropdown").GetComponent<Dropdown>();
+        id = GameObject.Find("UserID").GetComponent<InputField>();
+        passwd = GameObject.Find("UserPW").GetComponent<InputField>();
+
+        // 아티스트 관객 구분
+        ls = this.GetComponent<LogInScript>();
     }
 
     public void OnClickLogin()
@@ -32,10 +36,10 @@ public class ShowLoginScene_C : MonoBehaviour
         Debug.Log("로그인 성공");
 
         // 관객
-        if (dropdown.value == 0)
+        if (ls.amIArtist == false)
             SceneManager.LoadScene("ScrollScene");
         // 아티스트
-        else if (dropdown.value == 1)
+        else if (ls.amIArtist == true)
             SceneManager.LoadScene("ArtistConcertListScene_C");
     }
 

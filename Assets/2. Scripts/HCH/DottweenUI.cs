@@ -6,17 +6,14 @@ using UnityEngine.UI;
 
 public class DottweenUI : MonoBehaviour
 {
-    public GameObject saveNameUi;
+    public GameObject saveCheckUi;
     public GameObject confirmUi;
     SaveTimeline st;
-    public GameObject inputConcertName;
-    InputField concertNameInputField;
 
     // Start is called before the first frame update
     void Start()
     {
         st = this.GetComponent<SaveTimeline>();
-        concertNameInputField = inputConcertName.GetComponent<InputField>();
     }
 
     // Update is called once per frame
@@ -25,21 +22,21 @@ public class DottweenUI : MonoBehaviour
         
     }
 
-    public void OnClickSaveNameUiOn()
+    public void OnClickSaveCheckUiOn()
     {
         confirmUi.SetActive(false);
-        StartCoroutine("UiAnimationOn", saveNameUi);
+        StartCoroutine("UiAnimationOn", saveCheckUi);
     }
 
-    public void OnClickSaveNameUiOff()
+    public void OnClickSaveCheckUiOff()
     {
-        StartCoroutine("UiAnimationOff", saveNameUi);
+        StartCoroutine("UiAnimationOff", saveCheckUi);
     }
 
-    public void OnClickSaveNameSaveButton()
+    public void OnClickSaveCheckYesButton()
     {
         st.OnClickSaveTimeline();
-        saveNameUi.SetActive(false);
+        saveCheckUi.SetActive(false);
         StartCoroutine("UiAnimationOn", confirmUi);
     }
 

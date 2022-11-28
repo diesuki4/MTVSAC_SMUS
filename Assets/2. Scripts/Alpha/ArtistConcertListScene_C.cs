@@ -13,11 +13,11 @@ public class ArtistConcertListScene_C : MonoBehaviour
 
     void Start()
     {
-        id = transform.Find("Option/Image (3)/ID InputField").GetComponent<InputField>();
-        passwd = transform.Find("Option/Image (3)/PW InputField").GetComponent<InputField>();
+        //id = transform.Find("Option/Image (3)/ID InputField").GetComponent<InputField>();
+        //passwd = transform.Find("Option/Image (3)/PW InputField").GetComponent<InputField>();
 
-        id.text = AccountManager.id;
-        passwd.text = "";
+        //id.text = AccountManager.id;
+        //passwd.text = "";
 
         PlayerPrefs.DeleteKey("concert_id");
 
