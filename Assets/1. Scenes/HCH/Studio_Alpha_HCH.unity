@@ -5954,7 +5954,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1263111598}
-        m_MethodName: OnClickSaveNameUiOn
+        m_MethodName: OnClickSaveCheckUiOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11747,7 +11747,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1263111598}
-        m_MethodName: OnClickSaveCheckUiYesButton
+        m_MethodName: OnClickSaveCheckYesButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13405,9 +13405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184e332223284d24ab263f3858871c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveNameUi: {fileID: 473337549}
+  saveCheckUi: {fileID: 1981254875}
   confirmUi: {fileID: 1228866132}
-  inputConcertName: {fileID: 1583441163}
 --- !u!1 &1264795582
 GameObject:
   m_ObjectHideFlags: 0
