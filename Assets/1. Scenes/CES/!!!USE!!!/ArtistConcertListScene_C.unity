@@ -3752,6 +3752,7 @@ GameObject:
   - component: {fileID: 985159787}
   - component: {fileID: 985159786}
   - component: {fileID: 985159785}
+  - component: {fileID: 985159789}
   m_Layer: 5
   m_Name: OptionCanvas
   m_TagString: Untagged
@@ -3855,6 +3856,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 31
   m_TargetDisplay: 0
+--- !u!114 &985159789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985159783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74a38bd167b8654fa7dfeb046622396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996637909
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,7 +4546,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1086299516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 985159789}
+        m_MethodName: OnClickModify
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1086299516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8202,7 +8226,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1961976593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 985159789}
+        m_MethodName: OnClickShow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1961976593
 MonoBehaviour:
   m_ObjectHideFlags: 0

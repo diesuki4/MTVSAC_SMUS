@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ConcertButton : MonoBehaviour
 {
-    ConcertInfo concertInfo;
+    public ConcertInfo concertInfo;
 
     public void Initialize(ConcertInfo concertInfo)
     {
@@ -18,6 +18,16 @@ public class ConcertButton : MonoBehaviour
         //ConcertManager.SetConcertState(concertInfo.concert_id, true);
 
         //SceneManager.LoadScene("Studio_Alpha_HCH");
+        //SceneManager.LoadScene("Concert_Beta_HCH");
+    }
+
+    public void OnClickShow()
+    {
         SceneManager.LoadScene("Concert_Beta_HCH");
+    }
+
+    public void OnClickModify()
+    {
+        SceneManager.LoadScene("Studio_Alpha_HCH");
     }
 }
