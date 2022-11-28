@@ -9,6 +9,7 @@ public class ArtistScrollScript : MonoBehaviour
 {
     // 팝업창
     public RectTransform popUp;
+    public RectTransform addPopUp;
     public Text showName;
     // 버튼들 들어있는 content
     public Transform parent;
@@ -45,6 +46,10 @@ public class ArtistScrollScript : MonoBehaviour
         // 공연이름 부분에 방금 누른 버튼 이름이 들어가야해
         showName.text = EventSystem.current.currentSelectedGameObject.name;
     }
+    public void ClickShowAddPopUp()
+    {
+        addPopUp.gameObject.SetActive(true);
+    }
 
     void ShowThumbnail()
     {
@@ -52,6 +57,7 @@ public class ArtistScrollScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.currentSelectedGameObject == null) return;
+            else if (EventSystem.current.currentSelectedGameObject.name == "AddButton") return;
             if (EventSystem.current.currentSelectedGameObject.transform.parent.parent == parent)
             {
                 popUp.gameObject.SetActive(true);
@@ -67,6 +73,11 @@ public class ArtistScrollScript : MonoBehaviour
     public void ClosePopUp()
     {
         popUp.gameObject.SetActive(false);
+    }
+    
+    public void CloseAddPopUp()
+    {
+        addPopUp.gameObject.SetActive(false);
     }
 
     public void ClickOptionButton()
@@ -89,4 +100,6 @@ public class ArtistScrollScript : MonoBehaviour
     {
         names[i].gameObject.SetActive(false);
     }
+
+
 }
