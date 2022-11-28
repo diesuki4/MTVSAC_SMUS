@@ -41,4 +41,10 @@ public class ConcertDataManager : MonoBehaviour
         SceneManager.LoadScene("Studio_Alpha_HCH");
         print(concert_Id);
     }
+
+    public void OnClickCreate()
+    {
+        SceneManager.LoadScene("Studio_Alpha_HCH");
+        print(concert_Id);
+    }
 }
