@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class DottweenUI : MonoBehaviour
 {
-    public GameObject saveCheckUi;
+    public GameObject saveNameUi;
     public GameObject confirmUi;
+    SaveTimeline st;
+    public GameObject inputConcertName;
+    InputField concertNameInputField;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        st = this.GetComponent<SaveTimeline>();
+        concertNameInputField = inputConcertName.GetComponent<InputField>();
     }
 
     // Update is called once per frame
@@ -21,21 +25,21 @@ public class DottweenUI : MonoBehaviour
         
     }
 
-    public void OnClickSaveCheckUiOn()
+    public void OnClickSaveNameUiOn()
     {
         confirmUi.SetActive(false);
-        StartCoroutine("UiAnimationOn", saveCheckUi);
+        StartCoroutine("UiAnimationOn", saveNameUi);
     }
 
-    public void OnClickSaveCheckUiOff()
+    public void OnClickSaveNameUiOff()
     {
-        StartCoroutine("UiAnimationOff", saveCheckUi);
+        StartCoroutine("UiAnimationOff", saveNameUi);
     }
 
-    public void OnClickSaveCheckUiYesButton()
+    public void OnClickSaveNameSaveButton()
     {
-        // + 공연 정보 저장 함수
-        saveCheckUi.SetActive(false);
+        st.OnClickSaveTimeline();
+        saveNameUi.SetActive(false);
         StartCoroutine("UiAnimationOn", confirmUi);
     }
 
