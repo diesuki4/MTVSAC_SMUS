@@ -28,7 +28,7 @@ public class SignUpScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // 아이디, 비밀 번호가 한 글자씩은 입력되어있어야 true
@@ -43,7 +43,6 @@ public class SignUpScript : MonoBehaviour
     public void ClickChangeButtonColor()
     {
         Color c = new Color(1, 225 / 255f, 0);
-
         // 3개까지만
         if (buttonCount < 3 && EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color == Color.white)
         {
@@ -57,7 +56,6 @@ public class SignUpScript : MonoBehaviour
             genres.Remove(EventSystem.current.currentSelectedGameObject.name);
             buttonCount--;
         }
-
     }
 
     // 버튼이 3개 눌려있으면 true
@@ -125,5 +123,14 @@ public class SignUpScript : MonoBehaviour
     public void OnClickBackToLogIn()
     {
         SceneManager.LoadScene("ShowLoginScene_C");
+    }
+
+    public void SetActiveTrueNameCard(Transform nameCard)
+    {
+        nameCard.gameObject.SetActive(true);
+    }
+    public void SetActiveFalseNameCard(Transform nameCard)
+    {
+        nameCard.gameObject.SetActive(false);
     }
 }
