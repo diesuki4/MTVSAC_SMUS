@@ -4547,7 +4547,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 985159789}
+      - m_Target: {fileID: 1200724673}
         m_MethodName: OnClickModify
         m_Mode: 1
         m_Arguments:
@@ -4964,6 +4964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1200724672}
   - component: {fileID: 1200724671}
+  - component: {fileID: 1200724673}
   m_Layer: 0
   m_Name: Show_ArtistScroll
   m_TagString: Untagged
@@ -5009,6 +5010,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200724673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200724670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9dcca067f67b042a15c85ccb8682b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  concertId: 0
 --- !u!1 &1207009214
 GameObject:
   m_ObjectHideFlags: 0
@@ -8227,7 +8241,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 985159789}
+      - m_Target: {fileID: 1200724673}
         m_MethodName: OnClickShow
         m_Mode: 1
         m_Arguments:

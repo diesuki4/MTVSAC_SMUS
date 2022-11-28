@@ -15,19 +15,11 @@ public class ConcertButton : MonoBehaviour
     public void OnClickButton()
     {
         PlayerPrefs.SetInt("concert_id", concertInfo.concert_id);
+        ConcertDataManager.instance.concertId = concertInfo.concert_id;
         //ConcertManager.SetConcertState(concertInfo.concert_id, true);
 
         //SceneManager.LoadScene("Studio_Alpha_HCH");
         //SceneManager.LoadScene("Concert_Beta_HCH");
     }
 
-    public void OnClickShow()
-    {
-        SceneManager.LoadScene("Concert_Beta_HCH");
-    }
-
-    public void OnClickModify()
-    {
-        SceneManager.LoadScene("Studio_Alpha_HCH");
-    }
 }

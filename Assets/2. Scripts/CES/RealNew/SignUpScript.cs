@@ -74,24 +74,24 @@ public class SignUpScript : MonoBehaviour
     public void ClickSignUpToSelectGenre()
     {
 
-        //if (AccountManager.SignUp(id.text, passwd.text) == false)
-        //{
-        //    Debug.Log("회원가입 실패");
-        //    id.text = "";
-        //    passwd.text = "";
-        //    return;
-        //}
-        //else
-        //{
-        //    Debug.Log("회원가입 성공");
-        //    if (CheckInputField())
-        //    {
-        //        PlayerPrefs.SetString("UserID", userInfo[0].text);
-        //        sets[0].DOAnchorPosX(-1700, 0.4f).SetEase(Ease.OutExpo);
-        //        sets[1].DOAnchorPosX(0, 0.4f).SetEase(Ease.OutExpo);
-        //        sets[2].DOAnchorPosX(1700, 0.4f).SetEase(Ease.OutExpo);
-        //    }
-        //}
+        if (AccountManager.SignUp(id.text, passwd.text) == false)
+        {
+            Debug.Log("회원가입 실패");
+            id.text = "";
+            passwd.text = "";
+            return;
+        }
+        else
+        {
+            Debug.Log("회원가입 성공");
+            if (CheckInputField())
+            {
+                PlayerPrefs.SetString("UserID", userInfo[0].text);
+                sets[0].DOAnchorPosX(-1700, 0.4f).SetEase(Ease.OutExpo);
+                sets[1].DOAnchorPosX(0, 0.4f).SetEase(Ease.OutExpo);
+                sets[2].DOAnchorPosX(1700, 0.4f).SetEase(Ease.OutExpo);
+            }
+        }
 
         if (CheckInputField())
         {
