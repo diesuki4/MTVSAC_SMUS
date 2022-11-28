@@ -115,7 +115,7 @@ public class AudienceScrollScript : MonoBehaviour
     public void ClickOptionButton()
     {
         option.gameObject.SetActive(true);
-        option.DOScale(new Vector2(1, 1), 0.3f).SetEase(Ease.OutBounce);
+        option.DOScale(new Vector2(0.9f, 0.9f), 0.2f).SetEase(Ease.OutBounce);
     }
 
     // 옵선창 끄자

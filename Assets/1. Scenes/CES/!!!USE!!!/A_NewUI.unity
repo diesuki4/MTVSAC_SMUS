@@ -1209,6 +1209,7 @@ GameObject:
   - component: {fileID: 214320851}
   - component: {fileID: 214320850}
   - component: {fileID: 214320849}
+  - component: {fileID: 214320852}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -1286,6 +1287,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214320847}
   m_CullTransparentMesh: 1
+--- !u!223 &214320852
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214320847}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 3
+  m_TargetDisplay: 0
 --- !u!1 &220131494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,12 +2999,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &369756945
 MonoBehaviour:
@@ -4228,12 +4250,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &520683063
 MonoBehaviour:
@@ -7679,12 +7701,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &908717362
 MonoBehaviour:
@@ -10939,6 +10961,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArtistListButton (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4154554179712883827, guid: 78b2dd3861d23c0448930b548f880312,
+        type: 3}
+      propertyPath: m_Name
+      value: dd
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b2dd3861d23c0448930b548f880312, type: 3}
 --- !u!224 &1287131034 stripped
@@ -11745,12 +11772,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1372089990
 MonoBehaviour:
@@ -12808,12 +12835,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &1525498629
 GameObject:
@@ -13190,6 +13217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArtistListButton (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4154554179712883827, guid: 78b2dd3861d23c0448930b548f880312,
+        type: 3}
+      propertyPath: m_Name
+      value: ff
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b2dd3861d23c0448930b548f880312, type: 3}
 --- !u!224 &1537324163 stripped
@@ -13373,12 +13405,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1583080889
 MonoBehaviour:
@@ -14429,6 +14461,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArtistListButton (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154554179712883827, guid: 78b2dd3861d23c0448930b548f880312,
+        type: 3}
+      propertyPath: m_Name
+      value: gg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b2dd3861d23c0448930b548f880312, type: 3}
@@ -17686,12 +17723,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2094641148
 MonoBehaviour:
@@ -18711,5 +18748,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2108262681}
+    - target: {fileID: 4154554179712883827, guid: 78b2dd3861d23c0448930b548f880312,
+        type: 3}
+      propertyPath: m_Name
+      value: aa
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b2dd3861d23c0448930b548f880312, type: 3}

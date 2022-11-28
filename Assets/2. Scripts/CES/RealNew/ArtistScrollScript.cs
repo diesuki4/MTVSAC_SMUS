@@ -33,7 +33,7 @@ public class ArtistScrollScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ShowThumbnail();
     }
 
     // 공연 썸네일 누르면 팝업이 떠야해
@@ -44,6 +44,23 @@ public class ArtistScrollScript : MonoBehaviour
 
         // 공연이름 부분에 방금 누른 버튼 이름이 들어가야해
         showName.text = EventSystem.current.currentSelectedGameObject.name;
+    }
+
+    void ShowThumbnail()
+    {
+        // 방금 누른애가 parent 자식이면 팝업 띄워
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.currentSelectedGameObject == null) return;
+            if (EventSystem.current.currentSelectedGameObject.transform.parent.parent == parent)
+            {
+                popUp.gameObject.SetActive(true);
+                popUp.DOScale(new Vector2(1, 1), 0.3f).SetEase(Ease.OutExpo);
+
+                // 공연이름 부분에 방금 누른 버튼 이름이 들어가야해
+                showName.text = EventSystem.current.currentSelectedGameObject.name;
+            }
+        }
     }
 
     // 마우스 눌렀는데 닿은 애가 parent의 자식이 아니면 팝업 꺼져야해
