@@ -674,6 +674,7 @@ MonoBehaviour:
   - {fileID: 1827974445}
   infoImage: {fileID: 2045729752}
   InfoImageText: {fileID: 1444761033}
+  amIArtist: 1
   goWhat:
   - {fileID: 1511911043}
   - {fileID: 895540712}
