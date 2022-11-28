@@ -15,6 +15,13 @@ public class TimelinePlayer : MonoBehaviour
     float fFrame;
     int frame;
 
+    AudioSource asrc;
+
+    void Awake()
+    {
+        asrc = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (isPlaying)
@@ -37,7 +44,7 @@ public class TimelinePlayer : MonoBehaviour
             {
                 if (key.frame == frame)
                 {
-                    TimelineObject tlObject = TimelineManager.Instance.GetTimelineObject(guid);
+                    TimelineObject tlObject = TimelineLoader.Instance.GetTimelineObject(guid);
 
                     tlObject.transform.position = key.position;
                     tlObject.transform.rotation = key.rotation;
@@ -50,11 +57,15 @@ public class TimelinePlayer : MonoBehaviour
 
     public void LoadKeyData()
     {
-        timelines = TimelineManager.Instance.GetTimelines();
+        timelines = TimelineLoader.Instance.GetTimelines();
+
+        if (asrc == null) asrc = GetComponent<AudioSource>();
+		asrc.clip = NAudioPlayer.FromMp3Data(TimelineLoader.Instance.concertData.bgm);
     }
 
     public void OnClickPlayKeyData()
     {
         isPlaying = true;
+        asrc.Play();
     }
 }

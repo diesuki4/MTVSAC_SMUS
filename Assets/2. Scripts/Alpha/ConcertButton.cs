@@ -17,6 +17,7 @@ public class ConcertButton : MonoBehaviour
         PlayerPrefs.SetInt("concert_id", concertInfo.concert_id);
         //ConcertManager.SetConcertState(concertInfo.concert_id, true);
 
-        SceneManager.LoadScene("Studio_Alpha_HCH");        
+        //SceneManager.LoadScene("Studio_Alpha_HCH");
+        SceneManager.LoadScene("Concert_Beta_HCH");
     }
 }

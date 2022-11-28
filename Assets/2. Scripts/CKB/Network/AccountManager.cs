@@ -38,7 +38,7 @@ public static class AccountManager
         isLogined = false;
     }
 
-    public static bool SignUp(string _id, string _passwd, string _genre)
+    public static bool SignUp(string _id, string _passwd, string _genre = "R&B")
     {
         string query = string.Format("INSERT INTO " + DB_USERINFO + " VALUES('{0}', '{1}', '{2}');", _id, Encoder.Encode(_passwd), _genre);
 
